@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\e_course_web.props" />
+</Project>
