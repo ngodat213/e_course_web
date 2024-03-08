@@ -7,10 +7,7 @@ namespace ECourse.Models
 {
     public class Contact
     {
-        public Contact()
-        {
-        }
-
+        public Contact() { }
         public Contact(string id, string fullName, string mail, string text, string topic)
         {
             Id = id;
@@ -25,5 +22,10 @@ namespace ECourse.Models
         public string Mail { get; set; }
         public string Text { get; set; }
         public string Topic { get; set; }
+    }
+    public class ContactsResponse
+    {
+        public int count { get; set; }
+        public List<Contact> contacts { get; set; }
     }
 }

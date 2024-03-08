@@ -12,28 +12,35 @@ namespace e_course_web.DataQuery
 {
     public static class APICall
     {
-        public static HttpClient GetHttpClient(string url)
+        private static HttpClient GetHttpClient(string url)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
+            var client = new HttpClient { BaseAddress = new Uri(url) };
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             return client;
         }
-
-        public static async Task<T> GetAsync<T>(string url, string urlParameters)
+        // GET ALL and ID
+        private static async Task<T> GetAsync<T>(string url, string urlParameters, string id = "")
         {
-            GetHttpClient(url);
             try
             {
-                using (var client = new HttpClient())
+                using (var client = GetHttpClient(url))
                 {
-                    HttpResponseMessage response = await client.GetAsync(urlParameters);
+                    HttpResponseMessage response;
+                    if (id != "")
+                    {
+                        response = await client.GetAsync(urlParameters + "/" + id);
+                    }
+                    else
+                    {
+                        response = await client.GetAsync(urlParameters);
+                    }
+
                     if (response.IsSuccessStatusCode)
                     {
-                        string json = await response.Content.ReadAsStringAsync();
-                        var result = JsonConvert.DeserializeObject<T>(json);
-                        return result;
+                        string result = response.Content.ReadAsStringAsync().Result;
+                        var data = JsonConvert.DeserializeObject<T>(result);
+                        return data;
                     }
                     return default;
                 }
@@ -44,9 +51,41 @@ namespace e_course_web.DataQuery
                 return default;
             }
         }
-        public static async Task<T> RunAsync<T>(string url, string urlParameters)
+        // POST
+        private static async Task<bool> PostAsync<T>(string url,string urlParameters, T obj)
         {
-            return await GetAsync<T>(url, urlParameters);
+
+            try
+            {
+                using (var client = GetHttpClient(url))
+                {
+                    HttpResponseMessage response = await client.PostAsJsonAsync<T>(urlParameters, obj);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public static async Task<T> RunAsyncGetAll<T>(string url, string urlParameters, string id = "")
+        {
+            return await GetAsync<T>(url, urlParameters, id);
+        }
+
+        public static async Task<bool> RunAsyncCreate<T>(string url, string urlParameters, T obj)
+        {
+            return await PostAsync<T>(url, urlParameters, obj);
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using e_course_web.DataQuery;
-using ECourse.Models;
+﻿using ECourse.Models;
 using Microsoft.AspNetCore.Mvc;
+using e_course_web.DataQuery;
 using Newtonsoft.Json;
 using System.Data;
 using System.Net.Http.Headers;
@@ -10,15 +10,14 @@ namespace e_course_web.Controllers
     public class ContactController : Controller
     {
 
-        public ContactController(){}
-
+        // GET
         public async Task<IActionResult> Index()
         {
-            DataTable dt = new DataTable();
-            dt = await APICall.GetAsync<DataTable>(ManagerAddress.domain, ManagerAddress.contact);
+            Contact dt = await QueryData.contactGetById("65e53b76527bc172c0a8d906");
             return View(dt);
         }
 
+        // POST
         public async Task<ActionResult<String>> AddContact(Contact model)
         {
             Contact obj = new Contact()

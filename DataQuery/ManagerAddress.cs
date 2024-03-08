@@ -10,6 +10,7 @@
         public static string course = "course";
         public static string courseLesson = "courseLesson";
         public static string courseVideo = "courseVideo";
+        public static string courseComment = "courseComment";
         // ?--- Quiz
         public static string quiz = "quiz";
         public static string quizLesson = "quizLesson";
