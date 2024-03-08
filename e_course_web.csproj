@@ -6,4 +6,131 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\css\vendor.css" />
+    <Content Remove="wwwroot\icomoon\fonts\icomooncfce.eot" />
+    <Content Remove="wwwroot\icomoon\fonts\icomooncfce.svg" />
+    <Content Remove="wwwroot\icomoon\fonts\icomooncfce.ttf" />
+    <Content Remove="wwwroot\icomoon\fonts\icomooncfce.woff" />
+    <Content Remove="wwwroot\icomoon\icomoon.css" />
+    <Content Remove="wwwroot\images\award.png" />
+    <Content Remove="wwwroot\images\background-img.jpg" />
+    <Content Remove="wwwroot\images\billboad-img.png" />
+    <Content Remove="wwwroot\images\blog1.jpg" />
+    <Content Remove="wwwroot\images\blog2.jpg" />
+    <Content Remove="wwwroot\images\blog3.jpg" />
+    <Content Remove="wwwroot\images\chocolat\close.png" />
+    <Content Remove="wwwroot\images\chocolat\fullscreen.png" />
+    <Content Remove="wwwroot\images\chocolat\left.png" />
+    <Content Remove="wwwroot\images\chocolat\loader.gif" />
+    <Content Remove="wwwroot\images\chocolat\right.png" />
+    <Content Remove="wwwroot\images\colorbox\controls.html" />
+    <Content Remove="wwwroot\images\colorbox\loading.html" />
+    <Content Remove="wwwroot\images\instruction.png" />
+    <Content Remove="wwwroot\images\item-lg1.jpg" />
+    <Content Remove="wwwroot\images\item-lg2.jpg" />
+    <Content Remove="wwwroot\images\item-lg3.jpg" />
+    <Content Remove="wwwroot\images\item1.jpg" />
+    <Content Remove="wwwroot\images\item2.jpg" />
+    <Content Remove="wwwroot\images\item3.jpg" />
+    <Content Remove="wwwroot\images\item4.jpg" />
+    <Content Remove="wwwroot\images\item5.jpg" />
+    <Content Remove="wwwroot\images\item6.jpg" />
+    <Content Remove="wwwroot\images\item7.jpg" />
+    <Content Remove="wwwroot\images\item8.jpg" />
+    <Content Remove="wwwroot\images\logo.jpg" />
+    <Content Remove="wwwroot\images\product-item1.jpg" />
+    <Content Remove="wwwroot\images\product-item2.jpg" />
+    <Content Remove="wwwroot\images\product-item3.jpg" />
+    <Content Remove="wwwroot\images\product-item4.jpg" />
+    <Content Remove="wwwroot\images\product-item5.jpg" />
+    <Content Remove="wwwroot\images\product-item6.jpg" />
+    <Content Remove="wwwroot\images\product-item7.jpg" />
+    <Content Remove="wwwroot\images\product-item8.jpg" />
+    <Content Remove="wwwroot\images\product-item9.jpg" />
+    <Content Remove="wwwroot\images\register-img.png" />
+    <Content Remove="wwwroot\images\reviewer-1.jpg" />
+    <Content Remove="wwwroot\images\reviewer-2.jpg" />
+    <Content Remove="wwwroot\images\reviewer-3.jpg" />
+    <Content Remove="wwwroot\images\student.png" />
+    <Content Remove="wwwroot\images\team1.jpg" />
+    <Content Remove="wwwroot\images\team2.jpg" />
+    <Content Remove="wwwroot\images\team3.jpg" />
+    <Content Remove="wwwroot\images\team4.jpg" />
+    <Content Remove="wwwroot\images\team5.jpg" />
+    <Content Remove="wwwroot\images\team6.jpg" />
+    <Content Remove="wwwroot\images\topic.png" />
+    <Content Remove="wwwroot\js\jquery-1.11.0.min.js" />
+    <Content Remove="wwwroot\js\plugins.js" />
+    <Content Remove="wwwroot\js\script.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\CourseComment\" />
+    <Folder Include="Views\Home\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\vendor.css" />
+    <None Include="wwwroot\icomoon\fonts\icomooncfce.eot" />
+    <None Include="wwwroot\icomoon\fonts\icomooncfce.svg" />
+    <None Include="wwwroot\icomoon\fonts\icomooncfce.ttf" />
+    <None Include="wwwroot\icomoon\fonts\icomooncfce.woff" />
+    <None Include="wwwroot\icomoon\icomoon.css" />
+    <None Include="wwwroot\images\award.png" />
+    <None Include="wwwroot\images\background-img.jpg" />
+    <None Include="wwwroot\images\billboad-img.png" />
+    <None Include="wwwroot\images\blog1.jpg" />
+    <None Include="wwwroot\images\blog2.jpg" />
+    <None Include="wwwroot\images\blog3.jpg" />
+    <None Include="wwwroot\images\chocolat\close.png" />
+    <None Include="wwwroot\images\chocolat\fullscreen.png" />
+    <None Include="wwwroot\images\chocolat\left.png" />
+    <None Include="wwwroot\images\chocolat\loader.gif" />
+    <None Include="wwwroot\images\chocolat\right.png" />
+    <None Include="wwwroot\images\colorbox\controls.html" />
+    <None Include="wwwroot\images\colorbox\loading.html" />
+    <None Include="wwwroot\images\instruction.png" />
+    <None Include="wwwroot\images\item-lg1.jpg" />
+    <None Include="wwwroot\images\item-lg2.jpg" />
+    <None Include="wwwroot\images\item-lg3.jpg" />
+    <None Include="wwwroot\images\item1.jpg" />
+    <None Include="wwwroot\images\item2.jpg" />
+    <None Include="wwwroot\images\item3.jpg" />
+    <None Include="wwwroot\images\item4.jpg" />
+    <None Include="wwwroot\images\item5.jpg" />
+    <None Include="wwwroot\images\item6.jpg" />
+    <None Include="wwwroot\images\item7.jpg" />
+    <None Include="wwwroot\images\item8.jpg" />
+    <None Include="wwwroot\images\logo.jpg" />
+    <None Include="wwwroot\images\product-item1.jpg" />
+    <None Include="wwwroot\images\product-item2.jpg" />
+    <None Include="wwwroot\images\product-item3.jpg" />
+    <None Include="wwwroot\images\product-item4.jpg" />
+    <None Include="wwwroot\images\product-item5.jpg" />
+    <None Include="wwwroot\images\product-item6.jpg" />
+    <None Include="wwwroot\images\product-item7.jpg" />
+    <None Include="wwwroot\images\product-item8.jpg" />
+    <None Include="wwwroot\images\product-item9.jpg" />
+    <None Include="wwwroot\images\register-img.png" />
+    <None Include="wwwroot\images\reviewer-1.jpg" />
+    <None Include="wwwroot\images\reviewer-2.jpg" />
+    <None Include="wwwroot\images\reviewer-3.jpg" />
+    <None Include="wwwroot\images\student.png" />
+    <None Include="wwwroot\images\team1.jpg" />
+    <None Include="wwwroot\images\team2.jpg" />
+    <None Include="wwwroot\images\team3.jpg" />
+    <None Include="wwwroot\images\team4.jpg" />
+    <None Include="wwwroot\images\team5.jpg" />
+    <None Include="wwwroot\images\team6.jpg" />
+    <None Include="wwwroot\images\topic.png" />
+    <None Include="wwwroot\js\jquery-1.11.0.min.js" />
+    <None Include="wwwroot\js\plugins.js" />
+    <None Include="wwwroot\js\script.js" />
+  </ItemGroup>
+
 </Project>

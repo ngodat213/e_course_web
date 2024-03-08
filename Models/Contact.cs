@@ -7,6 +7,10 @@ namespace ECourse.Models
 {
     public class Contact
     {
+        public Contact()
+        {
+        }
+
         public Contact(string id, string fullName, string mail, string text, string topic)
         {
             Id = id;

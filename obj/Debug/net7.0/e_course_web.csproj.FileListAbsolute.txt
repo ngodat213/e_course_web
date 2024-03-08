@@ -28,3 +28,6 @@ D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\refint\e_course_web.dll
 D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\e_course_web.pdb
 D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\e_course_web.genruntimeconfig.cache
 D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\ref\e_course_web.dll
+D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\e_course_web.csproj.AssemblyReference.cache
+D:\workspace\dot_net\e_course_web\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\e_course_web.csproj.CopyComplete

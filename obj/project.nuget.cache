@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "T5cRKqxi5PE0t2/Sgy+Ivbf06qWtkKKCyhDeXJFq4E9WyDhu0OC16pgQcwqLkMvDsIFKcMSScqf9r6eP3TQZaw==",
+  "dgSpecHash": "IfoPGJ7EPQVsdYyrpGfiPIQ9dYQpFBWWcoyMIkp1nFuV2lQrI9czL4VfJg7Bvz4IQTksQCqlf++QZcDGMWRCpg==",
   "success": true,
   "projectFilePath": "D:\\workspace\\dot_net\\e_course_web\\e_course_web.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Sinon\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
