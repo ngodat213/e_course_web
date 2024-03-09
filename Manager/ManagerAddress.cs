@@ -1,4 +1,4 @@
-﻿namespace e_course_web.DataQuery
+﻿namespace e_course_web.Manager
 {
     public class ManagerAddress
     {
@@ -16,9 +16,9 @@
         public static string quizLesson = "quizLesson";
         public static string quizQuestion = "quizQuestion";
         // ?--- User
-        public static string user = "user";
-        public static string userLogin = "userLogin";
-        public static string userSignUp = "signUp";
+        public static string user = $"{domain}user/";
+        public static string login = "login";
+        public static string signUp = "signUp";
         public static string contact = "contact";
     }
 }

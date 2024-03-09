@@ -2,8 +2,7 @@
 
 namespace e_course_web.Controllers
 {
-    public class CourseController : Controller
+    public class About : Controller
     {
-
     }
 }

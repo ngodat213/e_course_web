@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Xml.Linq;
 
-namespace ECourse.Models
+namespace e_course_web.Models
 {
     public class CourseVideo { 
         public CourseVideo(string _id, string title, int hour, int minute, int part, string videoUrl, string description)

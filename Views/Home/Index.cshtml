@@ -1,8 +1,58 @@
-﻿@{
+﻿@model List<e_course_web.Models.Course>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Courses List</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Courses List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Rating</th>
+                <th>Order</th>
+                <th>TeacherId</th>
+                <th>CourseImage</th>
+                <th>Rating</th>
+                <th>Time</th>
+                <th>Lessons</th>
+                <!-- Add more table headers as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr> 
+                    <td>@course.Id</td>
+                    <td>@course.Title</td>
+                    <td>@course.Price</td>
+                    <td>@course.Category</td>
+                    <td>@course.Description</td>
+                    <td>@course.Rating</td>
+                    <td>@course.Order</td>
+                    <td>@course.TeacherId</td>
+                    <td>@course.CourseImage</td>
+                    <td>@course.Rating</td>
+                    <td>@course.Time</td>
+                    <td>@course.Lessons</td>
+                    <!-- Add more table cells as needed -->
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

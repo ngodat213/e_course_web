@@ -77,7 +77,59 @@ namespace e_course_web.DataQuery
                 return false;
             }
         }
+        // PATCH
+        /*private static async Task<bool> PatchAsync<T>(string url, string urlParameters, string id, T obj)
+        {
+            try
+            {
+                using (var client = GetHttpClient(url))
+                {
+                    HttpResponseMessage response = await client.PatchAsync<T>(urlParameters + '/' + id, obj);
 
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }*/
+        // DELETE
+        private static async Task<bool> DeleteAsync<T>(string url, string urlParameters, string id)
+        {
+
+            try
+            {
+                using (var client = GetHttpClient(url))
+                {
+                    HttpResponseMessage response = await client.DeleteAsync(urlParameters + '/' + id);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        // API CALL
         public static async Task<T> RunAsyncGetAll<T>(string url, string urlParameters, string id = "")
         {
             return await GetAsync<T>(url, urlParameters, id);

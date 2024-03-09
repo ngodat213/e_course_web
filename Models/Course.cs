@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ECourse.Models
+namespace e_course_web.Models
 {
     public class Course
     {
@@ -21,7 +21,6 @@ namespace ECourse.Models
             Time = time;
             Lessons = lessons;
         }
-
         public string Id { get; set; }
         public string Title { get; set; }
         public double Price { get; set; }
@@ -33,5 +32,11 @@ namespace ECourse.Models
         public string CourseImage { get; set; }
         public string Time { get; set; }
         public List<string> Lessons { get; set; }
+    }
+
+    public class CoursesResponse
+    {
+        public int count { get; set; }
+        public List<Course> courses { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace e_course_web.Controllers
 {
-    public class QuizLessonController : Controller
+    public class LoginController : Controller
     {
         public IActionResult Index()
         {
