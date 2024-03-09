@@ -1,169 +1,57 @@
-﻿using e_course_web.Manager;
-using e_course_web.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using e_course_web.Models;
 
 namespace e_course_web.DataQuery
 {
     public static class QueryData
     {
-        /*  User
-         *  Request accept: Login, SignUp
-         *  Function: Get bearer
+        //--------------------------FUNC-----------------------
+
+        /*  QUIZ FUNCTION
+         *  getListQuizLesson(Quiz model)
+         *  getListQuizQuestion(QuizLesson model)
          */
-        public static async Task<string> userLogin()
+        public static async Task<List<QuizLesson>> getListQuizLesson(Quiz model)
         {
-            UserResponse res = await APICall.RunAsyncGetAll<UserResponse>(ManagerAddress.user, ManagerAddress.login);
-            return res.token;
+            List<QuizLesson> res = new List<QuizLesson>();
+            foreach (var id in model.Lessons)
+            {
+                res.Add(await QueryDataAPI.quizLessonGetById(id));
+            }
+            return res;
         }
 
-        public static async Task<string> userSignUp()
+        public static async Task<List<QuizQuestion>> getListQuizQuestion(QuizLesson model)
         {
-            return await APICall.RunAsyncGetAll<string>(ManagerAddress.user, ManagerAddress.signUp);
+            List<QuizQuestion> res = new List<QuizQuestion>();
+            foreach (var id in model.Questions)
+            {
+                res.Add(await QueryDataAPI.quizQuestionGetById(id));
+            }
+            return res;
         }
 
-        /* Contact
-         * Request accept: Post, Get
-         * Request accept auth: Path, Delete
+        /*  COURSE FUNCTION
+         *  getListQuizLesson(Quiz model)
+         *  getListQuizQuestion(QuizLesson model)
          */
-        public static async Task<ContactsResponse> contactGetAll()
+        public static async Task<List<CourseLesson>> getListCourseLesson(Course model)
         {
-            ContactsResponse res = await APICall.RunAsyncGetAll<ContactsResponse>(ManagerAddress.domain, ManagerAddress.contact);
+            List<CourseLesson> res = new List<CourseLesson>();
+            foreach (var id in model.Lessons)
+            {
+                res.Add(await QueryDataAPI.courseLessonGetById(id));
+            }
             return res;
         }
-        public static async Task<Contact> contactGetById(string id)
+
+        public static async Task<List<CourseVideo>> getListCourseVideo(CourseLesson model)
         {
-            Contact res = await APICall.RunAsyncGetAll<Contact>(ManagerAddress.domain, ManagerAddress.contact, id);
+            List<CourseVideo> res = new List<CourseVideo>();
+            foreach (var id in model.Videos)
+            {
+                res.Add(await QueryDataAPI.courseVideoGetById(id));
+            }
             return res;
-        }
-        public static async Task<bool> contactCreate(Contact obj)
-        {
-            return await APICall.RunAsyncCreate<Contact>(ManagerAddress.domain, ManagerAddress.contact, obj);
-        }
-        /* Contact
-         * Request accept: Post, Get
-         * Request accept auth: Path, Delete
-         */
-        public static async Task<CoursesResponse> courseGetAll()
-        {
-            CoursesResponse res = await APICall.RunAsyncGetAll<CoursesResponse>(ManagerAddress.domain, ManagerAddress.course);
-            return res;
-        }
-        public static async Task<Contact> courseGetById(string id)
-        {
-            Contact res = await APICall.RunAsyncGetAll<Contact>(ManagerAddress.domain, ManagerAddress.contact, id);
-            return res;
-        }
-        public static async Task<bool> courseCreate(Contact obj)
-        {
-            return await APICall.RunAsyncCreate<Contact>(ManagerAddress.domain, ManagerAddress.contact, obj);
-        }
-        /* Contact
-         * Request accept: Post, Get
-         * Request accept auth: Path, Delete
-         */
-        public static async Task<ContactsResponse> courseCommentGetAll()
-        {
-            ContactsResponse res = await APICall.RunAsyncGetAll<ContactsResponse>(ManagerAddress.domain, ManagerAddress.courseComment);
-            return res;
-        }
-        public static async Task<Contact> courseCommentGetById(string id)
-        {
-            Contact res = await APICall.RunAsyncGetAll<Contact>(ManagerAddress.domain, ManagerAddress.contact, id);
-            return res;
-        }
-        public static async Task<bool> courseCommentCreate(Contact obj)
-        {
-            return await APICall.RunAsyncCreate<Contact>(ManagerAddress.domain, ManagerAddress.contact, obj);
-        }
-        /* Contact
-         * Request accept: Post, Get
-         * Request accept auth: Path, Delete
-         */
-        public static async Task<ContactsResponse> courseLessonGetAll()
-        {
-            ContactsResponse res = await APICall.RunAsyncGetAll<ContactsResponse>(ManagerAddress.domain, ManagerAddress.courseLesson);
-            return res;
-        }
-        public static async Task<Contact> courseLessonGetById(string id)
-        {
-            Contact res = await APICall.RunAsyncGetAll<Contact>(ManagerAddress.domain, ManagerAddress.contact, id);
-            return res;
-        }
-        public static async Task<bool> courseLessonCreate(Contact obj)
-        {
-            return await APICall.RunAsyncCreate<Contact>(ManagerAddress.domain, ManagerAddress.contact, obj);
-        }
-        /* Contact
-         * Request accept: Post, Get
-         * Request accept auth: Path, Delete
-         */
-        public static async Task<ContactsResponse> courseVideoGetAll()
-        {
-            ContactsResponse res = await APICall.RunAsyncGetAll<ContactsResponse>(ManagerAddress.domain, ManagerAddress.courseVideo);
-            return res;
-        }
-        public static async Task<Contact> courseVideoGetById(string id)
-        {
-            Contact res = await APICall.RunAsyncGetAll<Contact>(ManagerAddress.domain, ManagerAddress.contact, id);
-            return res;
-        }
-        public static async Task<bool> courseVideoCreate(Contact obj)
-        {
-            return await APICall.RunAsyncCreate<Contact>(ManagerAddress.domain, ManagerAddress.contact, obj);
-        }
-        /* Contact
-         * Request accept: Post, Get
-         * Request accept auth: Path, Delete
-         */
-        public static async Task<ContactsResponse> quizGetAll()
-        {
-            ContactsResponse res = await APICall.RunAsyncGetAll<ContactsResponse>(ManagerAddress.domain, ManagerAddress.quiz);
-            return res;
-        }
-        public static async Task<Contact> quizGetById(string id)
-        {
-            Contact res = await APICall.RunAsyncGetAll<Contact>(ManagerAddress.domain, ManagerAddress.contact, id);
-            return res;
-        }
-        public static async Task<bool> quizCreate(Contact obj)
-        {
-            return await APICall.RunAsyncCreate<Contact>(ManagerAddress.domain, ManagerAddress.contact, obj);
-        }
-        /* Contact
-         * Request accept: Post, Get
-         * Request accept auth: Path, Delete
-         */
-        public static async Task<ContactsResponse> quizLessonGetAll()
-        {
-            ContactsResponse res = await APICall.RunAsyncGetAll<ContactsResponse>(ManagerAddress.domain, ManagerAddress.quizLesson);
-            return res;
-        }
-        public static async Task<Contact> quizLessonGetById(string id)
-        {
-            Contact res = await APICall.RunAsyncGetAll<Contact>(ManagerAddress.domain, ManagerAddress.contact, id);
-            return res;
-        }
-        public static async Task<bool> quizLessonCreate(Contact obj)
-        {
-            return await APICall.RunAsyncCreate<Contact>(ManagerAddress.domain, ManagerAddress.contact, obj);
-        }
-        /* Contact
-         * Request accept: Post, Get
-         * Request accept auth: Path, Delete
-         */
-        public static async Task<ContactsResponse> quizQuestionGetAll()
-        {
-            ContactsResponse res = await APICall.RunAsyncGetAll<ContactsResponse>(ManagerAddress.domain, ManagerAddress.quizQuestion);
-            return res;
-        }
-        public static async Task<Contact> quizQuestionGetById(string id)
-        {
-            Contact res = await APICall.RunAsyncGetAll<Contact>(ManagerAddress.domain, ManagerAddress.contact, id);
-            return res;
-        }
-        public static async Task<bool> quizQuestionCreate(Contact obj)
-        {
-            return await APICall.RunAsyncCreate<Contact>(ManagerAddress.domain, ManagerAddress.contact, obj);
         }
     }
 }
