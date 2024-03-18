@@ -70,8 +70,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\CourseComment\" />
     <Folder Include="Views\Home\" />
+    <Folder Include="Views\Course\" />
+    <Folder Include="Views\About\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="Views\Quiz\" />
   </ItemGroup>
 
   <ItemGroup>

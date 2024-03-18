@@ -8,8 +8,9 @@ namespace e_course_web.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            CoursesResponse query = await QueryData.courseGetAll();
-            return View(query.courses);
+            /*CoursesResponse query = await QueryDataAPI.courseGetAll();
+            return View(query.courses);*/
+            return View();
         }
     }
 }

@@ -30,4 +30,5 @@ D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\e_course_web.genruntimeconfig
 D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\ref\e_course_web.dll
 D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\e_course_web.csproj.AssemblyReference.cache
 D:\workspace\dot_net\e_course_web\bin\Debug\net7.0\Newtonsoft.Json.dll
-D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\e_course_web.csproj.CopyComplete
+D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\e_course_web.sourcelink.json
+D:\workspace\dot_net\e_course_web\obj\Debug\net7.0\e_course.EE48ACD2.Up2Date

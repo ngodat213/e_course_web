@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,17 +8,13 @@ namespace e_course_web.Models
 {
     public class CourseComment
     {
-        public CourseComment(string _id, string title, int like = 0, List<string> userId = null)
-        {
-            Id = _id;
-            Title = title;
-            Like = like;
-            UserId = userId ?? new List<string>();
-        }
-
+        [Required] 
         public string Id { get; set; }
+        [Required] 
         public string Title { get; set; }
+        [Required] 
         public int Like { get; set; }
+        [Required] 
         public List<string> UserId { get; set; }
     }
 }

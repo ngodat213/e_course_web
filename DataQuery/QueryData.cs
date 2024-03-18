@@ -1,9 +1,15 @@
-﻿using e_course_web.Models;
+﻿using e_course_web.Manager;
+using e_course_web.Models;
+using e_course_web.Repository;
 
 namespace e_course_web.DataQuery
 {
     public static class QueryData
     {
+
+        private static readonly Repository<CourseLesson> _courseLessonRepository = new Repository<CourseLesson>();
+        private static readonly Repository<QuizLesson> _quizLessonRepository = new Repository<QuizLesson>();
+        private static readonly Repository<QuizQuestion> _quizQuestionRepository = new Repository<QuizQuestion>();
         //--------------------------FUNC-----------------------
 
         /*  QUIZ FUNCTION
@@ -15,25 +21,25 @@ namespace e_course_web.DataQuery
             List<QuizLesson> res = new List<QuizLesson>();
             foreach (var id in model.Lessons)
             {
-                res.Add(await QueryDataAPI.quizLessonGetById(id));
+                res.Add(await _quizLessonRepository.GetAsync(id, ManagerAddress.domain, ManagerAddress.quizLesson));
             }
             return res;
         }
 
-        public static async Task<List<QuizQuestion>> getListQuizQuestion(QuizLesson model)
+        /*public static async Task<List<QuizQuestion>> getListQuizQuestion(QuizLesson model)
         {
             List<QuizQuestion> res = new List<QuizQuestion>();
             foreach (var id in model.Questions)
             {
-                res.Add(await QueryDataAPI.quizQuestionGetById(id));
+                res.Add(await _quizLessonRepository.quizQuestionGetById(id));
             }
             return res;
         }
 
-        /*  COURSE FUNCTION
+        *//*  COURSE FUNCTION
          *  getListQuizLesson(Quiz model)
          *  getListQuizQuestion(QuizLesson model)
-         */
+         *//*
         public static async Task<List<CourseLesson>> getListCourseLesson(Course model)
         {
             List<CourseLesson> res = new List<CourseLesson>();
@@ -52,6 +58,6 @@ namespace e_course_web.DataQuery
                 res.Add(await QueryDataAPI.courseVideoGetById(id));
             }
             return res;
-        }
+        }*/
     }
 }

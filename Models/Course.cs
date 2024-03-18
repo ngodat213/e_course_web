@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,30 +8,27 @@ namespace e_course_web.Models
 {
     public class Course
     {
-        public Course(string _id, string title, double price, string category, string description, string rating, int order, string teacherId, string courseImage, string time, List<string> lessons)
-        {
-            Id = _id;
-            Title = title;
-            Price = price;
-            Category = category;
-            Description = description;
-            Rating = rating;
-            Order = order;
-            TeacherId = teacherId;
-            CourseImage = courseImage;
-            Time = time;
-            Lessons = lessons;
-        }
+        [Required] 
         public string Id { get; set; }
+        [Required] 
         public string Title { get; set; }
+        [Required] 
         public double Price { get; set; }
+        [Required] 
         public string Category { get; set; }
+        [Required] 
         public string Description { get; set; }
+        [Required] 
         public string Rating { get; set; }
+        [Required] 
         public int Order { get; set; }
+        [Required] 
         public string TeacherId { get; set; }
+        [Required] 
         public string CourseImage { get; set; }
+        [Required] 
         public string Time { get; set; }
+        [Required] 
         public List<string> Lessons { get; set; }
     }
 

@@ -12,8 +12,7 @@ namespace e_course_web.Controllers
         // GET
         public async Task<IActionResult> Index()
         {
-            Contact dt = await QueryData.contactGetById("65e53b76527bc172c0a8d906");
-            return View(dt);
+            return View();
         }
     }
 }

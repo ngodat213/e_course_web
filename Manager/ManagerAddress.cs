@@ -1,8 +1,7 @@
 ﻿namespace e_course_web.Manager
 {
-    public class ManagerAddress
+    public static class ManagerAddress
     {
-        private ManagerAddress() { }
         // Load env
         // ?--- Domain
         public static string domain = "http://localhost:3000/";
