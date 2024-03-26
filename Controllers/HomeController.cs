@@ -9,9 +9,6 @@ namespace e_course_web.Controllers
 {
     public class HomeController : Controller
     {
-        // Call repository
-        private readonly Repository<CoursesResponse> _courseRepository = new Repository<CoursesResponse>();
-
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -21,14 +18,36 @@ namespace e_course_web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            CoursesResponse query = await _courseRepository.GetAsync(ManagerAddress.domain, ManagerAddress.course);
-            return View(query.courses);
+            return View();
+        }
+
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(User user)
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> SignUp()
+        {
+            return View();
+        }
+        public async Task<IActionResult> ForgotPassword()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Contact()
+        {
+            return View();
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
-
     }
 }

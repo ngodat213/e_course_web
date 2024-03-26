@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Register Repository for using in controller
-builder.Services.AddScoped(typeof(IRepository<> ), typeof(Repository<>));
+builder.Services.AddScoped(typeof(IRepository<,> ), typeof(Repository<,>));
 
 var app = builder.Build();
 

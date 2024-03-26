@@ -4,256 +4,130 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - e_course_web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/e_course_web.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/colors/color-1.css" asp-append-version="true" />
 </head>
 <body>
-    <nav class="main-menu d-flex navbar fixed-top navbar-expand-lg p-2 py-3 p-lg-4 py-lg-4 ">
-        <div class="container-fluid">
-            <div class="main-logo">
-                <a href="index.html">
-                    <img src="images/logo.jpg" alt="logo" class="img-fluid logo-image" width="200" height="100">
-                </a>
-            </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar"
-                    aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                 aria-labelledby="offcanvasNavbarLabel">
-
-                <div class="offcanvas-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
-                </div>
-
-                <div class="offcanvas-body justify-content-end">
-
-                    <ul class="navbar-nav menu-list list-unstyled align-items-lg-center d-flex gap-md-3 mb-0">
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link mx-2 active">Home</a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link mx-2 dropdown-toggle align-items-center"
-                               role="button" id="pages"
-                               data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-                            <ul class="dropdown-menu" aria-labelledby="pages">
-                                <li>
-                                    <a href="about.html" class="dropdown-item">
-                                        About Us<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="instructors.html"
-                                       class="dropdown-item">
-                                        Instructors<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="cart.html" class="dropdown-item">
-                                        Cart<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="wishlist.html"
-                                       class="dropdown-item">
-                                        Wishlist<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="checkout.html"
-                                       class="dropdown-item">
-                                        Checkout<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="price-plan.html" class="dropdown-item">
-                                        Price
-                                        Plan<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="contact.html" class="dropdown-item">
-                                        Contact<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="faqs.html" class="dropdown-item">
-                                        FAQs<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="account.html" class="dropdown-item">
-                                        Account<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="thank-you.html"
-                                       class="dropdown-item">
-                                        Thankyou<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="error.html" class="dropdown-item">
-                                        Error 404<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="styles.html" class="dropdown-item">
-                                        Styles<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link mx-2 dropdown-toggle align-items-center"
-                               role="button" id="courses"
-                               data-bs-toggle="dropdown" aria-expanded="false">Courses</a>
-                            <ul class="dropdown-menu" aria-labelledby="courses">
-                                <li>
-                                    <a href="courses.html" class="dropdown-item">
-                                        Course<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="courses-details.html"
-                                       class="dropdown-item">
-                                        Courses Detail<span class="badge bg-secondary-subtle text-dark ms-2">PRO</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <div class="d-none d-lg-flex align-items-center ms-5">
-                        <ul class="d-flex justify-content-end  list-unstyled m-0">
-                            <li>
-                                <a class="btn btn-outline-dark mx-3 p-3" href="#"
-                                   data-bs-toggle="modal"
-                                   data-bs-target="#exampleModal">Login/Signup</a>
-                            </li>
-                        </ul>
+    <div class="main-wrapper">
+        <!-- header start -->
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="header-main d-flex justify-content-between align-items-center">
+                            <div class="header-logo">
+                                <a asp-area="" asp-controller="Home" asp-action="Index"><span>E </span>Course</a>
+                            </div>
+                            <button type="button" class="header-hamburger-btn js-header-menu-toggler"></button>
+                            <span></span>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid d-lg-none">
-            <div class="d-flex  align-items-end mt-3">
-                <ul class="d-flex justify-content-end list-unstyled m-0">
-                    <li>
-                        <a href="account.html" class="me-4">
-                            <iconify-icon icon="healthicons:person"
-                                          class="fs-4 me-2"></iconify-icon>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="wishlist.html" class="me-4">
-                            <iconify-icon icon="mdi:heart" class="fs-4 me-2"></iconify-icon>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="me-4" data-bs-toggle="offcanvas"
-                           data-bs-target="#offcanvasCart"
-                           aria-controls="offcanvasCart">
-                            <iconify-icon icon="mdi:cart"
-                                          class="fs-4 me-2 position-relative"></iconify-icon>
-                            <span class="position-absolute translate-middle badge rounded-circle bg-primary text-black">
-                                03
-                            </span>
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    <footer id="footer">
-        <div class="container padding-medium ">
-            <div class="row">
-                <div class="col-md-4 my-3">
-                    <h5 class="text-uppercase fw-bold mb-4">Contact us</h5>
-                    <p>
-                        <iconify-icon class="social-icon text-primary fs-5 me-2"
-                                      icon="mdi:location"
-                                      style="vertical-align:text-bottom"></iconify-icon> <span class="fw-bold">Address: </span> hehe
-                    </p>
-                    <p>
-                        <iconify-icon class="social-icon text-primary fs-5 me-2"
-                                      icon="solar:phone-bold"
-                                      style="vertical-align:text-bottom"></iconify-icon> <span class="fw-bold">Phone: </span> 0395571697
-                    </p>
-                    <p>
-                        <iconify-icon class="social-icon text-primary fs-5 me-2"
-                                      icon="ic:baseline-email"
-                                      style="vertical-align:text-bottom"></iconify-icon> <span class="fw-bold">Email: </span>
-                        catmeo@gmail.com
-                    </p>
-                </div>
-                <div class="col-md-2 my-3">
-                    <div class="footer-menu">
-                        <h5 class="text-uppercase fw-bold mb-4">Links</h5>
-                        <ul class="menu-list list-unstyled">
-                            <li class="menu-item mb-2">
-                                <a href="#" class="footer-link">Home</a>
-                            </li>
-                            <li class="menu-item mb-2">
-                                <a href="#" class="footer-link">About us</a>
-                            </li>
-                            <li class="menu-item mb-2">
-                                <a href="#" class="footer-link">Courses</a>
-                            </li>
-                            <li class="menu-item mb-2">
-                                <a href="#" class="footer-link">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3 my-3">
-                    <div class="footer-menu">
-                        <h5 class="text-uppercase fw-bold mb-4">Follow us</h5>
-                        <div class="social-links mt-4">
-                            <ul class="d-flex list-unstyled gap-3">
-                                <li class="social">
-                                    <a href="#">
-                                        <iconify-icon class="social-icon fs-4 me-2"
-                                                      icon="ri:facebook-fill"></iconify-icon>
+                    <div class="col-md-6">
+                        <nav class="header-menu js-header-menu">
+                            <button type="button" class="header-close-btn js-header-menu-toggler">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <ul class="menu">
+                                <li class="menu-item"><a asp-area="" asp-controller="Home" asp-action="Index">home</a></li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#" class="js-toggle-sub-menu">
+                                        courses<i class="fas fa-chevron-down"></i>
                                     </a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a asp-area="" asp-controller="Course" asp-action="Index">course</a></li>
+                                        <li class="sub-menu-item"><a asp-area="" asp-controller="Course" asp-action="CourseDetail">course details</a></li>
+                                    </ul>
                                 </li>
-                                <li class="social">
-                                    <a href="#">
-                                        <iconify-icon class="social-icon fs-4 me-2"
-                                                      icon="ri:twitter-fill"></iconify-icon>
-                                    </a>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#" class="js-toggle-sub-menu">pages <i class="fas fa-chevron-down"></i></a>
+                                    <ul class="sub-menu js-sub-menu">
+                                        <li class="sub-menu-item"><a asp-area="" asp-controller="Home" asp-action="Login">login</a></li>
+                                        <li class="sub-menu-item"><a asp-area="" asp-controller="Home" asp-action="SignUp">signup</a></li>
+                                    </ul>
                                 </li>
-                                <li class="social">
-                                    <a href="#">
-                                        <iconify-icon class="social-icon fs-4 me-2"
-                                                      icon="ri:instagram-fill"></iconify-icon>
-                                    </a>
-                                </li>
-
+                                <li class="menu-item"><a asp-area="" asp-controller="Home" asp-action="Contact">contact</a></li>
                             </ul>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        <!-- footer start -->
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3 class="footer-logo"><span>E </span>Course</h3>
+                                <ul>
+                                    <li><a href="#">about</a></li>
+                                    <li><a href="#">what we offer</a></li>
+                                    <li><a href="#">careers</a></li>
+                                    <li><a href="#">certificates</a></li>
+                                    <li><a href="#">blog</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3>learning</h3>
+                                <ul>
+                                    <li><a href="#">get the app</a></li>
+                                    <li><a href="#">testimonials</a></li>
+                                    <li><a href="#">pricing</a></li>
+                                    <li><a href="#">faq</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3>more</h3>
+                                <ul>
+                                    <li><a href="#">affitiliates</a></li>
+                                    <li><a href="#">become a course creater</a></li>
+                                    <li><a href="#">traning webinars</a></li>
+                                    <li><a href="#">free personality test</a></li>
+                                    <li><a href="#">help and support</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="footer-item">
+                                <h3>get in touh</h3>
+                                <ul>
+                                    <li><a href="#"><i class="fab fa-facebook social-icon"></i> facebook</a></li>
+                                    <li><a href="#"><i class="fab fa-twitter social-icon"></i> twitter</a></li>
+                                    <li><a href="#"><i class="fab fa-instagram social-icon"></i> instagram</a></li>
+                                    <li><a href="#"><i class="fab fa-youtube social-icon"></i> youtube</a></li>
+                                    <li><a href="#"><i class="fab fa-linkedin social-icon"></i> linkedin</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+            <div class="footer-bottom">
+                <div class="container">
+                    <p></p>
+                </div>
+            </div>
+        </footer>
+        <!-- footer end -->
+
+    </div>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="js/main.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

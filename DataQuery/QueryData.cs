@@ -7,16 +7,16 @@ namespace e_course_web.DataQuery
     public static class QueryData
     {
 
-        private static readonly Repository<CourseLesson> _courseLessonRepository = new Repository<CourseLesson>();
-        private static readonly Repository<QuizLesson> _quizLessonRepository = new Repository<QuizLesson>();
-        private static readonly Repository<QuizQuestion> _quizQuestionRepository = new Repository<QuizQuestion>();
+        private static readonly IRepository<CourseLesson, CoursesResponse> _courseLessonRepository = new Repository<CourseLesson, CoursesResponse>();
+        private static readonly IRepository<QuizLesson, CoursesResponse> _quizLessonRepository = new Repository<QuizLesson, CoursesResponse>();
+        private static readonly IRepository<QuizQuestion, CoursesResponse> _quizQuestionRepository = new Repository<QuizQuestion, CoursesResponse>();
         //--------------------------FUNC-----------------------
 
         /*  QUIZ FUNCTION
          *  getListQuizLesson(Quiz model)
          *  getListQuizQuestion(QuizLesson model)
          */
-        public static async Task<List<QuizLesson>> getListQuizLesson(Quiz model)
+        /*public static async Task<List<QuizLesson>> getListQuizLesson(Quiz model)
         {
             List<QuizLesson> res = new List<QuizLesson>();
             foreach (var id in model.Lessons)
@@ -24,7 +24,7 @@ namespace e_course_web.DataQuery
                 res.Add(await _quizLessonRepository.GetAsync(id, ManagerAddress.domain, ManagerAddress.quizLesson));
             }
             return res;
-        }
+        }*/
 
         /*public static async Task<List<QuizQuestion>> getListQuizQuestion(QuizLesson model)
         {

@@ -3,147 +3,320 @@
     ViewData["Title"] = "Home Page";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>E-course</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="author" content="">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-
-
-    <link rel="stylesheet" type="text/css" href="icomoon/icomoon.css">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&amp;family=Roboto+Slab&amp;display=swap"
-          rel="stylesheet">
-
-</head>
-<body>
-    <section id="hero">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-8 col-lg-3 offset-md-2 padding-large ps-lg-0 pe-lg-5">
-                    <h2 class="display-2 fw-semibold">Welcome to our E-course !</h2>
-                    <div>
-                        <form id="form" class="d-flex justify-content-between position-relative">
-                            <input type="text" name="email" placeholder="Search Your Courses ..." class="form-control w-100">
-                            <button class="btn btn-primary px-4 py-2 position-absolute end-0"
-                                    style="height: -webkit-fill-available;">
-                                <iconify-icon icon="ion:search" class="fs-4 py-1"
-                                              style="vertical-align: middle;"></iconify-icon>
-                            </button>
-                        </form>
-
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-7 d-block d-md-none d-lg-block p-0">
-                    <img src="images/billboad-img.png" alt="img" class="img-fluid">
+<!-- banner section start -->
+<section class="banner-section d-flex align-items-center">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="banner-text">
+                    <h2 class="mb-3">An investment in knowledge pays the best interest</h2>
+                    <h1 class="mb-3 text-capitalize">best online platform for learning</h1>
+                    <p class="mb-4">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem
+                        quaerat autem impedit, voluptate ut hic repellendus consequuntur fugit? Autem accusamus
+                        quasi veniam quo distinctio qui omnis deserunt, amet pariatur repudiandae.
+                    </p>
+                    <a href="#" class="btn btn-theme">join free</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="register">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-md-6 ">
-                    <img src="images/register-img.png" alt="img" class="img-fluid">
-                </div>
-                <div class="col-md-4 ">
-                    <div class="mb-5 mt-5 mt-lg-0">
-                        <h2 class="display-5 fw-semibold"> Let's go</h2>
-                        <p class="secondary-font">Participate in studying with many attractive courses with E-Course</p>
-                    </div>
-
-                    <form id="form">
-                        <input type="text" name="email" placeholder="Write Your Name*" class="form-control w-100 mb-4">
-                        <input type="email" name="email" placeholder="Write Your Email Address*" class="form-control w-100 mb-4">
-                        <button class="btn btn-primary px-5 py-3 mt-2"> Get Started now</button>
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="top-sell" class="padding-medium">
-        <div class="container">
-
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-semibold">Check our <span class="text-primary">top courses</span></h2>
-                <p class="secondary-font">The good and useful courses that people are interested in.</p>
-            </div>
-
-            <div class="text-center mb-3">
-                <p class="m-0">
-                    <button class="filter-button px-3 py-2 mt-2 rounded-pill me-4  active" data-filter="*">All</button>
-                    <button class="filter-button px-3 py-2 mt-2 rounded-pill me-4 " data-filter=".digital">Flutter</button>
-                    <button class="filter-button px-3 py-2 mt-2 rounded-pill me-4 " data-filter=".web">Web design</button>
-                    <button class="filter-button px-3 py-2 mt-2 rounded-pill me-4 " data-filter=".photo">Python</button>
-                    <button class="filter-button px-3 py-2 mt-2 rounded-pill me-4 " data-filter=".business">AI</button>
-                    <button class="filter-button px-3 py-2 mt-2 rounded-pill me-4 " data-filter=".video">Java</button>
-                </p>
-            </div>
-
-            <div class="isotope-container row">
-
-                @foreach(Course course in Model)
-                {
-                    <div class="item digital col-md-4 col-lg-3 my-5">
-                        <div class="z-1 position-absolute m-3">
-                            <span class="badge text-muted bg-primary">10 Lessons</span>
+            <div class="col-md-6">
+                <div class="banner-img">
+                    <div class="circular-img">
+                        <div class="circular-img-inner">
+                            <div class="circular-img-circle"></div>
+                            <img src="img/banner-img.png" alt="banner img" class="">
                         </div>
-                        <div class="card position-relative">
-                            <a href="courses-details.html"><img src=@course.CourseImage class="img-fluid rounded-3" alt="image"></a>
-                            <div class="card-body p-0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- banner section end-->
+<!-- fun facts section start -->
+<section class="fun-facts-section">
+    <div class="container">
+        <div class="box py-2">
+            <div class="row text-center">
+                <div class="col-md-6 col-lg-3">
+                    <div class="fun-facts-item">
+                        <h2 class="style-1">800k</h2>
+                        <p>students we've</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="fun-facts-item">
+                        <h2 class="style-2">500+</h2>
+                        <p>courses</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="fun-facts-item">
+                        <h2 class="style-3">50+</h2>
+                        <p>countries</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="fun-facts-item">
+                        <h2 class="style-4">100+</h2>
+                        <p>skilled instructors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                                <span class="badge text-muted bg-success mt-3 mb-1">Beginner</span>
+<!-- fun facts section end -->
+<!-- course section start -->
+<section class="course-section section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="section-title text-center">
+                    <h2 class="title">courses</h2>
+                    <p class="sub-title">Find the right course for you</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- courses item start -->
+            <div class="col-md-6 col-lg-3">
+                <div class="courses-item">
+                    <a href="course-details.html" class="link">
+                        <div class="courses-item-inner">
+                            <div class="img-box">
+                                <img src="img/courses/item.jpg" alt="course img">
+                            </div>
+                            <h3 class="title">html for beginners</h3>
+                            <div class="instructor">
+                                <img src="img/instructor/1.png" alt="instructor img">
+                                <span class="instructor-name">john doe</span>
+                            </div>
+                            <div class="rating">
+                                <span class="average-rating">(4.5)</span>
+                                <span class="average-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                                <span class="reviews">(230)</span>
+                            </div>
+                            <div class="price">$ 49</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-                                <a href="courses-details.html">
-                                    <h5 class="py-2 m-0">@course.Title</h5>
-                                </a>
+            <!-- courses item end -->
+            <!-- courses item start -->
+            <div class="col-md-6 col-lg-3">
+                <div class="courses-item">
+                    <a href="course-details.html" class="link">
+                        <div class="courses-item-inner">
+                            <div class="img-box">
+                                <img src="img/courses/item.jpg" alt="course img">
+                            </div>
+                            <h3 class="title">css for beginners</h3>
+                            <div class="instructor">
+                                <img src="img/instructor/1.png" alt="instructor img">
+                                <span class="instructor-name">john doe</span>
+                            </div>
+                            <div class="rating">
+                                <span class="average-rating">(4.5)</span>
+                                <span class="average-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                                <span class="reviews">(230)</span>
+                            </div>
+                            <div class="price">$ 49</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- courses item end -->
+            <!-- courses item start -->
+            <div class="col-md-6 col-lg-3">
+                <div class="courses-item">
+                    <a href="course-details.html" class="link">
+                        <div class="courses-item-inner">
+                            <div class="img-box">
+                                <img src="img/courses/item.jpg" alt="course img">
+                            </div>
+                            <h3 class="title">php for beginners</h3>
+                            <div class="instructor">
+                                <img src="img/instructor/1.png" alt="instructor img">
+                                <span class="instructor-name">john doe</span>
+                            </div>
+                            <div class="rating">
+                                <span class="average-rating">(4.5)</span>
+                                <span class="average-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                                <span class="reviews">(230)</span>
+                            </div>
+                            <div class="price">$ 49</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- courses item end -->
+            <!-- courses item start -->
+            <div class="col-md-6 col-lg-3">
+                <div class="courses-item">
+                    <a href="course-details.html" class="link">
+                        <div class="courses-item-inner">
+                            <div class="img-box">
+                                <img src="img/courses/item.jpg" alt="course img">
+                            </div>
+                            <h3 class="title">java for beginners</h3>
+                            <div class="instructor">
+                                <img src="img/instructor/1.png" alt="instructor img">
+                                <span class="instructor-name">john doe</span>
+                            </div>
+                            <div class="rating">
+                                <span class="average-rating">(4.5)</span>
+                                <span class="average-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                                <span class="reviews">(230)</span>
+                            </div>
+                            <div class="price">$ 49</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-                                <div class="card-text">
-                                    <span class="rating d-flex align-items-center mb-2">
-                                        <p class="text-muted fw-semibold m-0 me-2">James Willam</p>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    </span>
-
-                                    <!-- <h4 class=" text-primary">$180.00 <span
-                                        class="fs-6 text-black opacity-25 text-decoration-line-through">240.00</span></h4> -->
-
-                                    <div class="d-flex flex-wrap mt-2">
-                                        <a href="#" class=" btn btn-outline-dark text-capitalize me-2 px-4 py-3">Enroll Now</a>
-                                        <a href="#" class=" btn btn-outline-dark text-capitalize ">
-                                            <iconify-icon icon="mdi:heart-outline" class="fs-5 pt-1"></iconify-icon>
-                                        </a>
-                                    </div>
-
-                                </div>
-
+            <!-- courses item end -->
+        </div>
+        <div class="row">
+            <div class="col-12 text-center mt-3">
+                <a href="courses.html" class="btn btn-theme">view all courses</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- course section end -->
+<!-- testimonials section start -->
+<section class="testimonials-section section-padding position-relative">
+    <div class="decoration-circles">
+        <div class="decoration-circles-item"></div>
+        <div class="decoration-circles-item"></div>
+        <div class="decoration-circles-item"></div>
+        <div class="decoration-circles-item"></div>
+    </div>
+    <div class="decoration-imgs">
+        <img src="img/testimonial/1.png" alt="decoration-img" class="decoration-imgs-item">
+        <img src="img/testimonial/2.png" alt="decoration-img" class="decoration-imgs-item">
+        <img src="img/testimonial/1.png" alt="decoration-img" class="decoration-imgs-item">
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="section-title text-center">
+                    <h2 class="title">students feedback</h2>
+                    <p class="sub-title">What our students say</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="img-box rounded-circle position-relative">
+                    <img src="img/testimonial/1.png" class="w-100 js-testimonial-img rounded-circle"
+                         alt="testimonial img">
+                </div>
+                <div id="carouselOne" class="carousel slide text-center" data-bs-ride="carousel">
+                    <div class="carousel-inner mb-4">
+                        <div class="carousel-item active" data-js-testimonial-img="img/testimonial/1.png">
+                            <div class="testimonials-item">
+                                <p class="text-1">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Necessitatibus et fugit vero adipisci dolore. Explicabo beatae quod ut
+                                    perspiciatis iusto.
+                                </p>
+                                <h3>john doe</h3>
+                                <p class="text-2">web developer</p>
                             </div>
                         </div>
+                        <div class="carousel-item" data-js-testimonial-img="img/testimonial/2.png">
+                            <div class="testimonials-item">
+                                <p class="text-1">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Necessitatibus et fugit vero adipisci dolore. Explicabo beatae quod ut
+                                    perspiciatis iusto.
+                                </p>
+                                <h3>john doe</h3>
+                                <p class="text-2">web developer</p>
+                            </div>
+
+                        </div>
+                        <div class="carousel-item" data-js-testimonial-img="img/testimonial/1.png">
+                            <div class="testimonials-item">
+                                <p class="text-1">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Necessitatibus et fugit vero adipisci dolore. Explicabo beatae quod ut
+                                    perspiciatis iusto.
+                                </p>
+                                <h3>john doe</h3>
+                                <p class="text-2">web developer</p>
+                            </div>
+
+                        </div>
                     </div>
-                }
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselOne"
+                            data-bs-slide="prev">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselOne"
+                            data-bs-slide="next">
+                        <i class="fas fa-arrow-right"></i>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
         </div>
-    </section>
-</body>
-</html>
+    </div>
+</section>
+<!-- testimonials section end -->
+<!-- becom a instructor section start -->
+<div class="bai-section section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="box">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="circular-img">
+                                <div class="circular-img-inner"></div>
+                                <div class="circular-img-circle"></div>
+                                <img src="img/bai-img.png" alt="bai img">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="section-title m-0">
+                                <h2 class="title">become a instructor</h2>
+                                <p class="sub-title">Become a Instructor</p>
+                            </div>
+                            <a href="#" class="btn btn-theme">apply now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

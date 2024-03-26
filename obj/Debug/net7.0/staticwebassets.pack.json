@@ -5,16 +5,60 @@
       "PackagePath": "staticwebassets\\e_course_web.bundle.scp.css"
     },
     {
-      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\css\\colors\\color-1.css",
+      "PackagePath": "staticwebassets\\css\\colors\\color-1.css"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\css\\font-awesome.css",
+      "PackagePath": "staticwebassets\\css\\font-awesome.css"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
       "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\img\\bai-img.png",
+      "PackagePath": "staticwebassets\\img\\bai-img.png"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\img\\banner-img.png",
+      "PackagePath": "staticwebassets\\img\\banner-img.png"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\img\\courses\\item.jpg",
+      "PackagePath": "staticwebassets\\img\\courses\\item.jpg"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\img\\instructor\\1.png",
+      "PackagePath": "staticwebassets\\img\\instructor\\1.png"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\img\\review\\1.jpeg",
+      "PackagePath": "staticwebassets\\img\\review\\1.jpeg"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\img\\testimonial\\1.png",
+      "PackagePath": "staticwebassets\\img\\testimonial\\1.png"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\img\\testimonial\\2.png",
+      "PackagePath": "staticwebassets\\img\\testimonial\\2.png"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\js\\main.js",
+      "PackagePath": "staticwebassets\\js\\main.js"
     },
     {
       "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\lib\\bootstrap\\LICENSE",
@@ -243,6 +287,42 @@
     {
       "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\videos\\course-preview.mp4",
+      "PackagePath": "staticwebassets\\videos\\course-preview.mp4"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\webfonts\\fa-v4compatibility.ttf",
+      "PackagePath": "staticwebassets\\webfonts\\fa-v4compatibility.ttf"
+    },
+    {
+      "Id": "D:\\workspace\\dot_net\\e_course_web\\wwwroot\\webfonts\\fa-v4compatibility.woff2",
+      "PackagePath": "staticwebassets\\webfonts\\fa-v4compatibility.woff2"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.e_course_web.props",

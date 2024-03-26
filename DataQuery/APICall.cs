@@ -52,9 +52,8 @@ namespace e_course_web.DataQuery
             }
         }
         // POST
-        private static async Task<bool> PostAsync<T>(string url,string urlParameters, T obj)
+        private static async Task<Result> PostAsync<T, Result>(string url,string urlParameters, T obj)
         {
-
             try
             {
                 using (var client = GetHttpClient(url))
@@ -63,18 +62,20 @@ namespace e_course_web.DataQuery
 
                     if (response.IsSuccessStatusCode)
                     {
-                        return true;
-                    }
+						string result = response.Content.ReadAsStringAsync().Result;
+						var data = JsonConvert.DeserializeObject<Result>(result);
+						return data;
+					}
                     else
                     {
-                        return false;
+                        return default;
                     }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return false;
+                return default;
             }
         }
         // PUT
@@ -135,9 +136,9 @@ namespace e_course_web.DataQuery
             return await GetAsync<T>(url, urlParameters, id);
         }
 
-        public static async Task<bool> RunAsyncCreate<T>(string url, string urlParameters, T obj)
+        public static async Task<Result> RunAsyncCreate<T, Result>(string url, string urlParameters, T obj)
         {
-            return await PostAsync<T>(url, urlParameters, obj);
+            return await PostAsync<T, Result>(url, urlParameters, obj);
         }
 
         public static async Task<bool> RunAsyncDelete<T>(string url, string urlParameters, string id)
