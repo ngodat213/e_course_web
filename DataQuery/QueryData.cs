@@ -7,9 +7,11 @@ namespace e_course_web.DataQuery
     public static class QueryData
     {
 
-        private static readonly IRepository<CourseLesson, CoursesResponse> _courseLessonRepository = new Repository<CourseLesson, CoursesResponse>();
-        private static readonly IRepository<QuizLesson, CoursesResponse> _quizLessonRepository = new Repository<QuizLesson, CoursesResponse>();
-        private static readonly IRepository<QuizQuestion, CoursesResponse> _quizQuestionRepository = new Repository<QuizQuestion, CoursesResponse>();
+        /*private static readonly IUnitOfWork _unitOfWork;
+        public static QueryData(IUnitOfWork _unitOfWork)
+        {
+
+        }*/
         //--------------------------FUNC-----------------------
 
         /*  QUIZ FUNCTION

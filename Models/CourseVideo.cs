@@ -7,25 +7,31 @@ using System.Xml.Linq;
 
 namespace e_course_web.Models
 {
-    public class CourseVideo 
+    public class CourseVideo
     {
-        [Required] 
+        [Required]
         public string Id { get; set; }
-        [Required] 
+        [Required]
         public string Title { get; set; }
-        [Required] 
+        [Required]
         public int Selection { get; set; }
-        [Required] 
+        [Required]
         public int Hour { get; set; }
-        [Required] 
+        [Required]
         public int Minute { get; set; }
-        [Required] 
+        [Required]
         public int Part { get; set; }
-        [Required] 
+        [Required]
         public string VideoUrl { get; set; }
-        [Required] 
+        [Required]
         public string Description { get; set; }
-        [Required] 
+        [Required]
         public List<string> Comments { get; set; }
+    }
+
+    public class CourseVideoResponse
+    {
+        public string count { get; set; }
+        public List<CourseVideo> videos { get; set; }
     }
 }

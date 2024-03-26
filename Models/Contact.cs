@@ -19,7 +19,7 @@ namespace e_course_web.Models
         [Required]
         public string Topic { get; set; }
     }
-    public class ContactsResponse
+    public class ContactResponse
     {
         public int count { get; set; }
         public List<Contact> contacts { get; set; }

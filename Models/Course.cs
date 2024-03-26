@@ -32,7 +32,7 @@ namespace e_course_web.Models
         public List<string> Lessons { get; set; }
     }
 
-    public class CoursesResponse
+    public class CourseResponse
     {
         public int count { get; set; }
         public List<Course> courses { get; set; }
