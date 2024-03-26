@@ -10,10 +10,12 @@ namespace e_course_web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRepository<User, UserResponse> _userRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRepository<User, UserResponse> userRepository)
         {
             _logger = logger;
+            _userRepository = userRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -28,6 +30,16 @@ namespace e_course_web.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(User user)
         {
+            if(ModelState.IsValid)
+            {
+                UserResponse request = await _userRepository.PostAsync(user, ManagerAddress.domain, ManagerAddress.login);
+                if(request != null)
+                {
+                    // Decode token, save token to cookie
+
+                    return RedirectToAction(nameof(Index));
+                }
+            }
             return View();
         }
 

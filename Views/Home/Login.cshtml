@@ -18,13 +18,15 @@
 </div>
 <!-- breadcrumb end -->
 <!-- login section start -->
-<section asp-action="Add" method="post" class="login-section section-padding">
+<!-- login.cshtml -->
+<section asp-action="Login" method="post" class="login-section section-padding">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-6 col-xl-5">
                 <div class="login-form box">
                     <h2 class="form-title text-center">Log In To Your Account</h2>
-                    <form action="">
+                    <form asp-action="Login" method="post">
+                        <!-- Update the form action -->
                         <div class="form-group">
                             <input asp-for="email" type="text" class="form-control" placeholder="Email">
                         </div>

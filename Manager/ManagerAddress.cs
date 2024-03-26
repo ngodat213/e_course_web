@@ -16,8 +16,8 @@
         public static string quizQuestion = "quizQuestion/";
         // ?--- User
         public static string user = $"{domain}user/";
-        public static string login = "login";
-        public static string signup = "signUp";
+        public static string login = $"{user}login/";
+        public static string signup = $"{user}signUp/";
         public static string contact = "contact";
     }
 }
