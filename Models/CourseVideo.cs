@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace e_course_web.Models
 {
     public class CourseVideo
     {
+        [JsonProperty("_id")]
         [Required]
         public string Id { get; set; }
         [Required]

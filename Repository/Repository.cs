@@ -15,9 +15,9 @@ namespace e_course_web.Repository
             return res;
         }
         // GET BY ID METHOD
-        public async Task<Result> GetAsync(string id, String domain, String address)
+        public async Task<T> GetAsync(string id, String domain, String address)
         {
-            var res = await APICall.RunAsyncGetAll<Result>(domain, address, id);
+            var res = await APICall.RunAsyncGetAll<T>(domain, address, id);
             return res;
         }
         // POST METHOD

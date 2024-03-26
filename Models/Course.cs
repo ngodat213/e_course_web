@@ -1,34 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace e_course_web.Models
 {
     public class Course
     {
-        [Required] 
+        [JsonProperty("_id")]
+        [Required]
         public string Id { get; set; }
-        [Required] 
+        [Required]
         public string Title { get; set; }
-        [Required] 
-        public double Price { get; set; }
-        [Required] 
+        [Required]
+        public double Price { get; set; } // Add this property
+        [Required]
         public string Category { get; set; }
-        [Required] 
+        [Required]
         public string Description { get; set; }
-        [Required] 
-        public string Rating { get; set; }
-        [Required] 
-        public int Order { get; set; }
-        [Required] 
+        [Required]
+        public double Rating { get; set; } // Change the type to double
+        [Required]
+        public int Register { get; set; } // Assuming this corresponds to the "register" field in the JSON
+        [Required]
         public string TeacherId { get; set; }
-        [Required] 
+        [Required]
         public string CourseImage { get; set; }
-        [Required] 
+        [Required]
         public string Time { get; set; }
-        [Required] 
+        [Required]
         public List<string> Lessons { get; set; }
     }
 
