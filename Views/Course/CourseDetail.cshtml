@@ -38,13 +38,13 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </span>
-                        <span class="reviews">(23 Reviews)</span>
+                        <span class="reviews">(@Model.Feedbacks.Count Reviews)</span>
                     </div>
                     <ul>
-                        <li> enrolled students - <span>2200</span></li>
+                        <li> enrolled students - <span>@Model.Register</span></li>
                         <li> created by - <span><a href="#">@Model.TeacherId</a></span></li>
                         <li> last updated - <span>20/03/2024</span></li>
-                        <li> language - <span>english</span></li>
+                        <li> language - <span>@Model.Language</span></li>
                     </ul>
                 </div>
                 <!-- course header end -->
@@ -333,7 +333,7 @@
                     </div>
                     <h3 class="mb-3">Course Features</h3>
                     <ul class="features-list">
-                        <li>Total 15 lessons</li>
+                        <li>Total @courseLessons.Count lessons</li>
                         <li>Other features</li>
                         <li>Other features</li>
                         <li>Other features</li>

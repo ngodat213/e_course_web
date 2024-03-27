@@ -27,7 +27,15 @@ namespace e_course_web.Models
         [Required]
         public string Time { get; set; }
         [Required]
+        public string Language {  get; set; }
+        [Required]
+        public string UpdateAt {  get; set; }
+        [Required]
+        public string CreatedAt {  get; set; }
+        [Required]
         public List<string> Lessons { get; set; }
+        [Required]
+        public List<string> Feedbacks { get; set; }
     }
 
     public class CourseResponse

@@ -8,8 +8,7 @@ namespace e_course_web.Models
 {
     public class Contact
     {
-        [Required]
-        public string Id { get; set; }
+        public string? Id { get; set; }
         [Required]
         public string FullName { get; set; }
         [Required]

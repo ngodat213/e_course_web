@@ -13,8 +13,14 @@ namespace e_course_web.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            CourseResponse courseRequest = await _unitOfWork.CourseRespo.GetAsync(ManagerAddress.domain, ManagerAddress.course);
+            if (courseRequest != null && courseRequest.courses != null)
+            {
+                IEnumerable<Course> limitedCourses = courseRequest.courses.Take(4);
+                return View(limitedCourses);
+            }
             return View();
         }
 
