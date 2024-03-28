@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace e_course_web.Utils
 {
-	public static class JwtHelper
+    public static class JwtHelper
 	{
 		public static void SaveToken(this ISession session, string jwt)
 		{

@@ -1,9 +1,10 @@
 ﻿@model e_course_web.Models.Course;
 @*
-    
 *@
 @{
-    var courseLessons = ViewBag.CourseLessons as List<CourseLesson>;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Course Detail";
+    var courseLessons = ViewBag.CourseLessons as List<e_course_web.Models.CourseLesson>;
 }
 <!-- breadcrumb start -->
 <div class="breadcrumb-nav">

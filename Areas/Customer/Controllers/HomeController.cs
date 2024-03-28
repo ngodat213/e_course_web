@@ -1,13 +1,12 @@
-﻿using e_course_web.DataQuery;
-using e_course_web.Manager;
+﻿using e_course_web.Manager;
 using e_course_web.Models;
 using e_course_web.Repository;
 using e_course_web.Utils;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
-namespace e_course_web.Controllers
+namespace e_course_web.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -22,7 +21,7 @@ namespace e_course_web.Controllers
         public async Task<IActionResult> Index()
         {
             CourseResponse courseRequest = await _unitOfWork.CourseRespo.GetAsync(ManagerAddress.domain, ManagerAddress.course);
-            if(courseRequest != null && courseRequest.courses != null)
+            if (courseRequest != null && courseRequest.courses != null)
             {
                 IEnumerable<Course> limitedCourses = courseRequest.courses.Take(4);
                 return View(limitedCourses);
@@ -41,10 +40,10 @@ namespace e_course_web.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(User user)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 UserResponse request = await _unitOfWork.UserRespo.PostAsync(user, ManagerAddress.domain, ManagerAddress.login);
-                if(request != null)
+                if (request != null)
                 {
                     // Decode token, save token to cookie
                     var userDecode = JwtHelper.DecodeToken(request.token);
@@ -69,7 +68,8 @@ namespace e_course_web.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(User user)
         {
-            if(ModelState.IsValid && user.username != "") {
+            if (ModelState.IsValid && user.username != "")
+            {
                 await _unitOfWork.UserRespo.PostAsync(user, ManagerAddress.domain, ManagerAddress.signup);
                 return RedirectToAction(nameof(Login));
             }

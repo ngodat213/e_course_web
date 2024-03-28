@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace e_course_web.Helpers
 {
@@ -10,7 +11,7 @@ namespace e_course_web.Helpers
             session.SetString(key, JsonConvert.SerializeObject(value));
         }
 
-        public static void SetJson(this ISession session, string key, object value)
+        public static void SetJson(this ISession session, string key, string value)
         {
             session.SetString(key, value);
         }

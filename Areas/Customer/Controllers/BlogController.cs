@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace e_course_web.Controllers
+namespace e_course_web.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class BlogController : Controller
     {
         public IActionResult Index()

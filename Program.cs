@@ -7,6 +7,7 @@ builder.Services.AddControllersWithViews();
 
 // Register Repository for using in controller
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -25,8 +26,13 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
+/*app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");*/
+
+app.UseEndpoints(endpoints =>{
+    endpoints.MapRazorPages(); 
+    endpoints.MapControllerRoute("default", "{area=Customer}/{controller=Home}/{action=Index}/{id?}"); 
+});
 
 app.Run();

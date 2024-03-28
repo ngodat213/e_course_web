@@ -3,8 +3,9 @@ using e_course_web.Models;
 using e_course_web.Repository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace e_course_web.Controllers
+namespace e_course_web.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class CourseController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -28,7 +29,7 @@ namespace e_course_web.Controllers
         {
             List<CourseLesson> courseLessons = new List<CourseLesson>();
             Course course = await _unitOfWork.CourseRespo.GetAsync(id, ManagerAddress.domain, ManagerAddress.course);
-            if(course != null && course.Lessons != null)
+            if (course != null && course.Lessons != null)
             {
                 foreach (var lesson in course.Lessons)
                 {

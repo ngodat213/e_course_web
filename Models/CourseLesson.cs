@@ -12,11 +12,11 @@ namespace e_course_web.Models
         [JsonProperty("_id")]
         [Required]
         public string Id { get; set; }
-        [Required] 
+        [Required]
         public string Title { get; set; }
-        [Required] 
+        [Required]
         public int Lesson { get; set; }
-        [Required] 
+        [Required]
         public List<CourseVideo> Videos { get; set; }
     }
 

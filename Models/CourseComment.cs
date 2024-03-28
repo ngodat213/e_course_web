@@ -8,13 +8,13 @@ namespace e_course_web.Models
 {
     public class CourseComment
     {
-        [Required] 
+        [Required]
         public string Id { get; set; }
-        [Required] 
+        [Required]
         public string Title { get; set; }
-        [Required] 
+        [Required]
         public int Like { get; set; }
-        [Required] 
+        [Required]
         public List<string> UserId { get; set; }
     }
 }

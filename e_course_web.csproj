@@ -66,13 +66,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Blog\" />
-    <Folder Include="Views\Quiz\" />
+    <Folder Include="Areas\Customer\Data\" />
+    <Folder Include="Areas\Customer\Models\" />
+    <Folder Include="Areas\Customer\Views\Blog\" />
+    <Folder Include="Areas\Customer\Views\Quiz\" />
     <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
