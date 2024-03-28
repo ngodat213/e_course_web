@@ -1,4 +1,5 @@
-﻿using e_course_web.Manager;
+﻿using e_course_web.Helpers;
+using e_course_web.Manager;
 using e_course_web.Models;
 using e_course_web.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,8 @@ namespace e_course_web.Areas.Customer.Controllers
         }
         public async Task<IActionResult> Index()
         {
+
+            CookieHelper.SetOrRemoveCookie(Response.Cookies, "", "", 3);
             BlogResponse blogResponse = await _unitOfWork.BlogRespo.GetAsync(ManagerAddress.domain, ManagerAddress.blog);
             if(blogResponse != null)
             {
