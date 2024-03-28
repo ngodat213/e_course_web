@@ -19,5 +19,7 @@
         public static string login = $"{user}login/";
         public static string signup = $"{user}signUp/";
         public static string contact = "contact";
+        public static string blog = "blog";
+        public static string qa = "qa";
     }
 }

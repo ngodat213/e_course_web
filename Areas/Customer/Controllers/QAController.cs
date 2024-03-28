@@ -5,28 +5,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace e_course_web.Areas.Customer.Controllers
 {
-    [Area("Customer")]
-    public class BlogController : Controller
+    public class QAController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public BlogController(IUnitOfWork unitOfWork)
+        public QAController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
         public async Task<IActionResult> Index()
         {
             BlogResponse blogResponse = await _unitOfWork.BlogRespo.GetAsync(ManagerAddress.domain, ManagerAddress.blog);
-            if(blogResponse == null)
+            if (blogResponse == null)
             {
-                List<Blog> blogs = new List<Blog>();
-                foreach(var blog in blogResponse.blogs)
+                List<Blog> qAs = new List<Blog>();
+                foreach (var qA in blogResponse.blogs)
                 {
-                    if (blog.type)
+                    if (qA.type!)
                     {
-                        blogs.Add(blog);
+                        qAs.Add(qA);
                     }
                 }
-                return View(blogs);
+                return View(qAs);
             }
             return View();
         }

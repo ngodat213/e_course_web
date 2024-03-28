@@ -21,7 +21,7 @@ namespace e_course_web.Repository
          * USER
          */
         IRepository<Contact, ContactResponse> ContactRespo { get; }
-        IRepository<Blog, Blog> BlogRespo { get; }// fix
+        IRepository<Blog, BlogResponse> BlogRespo { get; }// fix
         IRepository<User, UserResponse> UserRespo { get; }
     }
 }
