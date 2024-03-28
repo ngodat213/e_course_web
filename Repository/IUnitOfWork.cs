@@ -14,7 +14,7 @@ namespace e_course_web.Repository
         /*
          * QUIZ
          */
-        IRepository<Quiz, Quiz> QuizRespo { get; }// fix
+        IRepository<Quiz, QuizResponse> QuizRespo { get; }// fix
         IRepository<QuizLesson, QuizLesson> QuizLessonRespo { get; }// fix
         IRepository<QuizQuestion, QuizQuestion> QuizQuestionRespo { get; }// fix
         /*

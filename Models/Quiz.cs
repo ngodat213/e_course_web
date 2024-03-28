@@ -21,4 +21,10 @@ namespace e_course_web.Models
         [Required]
         public List<string> Lessons { get; set; }
     }
+
+    public class QuizResponse
+    {
+        public int count { set; get; }
+        public List<Quiz> quizs {set; get;}
+    }
 }

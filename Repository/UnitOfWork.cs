@@ -10,7 +10,7 @@ namespace e_course_web.Repository
             CourseLessonRespo = new Repository<CourseLesson, CourseLessonResponse>();
             CourseVideoRespo = new Repository<CourseVideo, CourseVideoResponse>();
             CourseCommentRespo = new Repository<CourseComment, CourseComment>();
-            QuizRespo = new Repository<Quiz, Quiz>();
+            QuizRespo = new Repository<Quiz, QuizResponse>();
             QuizLessonRespo = new Repository<QuizLesson, QuizLesson>();
             QuizQuestionRespo = new Repository<QuizQuestion, QuizQuestion>();
             ContactRespo = new Repository<Contact, ContactResponse>();
@@ -26,7 +26,7 @@ namespace e_course_web.Repository
 
         public IRepository<CourseComment, CourseComment> CourseCommentRespo { get; private set; }
 
-        public IRepository<Quiz, Quiz> QuizRespo { get; private set; }
+        public IRepository<Quiz, QuizResponse> QuizRespo { get; private set; }
 
         public IRepository<QuizLesson, QuizLesson> QuizLessonRespo { get; private set; }
 

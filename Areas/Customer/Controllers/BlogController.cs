@@ -16,7 +16,7 @@ namespace e_course_web.Areas.Customer.Controllers
         public async Task<IActionResult> Index()
         {
             BlogResponse blogResponse = await _unitOfWork.BlogRespo.GetAsync(ManagerAddress.domain, ManagerAddress.blog);
-            if(blogResponse == null)
+            if(blogResponse != null)
             {
                 List<Blog> blogs = new List<Blog>();
                 foreach(var blog in blogResponse.blogs)
@@ -30,11 +30,11 @@ namespace e_course_web.Areas.Customer.Controllers
             }
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> Index(string id)
+        
+        public async Task<IActionResult> BlogDetail(string id)
         {
             Blog blog = await _unitOfWork.BlogRespo.GetAsync(id, ManagerAddress.domain, ManagerAddress.blog);
-            if (blog == null)
+            if (blog != null)
             {
                 return View(blog);
             }
