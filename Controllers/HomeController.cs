@@ -2,6 +2,7 @@
 using e_course_web.Manager;
 using e_course_web.Models;
 using e_course_web.Repository;
+using e_course_web.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -46,8 +47,12 @@ namespace e_course_web.Controllers
                 if(request != null)
                 {
                     // Decode token, save token to cookie
-
-                    return RedirectToAction(nameof(Index));
+                    var userDecode = JwtHelper.DecodeToken(request.token);
+                    JwtHelper.SaveToken(HttpContext.Session, request.token);
+                    if (userDecode != null)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
                 }
             }
             return View();
