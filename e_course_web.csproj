@@ -79,7 +79,6 @@
     <Folder Include="Areas\Customer\Data\" />
     <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\Customer\Views\Blog\" />
-    <Folder Include="Areas\Customer\Views\Quiz\" />
     <Folder Include="wwwroot\css\" />
   </ItemGroup>
 

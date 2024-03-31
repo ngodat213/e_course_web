@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace e_course_web.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class QuestionController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
