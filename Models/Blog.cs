@@ -1,13 +1,21 @@
-﻿namespace e_course_web.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace e_course_web.Models
 {
     public class Blog
     {
-        public bool type; // true is blog, false is QA
-    }
-
-    public class BlogResponse
-    {
-        public int count { get; set; }
-        public List<Blog> blogs { get; set; }
+        public int Id { get; set; }
+        [Required]
+        public bool Type { get; set; }// true is blog, false is QA
+        [Required]
+        public string Content { get; set; }
+        [Required]
+        public string Title { get; set; }
+        [Required]
+        public int like { get; set; }
+        [Required]
+        public int dislike { get; set; }
+        [Required]
+        public int favorite { get; set; }
     }
 }

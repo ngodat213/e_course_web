@@ -8,19 +8,19 @@ namespace e_course_web.Models
 {
     public class Contact
     {
-        public string? Id { get; set; }
+        [Key]
+        [Required]
+        public int Id { get; set; }
         [Required]
         public string FullName { get; set; }
         [Required]
+        [EmailAddress]
         public string Mail { get; set; }
         [Required]
+        [MaxLength(10000)]
         public string Text { get; set; }
         [Required]
+        [MaxLength(255)]
         public string Topic { get; set; }
-    }
-    public class ContactResponse
-    {
-        public int count { get; set; }
-        public List<Contact> contacts { get; set; }
     }
 }

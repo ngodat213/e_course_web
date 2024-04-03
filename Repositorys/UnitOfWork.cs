@@ -1,41 +1,49 @@
 ﻿using e_course_web.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Drawing.Drawing2D;
+using NuGet.Protocol.Plugins;
 
-namespace e_course_web.Repository
+namespace e_course_web.Repositorys
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public UnitOfWork()
+        private readonly ApplicationDbContext _db;
+
+        public UnitOfWork(ApplicationDbContext db)
         {
-            CourseRespo = new Repository<Course, CourseResponse>();
-            CourseLessonRespo = new Repository<CourseLesson, CourseLessonResponse>();
-            CourseVideoRespo = new Repository<CourseVideo, CourseVideoResponse>();
-            CourseCommentRespo = new Repository<CourseComment, CourseComment>();
-            QuizRespo = new Repository<Quiz, QuizResponse>();
-            QuizLessonRespo = new Repository<QuizLesson, QuizLesson>();
-            QuizQuestionRespo = new Repository<QuizQuestion, QuizQuestion>();
-            ContactRespo = new Repository<Contact, ContactResponse>();
-            BlogRespo = new Repository<Blog, BlogResponse>();
-            UserRespo = new Repository<User, UserResponse>();
+            _db = db;
+            Course = new Repository<Course>(_db);
+            CourseLesson = new Repository<CourseLesson>(_db);
+            CourseVideo = new Repository<CourseVideo>(_db);
+            Feedback = new Repository<Feedback>(_db);
+            Quiz = new Repository<Quiz>(_db);
+            QuizLesson = new Repository<QuizLesson>(_db);
+            QuizQuestion = new Repository<QuizQuestion>(_db);
+            Contact = new Repository<Contact>(_db);
+            Blog = new Repository<Blog>(_db);
+            User = new Repository<User>(_db);
         }
 
-        public IRepository<Course, CourseResponse> CourseRespo { get; private set; }
+        public IRepository<Course> Course { get; private set; }
 
-        public IRepository<CourseLesson, CourseLessonResponse> CourseLessonRespo { get; private set; }
+        public IRepository<CourseLesson> CourseLesson { get; private set; }
 
-        public IRepository<CourseVideo, CourseVideoResponse> CourseVideoRespo { get; private set; }
+        public IRepository<CourseVideo> CourseVideo { get; private set; }
 
-        public IRepository<CourseComment, CourseComment> CourseCommentRespo { get; private set; }
+        public IRepository<Feedback> Feedback { get; private set; }
 
-        public IRepository<Quiz, QuizResponse> QuizRespo { get; private set; }
+        public IRepository<Quiz> Quiz { get; private set; }
 
-        public IRepository<QuizLesson, QuizLesson> QuizLessonRespo { get; private set; }
+        public IRepository<QuizLesson> QuizLesson { get; private set; }
 
-        public IRepository<QuizQuestion, QuizQuestion> QuizQuestionRespo { get; private set; }
+        public IRepository<QuizQuestion> QuizQuestion { get; private set; }
 
-        public IRepository<Contact, ContactResponse> ContactRespo { get; private set; }
+        public IRepository<Contact> Contact { get; private set; }
 
-        public IRepository<Blog, BlogResponse> BlogRespo { get; private set; }
+        public IRepository<Blog> Blog { get; private set; }
 
-        public IRepository<User, UserResponse> UserRespo { get; private set; }
+        public IRepository<User> User { get; private set; }
+        public IRepository<Comment> Comment { get; private set; }
+        public IRepository<Categories> Categories { get; private set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using e_course_web.Helpers;
-using e_course_web.Manager;
 using e_course_web.Models;
-using e_course_web.Repository;
+using e_course_web.Repositorys;
 using Microsoft.AspNetCore.Mvc;
 
 namespace e_course_web.Areas.Customer.Controllers
@@ -14,17 +13,16 @@ namespace e_course_web.Areas.Customer.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-
             CookieHelper.SetOrRemoveCookie(Response.Cookies, "", "", 3);
-            BlogResponse blogResponse = await _unitOfWork.BlogRespo.GetAsync(ManagerAddress.domain, ManagerAddress.blog);
-            if(blogResponse != null)
+            IEnumerable<Blog> blogAll =  _unitOfWork.Blog.GetAll();
+            if (blogAll != null)
             {
                 List<Blog> blogs = new List<Blog>();
-                foreach(var blog in blogResponse.blogs)
+                foreach (var blog in blogAll)
                 {
-                    if (blog.type)
+                    if (blog.Type)
                     {
                         blogs.Add(blog);
                     }
@@ -33,10 +31,10 @@ namespace e_course_web.Areas.Customer.Controllers
             }
             return View();
         }
-        
-        public async Task<IActionResult> BlogDetail(string id)
+
+        public async Task<IActionResult> BlogDetail(int id)
         {
-            Blog blog = await _unitOfWork.BlogRespo.GetAsync(id, ManagerAddress.domain, ManagerAddress.blog);
+            Blog blog = await _unitOfWork.Blog.GetById(id);
             if (blog != null)
             {
                 return View(blog);

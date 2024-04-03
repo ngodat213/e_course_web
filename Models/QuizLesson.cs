@@ -8,8 +8,9 @@ namespace e_course_web.Models
 {
     public class QuizLesson
     {
+        [Key]
         [Required]
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Title { get; set; }
         [Required]
@@ -23,6 +24,6 @@ namespace e_course_web.Models
         [Required]
         public double Point { get; set; }
         [Required]
-        public List<string> Questions { get; set; }
+        public ICollection<QuizQuestion> Questions { get; set; }
     }
 }

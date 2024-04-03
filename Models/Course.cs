@@ -1,46 +1,58 @@
-﻿using Newtonsoft.Json;
+﻿using e_course_web.Models;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace e_course_web.Models
 {
     public class Course
     {
-        [JsonProperty("_id")]
+        [Key]
+        public int Id { get; set; }
+
         [Required]
-        public string Id { get; set; }
-        [Required]
+        [MaxLength(255)]
         public string Title { get; set; }
+
         [Required]
-        public double Price { get; set; } // Add this property
+        public double Price { get; set; }
+
         [Required]
-        public string Category { get; set; }
+        public Categories Category { get; set; }
+
         [Required]
+        [MaxLength(5000)]
         public string Description { get; set; }
+
         [Required]
-        public double Rating { get; set; } // Change the type to double
+        [Range(0.0, 5.0)]
+        public double Rating { get; set; }
+
         [Required]
-        public int Register { get; set; } // Assuming this corresponds to the "register" field in the JSON
+        [Range(0, int.MaxValue)]
+        public int Register { get; set; }
+
         [Required]
-        public string TeacherId { get; set; }
+        public int TeacherId { get; set; }
+
         [Required]
         public string CourseImage { get; set; }
+
         [Required]
+        [MaxLength(10)]
         public string Time { get; set; }
+
         [Required]
         public string Language { get; set; }
-        [Required]
-        public string UpdateAt { get; set; }
-        [Required]
-        public string CreatedAt { get; set; }
-        [Required]
-        public List<string> Lessons { get; set; }
-        [Required]
-        public List<string> Feedbacks { get; set; }
-    }
 
-    public class CourseResponse
-    {
-        public int count { get; set; }
-        public List<Course> courses { get; set; }
+        [Required]
+        public DateTime UpdateAt { get; set; }
+
+        [Required]
+        public DateTime CreatedAt { get; set; }
+
+        public virtual ICollection<CourseLesson> Lessons { get; set; }
+
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
     }
 }

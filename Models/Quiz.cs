@@ -8,23 +8,20 @@ namespace e_course_web.Models
 {
     public class Quiz
     {
+        [Key]
         [Required]
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
+        [MaxLength(10000)]
         public string Description { get; set; }
         [Required]
         public string Image { get; set; }
         [Required]
+        [MaxLength(255)]
         public string Title { get; set; }
         [Required]
-        public string Type { get; set; }
+        public Categories categories { get; set; }
         [Required]
-        public List<string> Lessons { get; set; }
-    }
-
-    public class QuizResponse
-    {
-        public int count { set; get; }
-        public List<Quiz> quizs {set; get;}
+        public ICollection<QuizLesson> Lessons { get; set; }
     }
 }

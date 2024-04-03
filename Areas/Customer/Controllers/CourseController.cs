@@ -1,6 +1,6 @@
 ﻿using e_course_web.Manager;
+using e_course_web.Repositorys;
 using e_course_web.Models;
-using e_course_web.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace e_course_web.Areas.Customer.Controllers
@@ -14,28 +14,21 @@ namespace e_course_web.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            CourseResponse courseRequest = await _unitOfWork.CourseRespo.GetAsync(ManagerAddress.domain, ManagerAddress.course);
-            if (courseRequest != null && courseRequest.courses != null)
+            IEnumerable<Course> courses = _unitOfWork.Course.GetAll();
+            if (courses != null)
             {
-                IEnumerable<Course> limitedCourses = courseRequest.courses.Take(4);
-                return View(limitedCourses);
+                return View(courses.Take(4));
             }
             return View();
         }
 
-        public async Task<IActionResult> CourseDetail(string id)
+        public async Task<IActionResult> CourseDetail(int id)
         {
-            List<CourseLesson> courseLessons = new List<CourseLesson>();
-            Course course = await _unitOfWork.CourseRespo.GetAsync(id, ManagerAddress.domain, ManagerAddress.course);
-            if (course != null && course.Lessons != null)
+            Course course = await _unitOfWork.Course.GetById(id);
+            if (course != null)
             {
-                foreach (var lesson in course.Lessons)
-                {
-                    courseLessons.Add(await _unitOfWork.CourseLessonRespo.GetAsync(lesson, ManagerAddress.domain, ManagerAddress.courseLesson));
-                }
-                ViewBag.CourseLessons = courseLessons;
                 return View(course);
             }
             return NotFound();

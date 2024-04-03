@@ -1,27 +1,20 @@
 ﻿using e_course_web.Models;
 
-namespace e_course_web.Repository
+namespace e_course_web.Repositorys
 {
     public interface IUnitOfWork
     {
-        /*
-         * COURSE
-         */
-        IRepository<Course, CourseResponse> CourseRespo { get; }
-        IRepository<CourseLesson, CourseLessonResponse> CourseLessonRespo { get; }
-        IRepository<CourseVideo, CourseVideoResponse> CourseVideoRespo { get; }
-        IRepository<CourseComment, CourseComment> CourseCommentRespo { get; } // fix
-        /*
-         * QUIZ
-         */
-        IRepository<Quiz, QuizResponse> QuizRespo { get; }// fix
-        IRepository<QuizLesson, QuizLesson> QuizLessonRespo { get; }// fix
-        IRepository<QuizQuestion, QuizQuestion> QuizQuestionRespo { get; }// fix
-        /*
-         * USER
-         */
-        IRepository<Contact, ContactResponse> ContactRespo { get; }
-        IRepository<Blog, BlogResponse> BlogRespo { get; }// fix
-        IRepository<User, UserResponse> UserRespo { get; }
+        IRepository<Quiz> Quiz { get; }
+        IRepository<QuizLesson> QuizLesson { get; }
+        IRepository<QuizQuestion> QuizQuestion { get; }
+        IRepository<Course> Course { get; }
+        IRepository<CourseLesson> CourseLesson { get; }
+        IRepository<CourseVideo> CourseVideo { get; }
+        IRepository<Comment> Comment { get; }
+        IRepository<Feedback> Feedback { get; }
+        IRepository<Contact> Contact { get; }
+        IRepository<Blog> Blog { get; }
+        IRepository<Categories> Categories { get; }
+        IRepository<User> User { get; }
     }
 }

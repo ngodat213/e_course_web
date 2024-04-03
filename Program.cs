@@ -1,15 +1,25 @@
-using e_course_web.Repository;
+using e_course_web.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using e_course_web.Repositorys;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add database sql server
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 // Register Repository for using in controller
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddRazorPages();
 
+// Add IUnitOfWork
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// App build
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

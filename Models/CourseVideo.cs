@@ -10,13 +10,11 @@ namespace e_course_web.Models
 {
     public class CourseVideo
     {
-        [JsonProperty("_id")]
+        [Key]
         [Required]
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Title { get; set; }
-        [Required]
-        public int Selection { get; set; }
         [Required]
         public int Hour { get; set; }
         [Required]
@@ -27,13 +25,5 @@ namespace e_course_web.Models
         public string VideoUrl { get; set; }
         [Required]
         public string Description { get; set; }
-        [Required]
-        public List<string> Comments { get; set; }
-    }
-
-    public class CourseVideoResponse
-    {
-        public string count { get; set; }
-        public List<CourseVideo> videos { get; set; }
     }
 }

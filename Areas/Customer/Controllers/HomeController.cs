@@ -1,8 +1,14 @@
 ﻿using e_course_web.Manager;
 using e_course_web.Models;
-using e_course_web.Repository;
 using e_course_web.Utils;
+using e_course_web.Repositorys;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Text.Encodings.Web;
+using System.Text;
+using e_course_web.ModelViews;
 
 namespace e_course_web.Areas.Customer.Controllers
 {
@@ -11,6 +17,7 @@ namespace e_course_web.Areas.Customer.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly SignInManager<User> _userManager;
 
         public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
@@ -18,13 +25,12 @@ namespace e_course_web.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
-            CourseResponse courseRequest = await _unitOfWork.CourseRespo.GetAsync(ManagerAddress.domain, ManagerAddress.course);
-            if (courseRequest != null && courseRequest.courses != null)
+            IEnumerable<Course> courses =  _unitOfWork.Course.GetAll();
+            if (courses != null)
             {
-                IEnumerable<Course> limitedCourses = courseRequest.courses.Take(4);
-                return View(limitedCourses);
+                return View(courses.Take(4));
             }
             return View();
         }
@@ -33,33 +39,29 @@ namespace e_course_web.Areas.Customer.Controllers
         {
             return View();
         }
+        
+         /** LOGIN*/
 
-        /*
-         * LOGIN
-         */
         [HttpPost]
-        public async Task<IActionResult> Login(User user)
+        public async Task<IActionResult> Login(LoginVM value)
         {
             if (ModelState.IsValid)
             {
-                UserResponse request = await _unitOfWork.UserRespo.PostAsync(user, ManagerAddress.domain, ManagerAddress.login);
-                if (request != null)
+                var result = await _userManager.PasswordSignInAsync(value.Email, value.Password, value.Remember, false);
+                if (result.Succeeded)
                 {
-                    // Decode token, save token to cookie
-                    var userDecode = JwtHelper.DecodeToken(request.token);
-                    JwtHelper.SaveToken(HttpContext.Session, request.token);
-                    if (userDecode != null)
-                    {
-                        return RedirectToAction(nameof(Index));
-                    }
+                    _logger.LogInformation("User logged in.");
+                    return RedirectToAction(nameof(Index));
                 }
+                ModelState.AddModelError("", "Invalid login attemp");
+                return View(value);
             }
-            return View();
-        }
 
-        /*
-         * SIGN UP
-         */
+            return View(value);
+        }
+        
+         /** SIGN UP*/
+
         public async Task<IActionResult> SignUp()
         {
             return View();
@@ -68,17 +70,16 @@ namespace e_course_web.Areas.Customer.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(User user)
         {
-            if (ModelState.IsValid && user.username != "")
+            /*if (ModelState.IsValid && user.username != "")
             {
                 await _unitOfWork.UserRespo.PostAsync(user, ManagerAddress.domain, ManagerAddress.signup);
                 return RedirectToAction(nameof(Login));
-            }
+            }*/
             return View();
         }
+        
+         /** FORGOT PASSWORD*/
 
-        /*
-         * FORGOT PASSWORD
-         */
         public async Task<IActionResult> ForgotPassword()
         {
             return View();
@@ -99,7 +100,7 @@ namespace e_course_web.Areas.Customer.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _unitOfWork.ContactRespo.PostAsync(value, ManagerAddress.domain, ManagerAddress.contact);
+                /*await _unitOfWork.ContactRespo.PostAsync(value, ManagerAddress.domain, ManagerAddress.contact);*/
                 return View();
             }
             return View();

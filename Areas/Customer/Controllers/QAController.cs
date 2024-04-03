@@ -1,6 +1,6 @@
 ﻿using e_course_web.Manager;
 using e_course_web.Models;
-using e_course_web.Repository;
+using e_course_web.Repositorys;
 using Microsoft.AspNetCore.Mvc;
 
 namespace e_course_web.Areas.Customer.Controllers
@@ -13,15 +13,15 @@ namespace e_course_web.Areas.Customer.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            BlogResponse blogResponse = await _unitOfWork.BlogRespo.GetAsync(ManagerAddress.domain, ManagerAddress.blog);
-            if (blogResponse != null)
+            IEnumerable<Blog> blogs = _unitOfWork.Blog.GetAll();
+            if (blogs != null)
             {
                 List<Blog> qAs = new List<Blog>();
-                foreach (var qA in blogResponse.blogs)
+                foreach (var qA in blogs)
                 {
-                    if (qA.type!)
+                    if (qA.Type!)
                     {
                         qAs.Add(qA);
                     }
@@ -30,9 +30,9 @@ namespace e_course_web.Areas.Customer.Controllers
             }
             return View();
         }
-        public async Task<IActionResult> QADetail(string id)
+        public async Task<IActionResult> QADetail(int id)
         {
-            Blog blog = await _unitOfWork.BlogRespo.GetAsync(id, ManagerAddress.domain, ManagerAddress.blog);
+            Blog blog = await _unitOfWork.Blog.GetById(id);
             if (blog != null)
             {
                 return View(blog);

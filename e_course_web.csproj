@@ -65,24 +65,32 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Areas\Customer\Data\" />
     <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\Customer\Views\Blog\" />
-    <Folder Include="wwwroot\css\" />
+    <Folder Include="Areas\Customer\Views\Course\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\admin\metisMenu\metisMenu.min.css.map" />
     <None Include="wwwroot\icomoon\fonts\icomooncfce.eot" />
     <None Include="wwwroot\icomoon\fonts\icomooncfce.svg" />
     <None Include="wwwroot\icomoon\fonts\icomooncfce.ttf" />
@@ -135,6 +143,109 @@
     <None Include="wwwroot\img\team5.jpg" />
     <None Include="wwwroot\img\team6.jpg" />
     <None Include="wwwroot\img\topic.png" />
+    <None Include="wwwroot\js\admin\c3-charts\c3-active.js" />
+    <None Include="wwwroot\js\admin\c3-charts\c3.min.js" />
+    <None Include="wwwroot\js\admin\c3-charts\d3.min.js" />
+    <None Include="wwwroot\js\admin\calendar\fullcalendar-active.js" />
+    <None Include="wwwroot\js\admin\calendar\fullcalendar.min.js" />
+    <None Include="wwwroot\js\admin\calendar\moment.min.js" />
+    <None Include="wwwroot\js\admin\charts\area-chart.js" />
+    <None Include="wwwroot\js\admin\charts\bar-chart.js" />
+    <None Include="wwwroot\js\admin\charts\Chart.js" />
+    <None Include="wwwroot\js\admin\charts\line-chart.js" />
+    <None Include="wwwroot\js\admin\charts\rounded-chart.js" />
+    <None Include="wwwroot\js\admin\chart\jquery.peity.min.js" />
+    <None Include="wwwroot\js\admin\chart\peity-active.js" />
+    <None Include="wwwroot\js\admin\chosen\chosen-active.js" />
+    <None Include="wwwroot\js\admin\chosen\chosen.jquery.js" />
+    <None Include="wwwroot\js\admin\chosen\chosen.jquery.min.js" />
+    <None Include="wwwroot\js\admin\code-editor\code-editor-active.js" />
+    <None Include="wwwroot\js\admin\code-editor\code-editor.js" />
+    <None Include="wwwroot\js\admin\code-editor\codemirror.js" />
+    <None Include="wwwroot\js\admin\colorpicker\color-picker-active.js" />
+    <None Include="wwwroot\js\admin\colorpicker\jquery.spectrum.min.js" />
+    <None Include="wwwroot\js\admin\counterup\counterup-active.js" />
+    <None Include="wwwroot\js\admin\counterup\jquery.counterup.min.js" />
+    <None Include="wwwroot\js\admin\counterup\waypoints.min.js" />
+    <None Include="wwwroot\js\admin\cropper\cropper-actice.js" />
+    <None Include="wwwroot\js\admin\cropper\cropper.min.js" />
+    <None Include="wwwroot\js\admin\data-map\d3.min.js" />
+    <None Include="wwwroot\js\admin\data-map\data-maps-active.js" />
+    <None Include="wwwroot\js\admin\data-map\datamaps.all.min.js" />
+    <None Include="wwwroot\js\admin\data-map\topojson.js" />
+    <None Include="wwwroot\js\admin\data-table\bootstrap-editable.js" />
+    <None Include="wwwroot\js\admin\data-table\bootstrap-table-editable.js" />
+    <None Include="wwwroot\js\admin\data-table\bootstrap-table-export.js" />
+    <None Include="wwwroot\js\admin\data-table\bootstrap-table-resizable.js" />
+    <None Include="wwwroot\js\admin\data-table\bootstrap-table.js" />
+    <None Include="wwwroot\js\admin\data-table\colResizable-1.5.source.js" />
+    <None Include="wwwroot\js\admin\data-table\data-table-active.js" />
+    <None Include="wwwroot\js\admin\data-table\tableExport.js" />
+    <None Include="wwwroot\js\admin\datapicker\bootstrap-datepicker.js" />
+    <None Include="wwwroot\js\admin\datapicker\bootstrap-datepicker.min.js" />
+    <None Include="wwwroot\js\admin\datapicker\datepicker-active.js" />
+    <None Include="wwwroot\js\admin\datepicker\datepicker-active.js" />
+    <None Include="wwwroot\js\admin\datepicker\jquery-ui.min.js" />
+    <None Include="wwwroot\js\admin\dropzone\dropzone.js" />
+    <None Include="wwwroot\js\admin\duallistbox\duallistbox.active.js" />
+    <None Include="wwwroot\js\admin\duallistbox\jquery.bootstrap-duallistbox.js" />
+    <None Include="wwwroot\js\admin\editable\bootstrap-datetimepicker.js" />
+    <None Include="wwwroot\js\admin\editable\bootstrap-editable.js" />
+    <None Include="wwwroot\js\admin\editable\jquery.mockjax.js" />
+    <None Include="wwwroot\js\admin\editable\mock-active.js" />
+    <None Include="wwwroot\js\admin\editable\moment.min.js" />
+    <None Include="wwwroot\js\admin\editable\select2.js" />
+    <None Include="wwwroot\js\admin\editable\xediable-active.js" />
+    <None Include="wwwroot\js\admin\form-validation\form-active.js" />
+    <None Include="wwwroot\js\admin\form-validation\jquery.form.min.js" />
+    <None Include="wwwroot\js\admin\form-validation\jquery.validate.min.js" />
+    <None Include="wwwroot\js\admin\google.maps\google.maps-active.js" />
+    <None Include="wwwroot\js\admin\icheck\icheck-active.js" />
+    <None Include="wwwroot\js\admin\icheck\icheck.min.js" />
+    <None Include="wwwroot\js\admin\input-mask\jasny-bootstrap.min.js" />
+    <None Include="wwwroot\js\admin\ionRangeSlider\ion.rangeSlider.active.js" />
+    <None Include="wwwroot\js\admin\ionRangeSlider\ion.rangeSlider.min.js" />
+    <None Include="wwwroot\js\admin\knob\jquery.knob.js" />
+    <None Include="wwwroot\js\admin\knob\knob-active.js" />
+    <None Include="wwwroot\js\admin\metisMenu\metisMenu-active.js" />
+    <None Include="wwwroot\js\admin\metisMenu\metisMenu.min.js" />
+    <None Include="wwwroot\js\admin\metisMenu\metisMenu.min.js.map" />
+    <None Include="wwwroot\js\admin\morrisjs\home3-active.js" />
+    <None Include="wwwroot\js\admin\morrisjs\morris-active-pro.js" />
+    <None Include="wwwroot\js\admin\morrisjs\morris-active.js" />
+    <None Include="wwwroot\js\admin\morrisjs\morris.js" />
+    <None Include="wwwroot\js\admin\morrisjs\raphael-min.js" />
+    <None Include="wwwroot\js\admin\multiple-email\multiple-email-active.js" />
+    <None Include="wwwroot\js\admin\notifications\Lobibox.js" />
+    <None Include="wwwroot\js\admin\notifications\notification-active.js" />
+    <None Include="wwwroot\js\admin\password-meter\password-meter-active.js" />
+    <None Include="wwwroot\js\admin\password-meter\pwstrength-bootstrap.min.js" />
+    <None Include="wwwroot\js\admin\password-meter\zxcvbn.js" />
+    <None Include="wwwroot\js\admin\pdf\jquery.media.js" />
+    <None Include="wwwroot\js\admin\pdf\pdf-active.js" />
+    <None Include="wwwroot\js\admin\peity\jquery.peity.min.js" />
+    <None Include="wwwroot\js\admin\peity\peity-active.js" />
+    <None Include="wwwroot\js\admin\rangle-slider\jquery-ui-1.10.4.custom.min.js" />
+    <None Include="wwwroot\js\admin\rangle-slider\jquery-ui-touch-punch.min.js" />
+    <None Include="wwwroot\js\admin\rangle-slider\rangle-active.js" />
+    <None Include="wwwroot\js\admin\scrollbar\jquery.mCustomScrollbar.concat.min.js" />
+    <None Include="wwwroot\js\admin\scrollbar\mCustomScrollbar-active.js" />
+    <None Include="wwwroot\js\admin\select2\select2-active.js" />
+    <None Include="wwwroot\js\admin\select2\select2.full.min.js" />
+    <None Include="wwwroot\js\admin\sparkline\jquery.charts-sparkline.js" />
+    <None Include="wwwroot\js\admin\sparkline\jquery.sparkline.min.js" />
+    <None Include="wwwroot\js\admin\sparkline\sparkline-active.js" />
+    <None Include="wwwroot\js\admin\summernote\summernote-active.js" />
+    <None Include="wwwroot\js\admin\summernote\summernote.min.js" />
+    <None Include="wwwroot\js\admin\touchspin\jquery.bootstrap-touchspin.min.js" />
+    <None Include="wwwroot\js\admin\touchspin\touchspin-active.js" />
+    <None Include="wwwroot\js\admin\tree-line\jstree.active.js" />
+    <None Include="wwwroot\js\admin\tree-line\jstree.min.js" />
+    <None Include="wwwroot\js\admin\vendor\jquery-1.12.4.min.js" />
+    <None Include="wwwroot\js\admin\vendor\modernizr-2.8.3.min.js" />
+    <None Include="wwwroot\js\admin\vendor\modernizr-custom.js" />
+    <None Include="wwwroot\js\admin\wizard\jquery.steps.js" />
+    <None Include="wwwroot\js\admin\wizard\steps-active.js" />
     <None Include="wwwroot\js\jquery-1.11.0.min.js" />
     <None Include="wwwroot\js\plugins.js" />
     <None Include="wwwroot\js\script.js" />

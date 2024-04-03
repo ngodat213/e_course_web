@@ -1,14 +1,12 @@
-﻿using e_course_web.DataQuery;
-using e_course_web.Models;
-
-namespace e_course_web.Repository
+﻿namespace e_course_web.Repositorys
 {
-    public interface IRepository<T, Result>
+    public interface IRepository<T> where T : class
     {
-        Task<Result> GetAsync(String domain, String address);
-        Task<T> GetAsync(string id, String domain, String address);
-        Task<Result> PostAsync(T entity, String domain, String address);
-        Task<bool> DeleteAsync(string id, String domain, String address);
-        Task<bool> PutAsync(string id, String domain, String address);
+        Task<T> GetById(int? id);
+        IEnumerable<T> GetAll();
+
+        void Add(T value); 
+        void Update(T value);
+        void Delete(T entity);
     }
 }
