@@ -9,7 +9,6 @@ namespace e_course_web.Models
     public class QuizQuestion
     {
         [Key]
-        [Required]
         public int Id { get; set; }
         [Required]
         public string Questions { get; set; }

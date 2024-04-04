@@ -1,0 +1,195 @@
+﻿@model e_course_web.ViewModels.CourseVM
+
+@{
+    ViewData["Title"] = "AddCourse";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="single-pro-review-area mt-t-30 mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-payment-inner-st">
+                    <ul id="myTabedu1" class="tab-review-design">
+                        <li class="active"> Courses Details </li>
+                    </ul>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="review-content-section">
+                                <div id="dropzone1" class="pro-ad addcoursepro">
+                                    <form asp-action="AddCourse" method="post"
+                                          class="dropzone dropzone-custom needsclick addcourse"
+                                          id="demo1-upload">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-group">
+                                                    <input asp-for="Title" type="text"
+                                                           class="form-control"
+                                                           placeholder="Course Name">
+                                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input asp-for="Price" type="number"
+                                                           class="form-control"
+                                                           placeholder="Course Price">
+                                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="CategoryId">Category</label>
+                                                    <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
+                                                </div>
+                                                <div class="form-group alert-up-pd">
+                                                    <div class="dz-message needsclick download-custom">
+                                                        <i class="fa fa-download edudropnone"
+                                                           aria-hidden="true"></i>
+                                                        <h2 class="edudropnone">
+                                                            Drop image here or
+                                                            click to upload.
+                                                        </h2>
+                                                        <p class="edudropnone">
+                                                            <span class="note needsclick">
+                                                                (This is just
+                                                                a demo dropzone. Selected image is
+                                                                <strong>not</strong> actually
+                                                                uploaded.)
+                                                            </span>
+                                                        </p>
+                                                        <div class="form-group">
+                                                            <label asp-for="CourseImage">Product Image</label>
+                                                            <input type="file" asp-for="CourseImage" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group res-mg-t-15">
+                                                    <input asp-for="TeacherId" name="Instructor" type="text"
+                                                           class="form-control"
+                                                           placeholder="Instructor">
+                                                    <span asp-validation-for="TeacherId" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input asp-for="Language" name="Language" type="text"
+                                                           class="form-control"
+                                                           placeholder="Language">
+                                                    <span asp-validation-for="Language" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input asp-for="Time" name="Time" type="text"
+                                                           class="form-control"
+                                                           placeholder="Time">
+                                                    <span asp-validation-for="Time" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea asp-for="Description" name="description"
+                                                              placeholder="Description"></textarea>
+                                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="lessonContainer">
+                                            <!-- Lessons will be dynamically added here -->
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="payment-adress">
+                                                    <button type="submit"
+                                                            class="btn btn-primary waves-effect waves-light">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3"><input type="button" id="btnAddNew" value="Add Lesson" class="btn btn-primary" /></td>
+                                            </tr>
+                                        </tfoot>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Thêm một bài học mới
+    document.getElementById('btnAddNew').addEventListener('click', function () {
+        var lessonIndex = document.querySelectorAll('#lessonContainer .lesson').length;
+        var newLessonRow = document.createElement('div');
+        newLessonRow.classList.add('row', 'lesson');
+        newLessonRow.innerHTML =
+            '<div class="col-lg-5 col-md-4 col-sm-4 col-xs-12">' +
+            '<input class="form-control" name="Lessons[' + lessonIndex + '].Title" type="text" placeholder="Title" />' +
+            '</div>' +
+            '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">' +
+            '<input class="form-control" name="Lessons[' + lessonIndex + '].Lesson" type="text" placeholder="Lesson" />' +
+            '</div>' +
+            '<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">' +
+            '<input type="button" class="btnremovelesson btn btn-danger" value="Remove" />' +
+            '<input type="button" class="btnaddvideo btn btn-danger" value="Add Video" data-lesson-index="' + lessonIndex + '" />' +
+            '</div>';
+        document.getElementById('lessonContainer').appendChild(newLessonRow);
+    });
+
+    // Xóa một bài học
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('btnremovelesson')) {
+            event.target.closest('.lesson').remove();
+        }
+    });
+
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('btnaddvideo')) {
+            var lessonIndex = event.target.getAttribute('data-lesson-index');
+            var lessonContainer = event.target.closest('.lesson');
+            var videoIndex = lessonContainer.querySelectorAll('.video').length;
+
+            var videoContainer = document.createElement('div');
+            videoContainer.innerHTML = '<h4>Lesson ' + lessonIndex + '</h4>';
+            videoContainer.classList.add('row', 'video');
+            videoContainer.innerHTML =
+                '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">' +
+                '<input class="form-control" name="Lessons[' + lessonIndex + '].Videos[' + videoIndex + '].Title" type="text" placeholder="Title" />' +
+                '</div>' +
+                '<div class="col-lg-1 col-md-2 col-sm-2 col-xs-12">' +
+                '<input class="form-control" name="Lessons[' + lessonIndex + '].Videos[' + videoIndex + '].Hour" type="number" placeholder="Hour" />' +
+                '</div>' +
+                '<div class="col-lg-1 col-md-2 col-sm-2 col-xs-12">' +
+                '<input class="form-control" name="Lessons[' + lessonIndex + '].Videos[' + videoIndex + '].Minute" type="number" placeholder="Minute" />' +
+                '</div>' +
+                '<div class="col-lg-1 col-md-2 col-sm-2 col-xs-12">' +
+                '<input class="form-control" name="Lessons[' + lessonIndex + '].Videos[' + videoIndex + '].Part" type="number" placeholder="Part" />' +
+                '</div>' +
+                '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">' +
+                '<input class="form-control" name="Lessons[' + lessonIndex + '].Videos[' + videoIndex + '].VideoUrl" type="text" placeholder="VideoUrl" />' +
+                '</div>' +
+                '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">' +
+                '<input class="form-control" name="Lessons[' + lessonIndex + '].Videos[' + videoIndex + '].Description" type="text" placeholder="Description" />' +
+                '</div>' +
+                '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">' +
+                '<input type="button" class="btnremovevideo btn btn-danger" value="Remove" />' +
+                '</div>';
+            lessonContainer.appendChild(videoContainer);
+        }
+    });
+
+
+    // Xóa một video
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('btnremovevideo')) {
+            event.target.closest('.video').remove();
+        }
+    });
+
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

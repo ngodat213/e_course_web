@@ -22,6 +22,8 @@ namespace e_course_web.Repositorys
             Contact = new Repository<Contact>(_db);
             Blog = new Repository<Blog>(_db);
             User = new Repository<User>(_db);
+            Comment = new Repository<Comment>(_db);
+            Categories = new Repository<Categories>(_db);
         }
 
         public IRepository<Course> Course { get; private set; }
@@ -45,5 +47,10 @@ namespace e_course_web.Repositorys
         public IRepository<User> User { get; private set; }
         public IRepository<Comment> Comment { get; private set; }
         public IRepository<Categories> Categories { get; private set; }
+
+        public void Dispose()
+        {
+            _db.Dispose();
+        }
     }
 }

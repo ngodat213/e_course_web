@@ -2,7 +2,7 @@
 
 namespace e_course_web.Repositorys
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IRepository<Quiz> Quiz { get; }
         IRepository<QuizLesson> QuizLesson { get; }
@@ -16,5 +16,6 @@ namespace e_course_web.Repositorys
         IRepository<Blog> Blog { get; }
         IRepository<Categories> Categories { get; }
         IRepository<User> User { get; }
+
     }
 }

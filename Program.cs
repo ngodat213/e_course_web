@@ -17,6 +17,7 @@ builder.Services.AddRazorPages();
 // Add IUnitOfWork
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+
 // App build
 var app = builder.Build();
 

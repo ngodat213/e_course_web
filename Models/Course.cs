@@ -1,7 +1,9 @@
 ﻿using e_course_web.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace e_course_web.Models
 {
@@ -12,23 +14,26 @@ namespace e_course_web.Models
 
         [Required]
         [MaxLength(255)]
-        public string Title { get; set; }
+        public string Title { get; set; } //
 
         [Required]
-        public double Price { get; set; }
+        public double Price { get; set; } //
 
         [Required]
-        public Categories Category { get; set; }
+        public int CategoryId { get; set; } //
+
+        [ForeignKey("CategoryId")]
+        public Categories? Category { get; set; }
 
         [Required]
         [MaxLength(5000)]
         public string Description { get; set; }
 
-        [Required]
         [Range(0.0, 5.0)]
+        [DefaultValue(0)]
         public double Rating { get; set; }
 
-        [Required]
+        [DefaultValue(0)]
         [Range(0, int.MaxValue)]
         public int Register { get; set; }
 
@@ -45,14 +50,12 @@ namespace e_course_web.Models
         [Required]
         public string Language { get; set; }
 
-        [Required]
         public DateTime UpdateAt { get; set; }
 
-        [Required]
         public DateTime CreatedAt { get; set; }
 
-        public virtual ICollection<CourseLesson> Lessons { get; set; }
+        public virtual List<CourseLesson> Lessons { get; set; }
 
-        public virtual ICollection<Feedback> Feedbacks { get; set; }
+        public virtual List<Feedback> Feedbacks { get; set; }
     }
 }

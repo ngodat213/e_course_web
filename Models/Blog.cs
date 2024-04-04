@@ -4,6 +4,7 @@ namespace e_course_web.Models
 {
     public class Blog
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         public bool Type { get; set; }// true is blog, false is QA

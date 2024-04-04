@@ -9,7 +9,6 @@ namespace e_course_web.Models
     public class Feedback
     {
         [Key]
-        [Required]
         public int Id { get; set; }
         [Required]
         [MaxLength(255)]

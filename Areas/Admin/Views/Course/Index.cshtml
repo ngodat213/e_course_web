@@ -1,182 +1,102 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<e_course_web.Models.Course>
+
 @{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<div class="courses-area">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="courses-inner res-mg-b-30">
-                    <div class="courses-title">
-                        <a href="#"><img src="img/courses/1.jpg" alt=""></a>
-                        <h2>Apps Development</h2>
-                    </div>
-                    <div class="courses-alaltic">
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                    </div>
-                    <div class="course-des">
-                        <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                    </div>
-                    <div class="product-buttons">
-                        <button type="button" class="button-default cart-btn">Read More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="courses-inner">
-                    <div class="courses-title">
-                        <a href="#"><img src="img/courses/2.jpg" alt=""></a>
-                        <h2>Illustrator CC 2018</h2>
-                    </div>
-                    <div class="courses-alaltic">
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                    </div>
-                    <div class="course-des">
-                        <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                    </div>
-                    <div class="product-buttons">
-                        <button type="button" class="button-default cart-btn">Read More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="courses-inner res-mg-t-30 dk-res-t-pro-30">
-                    <div class="courses-title">
-                        <a href="#"><img src="img/courses/3.jpg" alt=""></a>
-                        <h2>Indesign cs6 2018</h2>
-                    </div>
-                    <div class="courses-alaltic">
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                    </div>
-                    <div class="course-des">
-                        <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                    </div>
-                    <div class="product-buttons">
-                        <button type="button" class="button-default cart-btn">Read More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="courses-inner res-mg-t-30 dk-res-t-pro-30">
-                    <div class="courses-title">
-                        <a href="#"><img src="img/courses/1.jpg" alt=""></a>
-                        <h2>Web Development</h2>
-                    </div>
-                    <div class="courses-alaltic">
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                    </div>
-                    <div class="course-des">
-                        <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                    </div>
-                    <div class="product-buttons">
-                        <button type="button" class="button-default cart-btn">Read More</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mg-b-15">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="courses-inner mg-t-30">
-                    <div class="courses-title">
-                        <a href="#"><img src="img/courses/1.jpg" alt=""></a>
-                        <h2>Apps Development</h2>
-                    </div>
-                    <div class="courses-alaltic">
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                    </div>
-                    <div class="course-des">
-                        <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                    </div>
-                    <div class="product-buttons">
-                        <button type="button" class="button-default cart-btn">Read More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="courses-inner mg-t-30">
-                    <div class="courses-title">
-                        <a href="#"><img src="img/courses/2.jpg" alt=""></a>
-                        <h2>Illustrator CC 2018</h2>
-                    </div>
-                    <div class="courses-alaltic">
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                    </div>
-                    <div class="course-des">
-                        <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                    </div>
-                    <div class="product-buttons">
-                        <button type="button" class="button-default cart-btn">Read More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="courses-inner mg-t-30">
-                    <div class="courses-title">
-                        <a href="#"><img src="img/courses/3.jpg" alt=""></a>
-                        <h2>Indesign cs6 2018</h2>
-                    </div>
-                    <div class="courses-alaltic">
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                    </div>
-                    <div class="course-des">
-                        <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                    </div>
-                    <div class="product-buttons">
-                        <button type="button" class="button-default cart-btn">Read More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="courses-inner mg-t-30">
-                    <div class="courses-title">
-                        <a href="#"><img src="img/courses/1.jpg" alt=""></a>
-                        <h2>Web Development</h2>
-                    </div>
-                    <div class="courses-alaltic">
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                        <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                    </div>
-                    <div class="course-des">
-                        <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                        <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                    </div>
-                    <div class="product-buttons">
-                        <button type="button" class="button-default cart-btn">Read More</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Register)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Register)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeacherId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                    <a asp-action="Detail" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Detail" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

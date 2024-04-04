@@ -1,0 +1,95 @@
+﻿@model e_course_web.Models.CourseLesson
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Category)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Category.Id)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Rating)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Register)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Register)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TeacherId)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TeacherId)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CourseImage)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CourseImage)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Time)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Time)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Language)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Language)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.UpdateAt)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.UpdateAt)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CreatedAt)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

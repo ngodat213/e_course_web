@@ -19,13 +19,13 @@ namespace e_course_web.Repositorys
 
         public IEnumerable<T> GetAll()
         {
-            return  entities.AsEnumerable();
+            return  entities.ToList();
         }
 
-        public async void Add(T entity)
+        public void Add(T entity)
         {
             entities.Add(entity);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public async void Delete(T entity)
