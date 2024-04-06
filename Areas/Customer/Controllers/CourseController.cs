@@ -16,7 +16,7 @@ namespace e_course_web.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Course> courses = _unitOfWork.Course.GetAll();
+            IEnumerable<Course> courses = _unitOfWork.Course.GetAll(includeProperties: "Lessons,Feedbacks,Category");
             if (courses != null)
             {
                 return View(courses.Take(4));
@@ -26,7 +26,11 @@ namespace e_course_web.Areas.Customer.Controllers
 
         public async Task<IActionResult> CourseDetail(int id)
         {
-            Course course = await _unitOfWork.Course.GetById(id);
+            Course course = _unitOfWork.Course.GetFirstOrDefault(i => i.Id == id, includeProperties: "Lessons,Feedbacks,Category");
+            for(int i = 0; i < course.Lessons.Count; i++)
+            {
+                course.Lessons[i] = _unitOfWork.CourseLesson.GetFirstOrDefault(item => item.Id == course.Lessons[i].Id, includeProperties: "Videos");
+            }
             if (course != null)
             {
                 return View(course);

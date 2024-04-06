@@ -4,7 +4,6 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Course Detail";
-    var courseLessons = ViewBag.CourseLessons as List<e_course_web.Models.CourseLesson>;
 }
 <!-- breadcrumb start -->
 <div class="breadcrumb-nav">
@@ -39,7 +38,7 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </span>
-                        @* <span class="reviews">(@Model.Feedbacks.Count Reviews)</span> *@
+                        <span class="reviews">(@Model.Feedbacks.Count)Reviews</span>
                     </div>
                     <ul>
                         <li> enrolled students - <span>@Model.Register</span></li>
@@ -85,12 +84,12 @@
                             <!-- accordion start -->
                             <div class="accordion" id="accordion">
                                 <!-- accordion item start -->
-                                @foreach (var lesson in courseLessons)
+                                @foreach (var lesson in Model.Lessons)
                                 {
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="heading-@(lesson.Id)">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@(lesson.Id)" aria-expanded="true" aria-controls="collapse-@(lesson.Id)">
-                                                @lesson.Title<span> @lesson.Videos.Count lessons | @lesson.Videos.Sum(p => p.Hour) h @lesson.Videos.Sum(p => p.Minute) min </span>
+                                                @lesson.Title<span> @(lesson.Videos.Count) lessons | @lesson.Videos.Sum(p => p.Hour)h @(lesson.Videos.Sum(p => p.Minute))m</span>
                                             </button>
                                         </h2>
                                         <div id="collapse-@(lesson.Id)" class="accordion-collapse collapse show" aria-labelledby="heading-@(lesson.Id)" data-bs-parent="#accordion">
@@ -334,7 +333,7 @@
                     </div>
                     <h3 class="mb-3">Course Features</h3>
                     <ul class="features-list">
-                        <li>Total @courseLessons.Count lessons</li>
+                        <li>Total @(@Model.Lessons.Count) lessons</li>
                         <li>Other features</li>
                         <li>Other features</li>
                         <li>Other features</li>
