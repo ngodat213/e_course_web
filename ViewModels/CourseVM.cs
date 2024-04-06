@@ -26,7 +26,7 @@ namespace e_course_web.ViewModels
         public int TeacherId { get; set; }
 
         [Required]
-        public string CourseImage { get; set; }
+        public IFormFile CourseImage { get; set; }
 
         [Required]
         [MaxLength(10)]

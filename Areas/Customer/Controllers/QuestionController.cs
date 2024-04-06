@@ -1,6 +1,5 @@
-﻿using e_course_web.Manager;
+﻿using e_course_web.DataAccess.Repositorys;
 using e_course_web.Models;
-using e_course_web.Repositorys;
 using Microsoft.AspNetCore.Mvc;
 
 namespace e_course_web.Areas.Customer.Controllers

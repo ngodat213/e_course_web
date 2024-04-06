@@ -4,14 +4,92 @@
     "D:\\workspace\\dot_net\\e_course_web\\e_course_web.csproj": {}
   },
   "projects": {
-    "D:\\workspace\\dot_net\\e_course_web\\e_course_web.csproj": {
+    "D:\\workspace\\dot_net\\e_course_web.DataAccess\\e_course_web.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\workspace\\dot_net\\e_course_web\\e_course_web.csproj",
-        "projectName": "e_course_web",
-        "projectPath": "D:\\workspace\\dot_net\\e_course_web\\e_course_web.csproj",
+        "projectUniqueName": "D:\\workspace\\dot_net\\e_course_web.DataAccess\\e_course_web.DataAccess.csproj",
+        "projectName": "e_course_web.DataAccess",
+        "projectPath": "D:\\workspace\\dot_net\\e_course_web.DataAccess\\e_course_web.DataAccess.csproj",
         "packagesPath": "C:\\Users\\Sinon\\.nuget\\packages\\",
-        "outputPath": "D:\\workspace\\dot_net\\e_course_web\\obj\\",
+        "outputPath": "D:\\workspace\\dot_net\\e_course_web.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Sinon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\workspace\\dot_net\\e_course_web.Models\\e_course_web.Models.csproj": {
+                "projectPath": "D:\\workspace\\dot_net\\e_course_web.Models\\e_course_web.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\workspace\\dot_net\\e_course_web.Models\\e_course_web.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\workspace\\dot_net\\e_course_web.Models\\e_course_web.Models.csproj",
+        "projectName": "e_course_web.Models",
+        "projectPath": "D:\\workspace\\dot_net\\e_course_web.Models\\e_course_web.Models.csproj",
+        "packagesPath": "C:\\Users\\Sinon\\.nuget\\packages\\",
+        "outputPath": "D:\\workspace\\dot_net\\e_course_web.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sinon\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,25 +123,175 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.3, )"
-            },
-            "Microsoft.AspNetCore.Identity.UI": {
-              "target": "Package",
-              "version": "[8.0.3, )"
-            },
-            "Microsoft.AspNetCore.Session": {
+            "Microsoft.AspNetCore.Identity": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\workspace\\dot_net\\e_course_web.Service\\e_course_web.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\workspace\\dot_net\\e_course_web.Service\\e_course_web.Service.csproj",
+        "projectName": "e_course_web.Service",
+        "projectPath": "D:\\workspace\\dot_net\\e_course_web.Service\\e_course_web.Service.csproj",
+        "packagesPath": "C:\\Users\\Sinon\\.nuget\\packages\\",
+        "outputPath": "D:\\workspace\\dot_net\\e_course_web.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Sinon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\workspace\\dot_net\\e_course_web.Models\\e_course_web.Models.csproj": {
+                "projectPath": "D:\\workspace\\dot_net\\e_course_web.Models\\e_course_web.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.26.2, )"
             },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
+            "Microsoft.AspNetCore.Http": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "NuGet.Packaging": {
+              "target": "Package",
+              "version": "[6.9.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\workspace\\dot_net\\e_course_web\\e_course_web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\workspace\\dot_net\\e_course_web\\e_course_web.csproj",
+        "projectName": "e_course_web",
+        "projectPath": "D:\\workspace\\dot_net\\e_course_web\\e_course_web.csproj",
+        "packagesPath": "C:\\Users\\Sinon\\.nuget\\packages\\",
+        "outputPath": "D:\\workspace\\dot_net\\e_course_web\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Sinon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\workspace\\dot_net\\e_course_web.DataAccess\\e_course_web.DataAccess.csproj": {
+                "projectPath": "D:\\workspace\\dot_net\\e_course_web.DataAccess\\e_course_web.DataAccess.csproj"
+              },
+              "D:\\workspace\\dot_net\\e_course_web.Models\\e_course_web.Models.csproj": {
+                "projectPath": "D:\\workspace\\dot_net\\e_course_web.Models\\e_course_web.Models.csproj"
+              },
+              "D:\\workspace\\dot_net\\e_course_web.Service\\e_course_web.Service.csproj": {
+                "projectPath": "D:\\workspace\\dot_net\\e_course_web.Service\\e_course_web.Service.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -74,14 +302,6 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.2, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
-            },
-            "System.IdentityModel.Tokens.Jwt": {
-              "target": "Package",
-              "version": "[7.5.0, )"
             }
           },
           "imports": [

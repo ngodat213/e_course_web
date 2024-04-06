@@ -1,6 +1,4 @@
-﻿using e_course_web.Manager;
-using e_course_web.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace e_course_web.Areas.Admin.Controllers
 {

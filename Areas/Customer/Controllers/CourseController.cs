@@ -1,5 +1,5 @@
-﻿using e_course_web.Manager;
-using e_course_web.Repositorys;
+﻿using e_course_web.DataAccess.Repositorys;
+using e_course_web.Manager;
 using e_course_web.Models;
 using Microsoft.AspNetCore.Mvc;
 
