@@ -77,6 +77,7 @@ namespace e_course_web.Areas.Admin.Controllers
             if (course != null)
             {
                 ViewBag.Course = course;
+                // Danh sach lesson
                 IEnumerable<CourseLesson> courseLessons = _unitOfWork.CourseLesson.GetAll().OrderBy(i => i.Id == course.Id);
                 CourseLessonVM courseLessonVM = new CourseLessonVM()
                 {
@@ -123,10 +124,10 @@ namespace e_course_web.Areas.Admin.Controllers
             if(courseLesson != null)
             {
                 ViewBag.CourseLesson = courseLesson;
-                IEnumerable<CourseVideo> curseVideos = _unitOfWork.CourseVideo.GetAll().OrderBy(i => i.Id == courseLesson.Id);
+                IEnumerable<CourseVideo> courseVideos = _unitOfWork.CourseVideo.GetAll().OrderBy(i => i.Id == courseLesson.Id);
                 CourseVideoVM courseVideoVM = new CourseVideoVM()
                 {
-                    CourseVideo = curseVideos,
+                    CourseVideo = courseVideos,
                 };
                 return View(courseVideoVM);
             }
@@ -166,7 +167,6 @@ namespace e_course_web.Areas.Admin.Controllers
             return RedirectToAction("Lesson", new { id });
             
         }
-
         // Address https://localhost:7189/admin/course/video/{id?}
         // Show detail video, and edit video
         public async Task<IActionResult> Video(int? id)

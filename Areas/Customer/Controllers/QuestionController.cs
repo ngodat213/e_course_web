@@ -15,7 +15,7 @@ namespace e_course_web.Areas.Customer.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<Quiz> quizs = _unitOfWork.Quiz.GetAll();
+            IEnumerable<Exam> quizs = _unitOfWork.Exam.GetAll();
             if (quizs != null)
             {
                 return View(quizs);
@@ -25,7 +25,7 @@ namespace e_course_web.Areas.Customer.Controllers
 
         public async Task<IActionResult> QuestionDetail(int id)
         {
-            Quiz quiz = await _unitOfWork.Quiz.GetById(id);
+            Exam quiz = await _unitOfWork.Exam.GetById(id);
             if (quiz != null)
             {
                 return View(quiz);
@@ -35,7 +35,7 @@ namespace e_course_web.Areas.Customer.Controllers
         // Code !!!!
         public async Task<IActionResult> QuestionPlay(int id)
         {
-            Quiz quiz = await _unitOfWork.Quiz.GetById(id);
+            Exam quiz = await _unitOfWork.Exam.GetById(id);
             if (quiz != null)
             {
                 return View(quiz);

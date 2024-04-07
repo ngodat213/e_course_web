@@ -1,0 +1,66 @@
+﻿@model IEnumerable<e_course_web.Models.Exam>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/3.0.1/css/responsive.bootstrap5.css" rel="stylesheet" />
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="table-responsive text-nowrap">
+    <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>CategoryId</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Lessons</th>
+                <th>UpdateAt</th>
+                <th>CreatedAt</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Title</td>
+                    <td>@item.CategoryId</td>
+                    <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        @item.Description
+                    </td>
+                    <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        @item.ImageUrl
+                    </td>
+                    <td>@item.Lessons.Count</td>
+                    <td>@item.UpdateAt</td>
+                    <td>@item.CreatedAt</td>
+                    <td>
+                        <a asp-action="Detail" asp-route-id="@item.Id">View</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
+
+<script>
+    new DataTable('#example', {
+    });
+</script>
