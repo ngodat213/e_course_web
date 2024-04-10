@@ -219,7 +219,7 @@ namespace e_course_web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> QuestionDelete(int? id, ExamQuestionDetailVM value)
+        public async Task<IActionResult> QuestionDelete(int? id)
         {
             var question = await _unitOfWork.ExamQuestion.GetById(id);
             if (question != null)

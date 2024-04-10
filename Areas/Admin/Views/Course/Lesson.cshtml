@@ -100,7 +100,12 @@
                                                             <td>@video.VideoUrl</td>
                                                             <td>
                                                                 <a asp-action="Lesson" asp-route-id="@video.Id">Edit</a>
-                                                                <a asp-action="Delete" asp-route-id="@video.Id">Delete</a>
+                                                                <form asp-action="VideoDelete" method="post">
+                                                                    <button type="submit" asp-action="VideoDelete" asp-route-id="@video.Id" formnovalidate
+                                                                            class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
+                                                                        Delete
+                                                                    </button>
+                                                                </form>
                                                             </td>
                                                         </tr>
                                                     }

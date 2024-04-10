@@ -149,7 +149,12 @@
                                     <td>@lesson.Lesson</td>
                                     <td>
                                         <a class="btn btn-theme" asp-action="Lesson" asp-route-id="@lesson.Id">Edit</a>
-                                        <a class="btn btn-theme" asp-action="Delete" asp-route-id="@lesson.Id">Delete</a>
+                                        <form asp-action="DetailDelete" method="post">
+                                            <button type="submit" asp-action="DetailDelete" asp-route-id="@lesson.Id" formnovalidate
+                                                    class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             }

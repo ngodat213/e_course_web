@@ -21,7 +21,6 @@
             <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Title</th>
                         <th>Price</th>
                         <th>Type</th>
@@ -41,7 +40,6 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Id</td>
                             <td>@item.Title</td>
                             <td>@item.Price</td>
                             <td>@item.CategoryId</td>
@@ -60,7 +58,12 @@
                             <td>@item.CreatedAt</td>
                             <td>
                                 <a class="btn btn-theme" asp-action="Detail" asp-route-id="@item.Id">View</a> |
-                                <button class="btn btn-theme" name="X-HTTP-Method-Override" value="DELETE">Delete</button>
+                                <form asp-action="IndexDelete" method="post">
+                                    <button type="submit" asp-action="IndexDelete" asp-route-id="@item.Id" formnovalidate
+                                            class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
+                                        Delete
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     }

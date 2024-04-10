@@ -29,6 +29,28 @@ namespace e_course_web.Areas.Admin.Controllers
             IEnumerable<Course> courses = _unitOfWork.Course.GetAll();
             return View(courses);
         }
+        // Address https://localhost:7189/admin/course/deleteindex/{id}
+        // Description: Delete course
+        // Data: IEnumerable<Course>
+        [HttpPost]
+        public async Task<IActionResult> IndexDelete(int id)
+        {
+            Course course = _unitOfWork.Course.GetFirstOrDefault(i => i.Id == id, includeProperties: "Lessons");
+            if (course != null)
+            {
+                foreach (var lesson in course.Lessons)
+                {
+                    var value = _unitOfWork.CourseLesson.GetFirstOrDefault(i => i.Id == lesson.Id, includeProperties: "Videos");
+                    foreach (var video in value.Videos)
+                    {
+                        _unitOfWork.CourseVideo.Delete(video);
+                    }
+                    _unitOfWork.CourseLesson.Delete(lesson);
+                }
+                _unitOfWork.Course.Delete(course);
+            }
+            return RedirectToAction(nameof(Index));
+        }
         // Address https://localhost:7189/admin/course/create
         // Description: Create course
         // Data input: idCourse
@@ -62,6 +84,7 @@ namespace e_course_web.Areas.Admin.Controllers
                     Register = 0,
                     TeacherId = value.TeacherId,
                     ImageUrl = cloud.Url.ToString(),
+                    PublicId = cloud.PublicId,
                     Time = value.Time,
                     Language = value.Language,
                     UpdateAt = DateTime.Now,
@@ -118,6 +141,24 @@ namespace e_course_web.Areas.Admin.Controllers
             // Reload page
             return RedirectToAction("Detail", new { id });
         }
+        // Address https://localhost:7189/admin/course/detail/detaildelete{id?}
+        // Description :Add lesson for course
+        // Data return: idLesson, CourseLessonVM
+        [HttpPost]
+        public IActionResult DetailDelete(int id)
+        {
+            CourseLesson courseLesson = _unitOfWork.CourseLesson.GetFirstOrDefault(i => i.Id == id, includeProperties: "Videos");
+            if (courseLesson != null)
+            {
+                foreach (var video in courseLesson.Videos)
+                {
+                    _cloudinaryService.RemoveAsync(video.PublicId);
+                    _unitOfWork.CourseVideo.Delete(video);
+                }
+                _unitOfWork.CourseLesson.Delete(courseLesson);
+            }
+            return RedirectToAction("Detail", new { id });
+        }
         // Address https://localhost:7189/admin/course/lesson/{id?}
         // Show detail lesson, add video course
         // Data: ViewBag.CourseLesson
@@ -169,6 +210,19 @@ namespace e_course_web.Areas.Admin.Controllers
             // Reload page
             return RedirectToAction("Lesson", new { id });
             
+        }
+        // Address https://localhost:7189/admin/course/lesson/lessondelete{id?}
+        // Show detail lesson, add video course
+        // Data: ViewBag.CourseLesson
+        [HttpPost]
+        public async Task<IActionResult> VideoDelete(int? id)
+        {
+            var video = await _unitOfWork.CourseVideo.GetById(id);
+            if (video != null)
+            {
+                _unitOfWork.CourseVideo.Delete(video);
+            }
+            return RedirectToAction("Lesson", new { id });
         }
         // Address https://localhost:7189/admin/course/video/{id?}
         // Show detail video, and edit video

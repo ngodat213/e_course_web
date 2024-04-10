@@ -16,10 +16,7 @@ namespace e_course_web.ViewModels
         public double Price { get; set; }
 
         [Required]
-        public int CategoryId {  get; set; }
-
-        [Required]
-        public User Teacher { get; set; }
+        public int CategoryId { get; set; }
 
         [Required]
         [MaxLength(5000)]
