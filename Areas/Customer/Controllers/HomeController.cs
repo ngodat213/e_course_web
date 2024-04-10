@@ -35,61 +35,6 @@ namespace e_course_web.Areas.Customer.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Login()
-        {
-            return View();
-        }
-        
-         /** LOGIN*/
-
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginVM value)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = await _userManager.PasswordSignInAsync(value.Email, value.Password, value.Remember, false);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User logged in.");
-                    return RedirectToAction(nameof(Index));
-                }
-                ModelState.AddModelError("", "Invalid login attemp");
-                return View(value);
-            }
-
-            return View(value);
-        }
-        
-         /** SIGN UP*/
-
-        public async Task<IActionResult> SignUp()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> SignUp(User user)
-        {
-            /*if (ModelState.IsValid && user.username != "")
-            {
-                await _unitOfWork.UserRespo.PostAsync(user, ManagerAddress.domain, ManagerAddress.signup);
-                return RedirectToAction(nameof(Login));
-            }*/
-            return View();
-        }
-        
-         /** FORGOT PASSWORD*/
-
-        public async Task<IActionResult> ForgotPassword()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> ForgotPassword(String email)
-        {
-            return View();
-        }
         public async Task<IActionResult> Contact()
         {
             return View();
@@ -100,7 +45,7 @@ namespace e_course_web.Areas.Customer.Controllers
         {
             if (ModelState.IsValid)
             {
-                /*await _unitOfWork.ContactRespo.PostAsync(value, ManagerAddress.domain, ManagerAddress.contact);*/
+                _unitOfWork.Contact.Add(value);
                 return View();
             }
             return View();
