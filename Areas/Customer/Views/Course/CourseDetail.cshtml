@@ -98,17 +98,20 @@
                                                     <!-- accordion list item start-->
                                                     @foreach (var video in lesson.Videos)
                                                     {
-                                                        <li>
-                                                            <i class="fas fa-play-circle"></i>
-                                                            @video.Title
-                                                            <span>@video.Hour h:@video.Minute m</span> <!-- Assuming Duration is a property that contains the duration of the video -->
-                                                        </li>
+                                                        <div data-bs-toggle="modal" data-bs-target="#@video.Id">
+                                                            <li>
+                                                                <i class="fas fa-play-circle"></i>
+                                                                    @video.Title
+                                                                <span>@video.Hour h:@video.Minute m</span>
+                                                                <!-- Assuming Duration is a property that contains the duration of the video -->
+                                                            </li>
+                                                        </div>
                                                     }
-                                                    <!-- accordion list item end-->
-                                                </ul>
-                                            </div>
+                                            <!-- accordion list item end-->
+                                            </ul>
                                         </div>
                                     </div>
+                                </div>
                                 }
                                 <!-- accordion item end -->
                             </div>
@@ -352,3 +355,44 @@
     </div>
 </section>
 <!--  course details section end -->
+<!-- course preview modal start -->
+<div class="modal fade video-modal js-course-preview-modal" id="video-modal" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="ratio ratio-16x9">
+                    <video controls class="js-course-preview-video">
+                        <source src="~/videos/course-preview.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- course preview modal end -->
+@foreach (var lesson in Model.Lessons)
+{
+
+    @foreach (var video in lesson.Videos)
+    {
+        <div class="modal fade video-modal js-course-preview-modal" id=@video.Id tabindex="-1"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body p-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="ratio ratio-16x9">
+                            <video controls class="js-course-preview-video" src="@video.VideoUrl" type="video/mp4"></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

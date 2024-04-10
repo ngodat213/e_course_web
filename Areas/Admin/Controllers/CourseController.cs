@@ -183,29 +183,22 @@ namespace e_course_web.Areas.Admin.Controllers
         {
             if (value.Title != "" && value.Hour != null && value.Part != null && value.Minute != null && value.Video != null)
             {
-                try {
-                    var cloud = await _cloudinaryService.AddVideoAsync(value.Video);
-                    CourseVideo courseVideo = new CourseVideo()
-                    {
-                        Part = value.Part,
-                        Title = value.Title,
-                        Hour = value.Hour,
-                        Minute = value.Minute,
-                        VideoUrl = cloud.Url.ToString(),
-                    };
-                    CourseLesson courseLesson = await _unitOfWork.CourseLesson.GetById(id);
-                    var videoList = new List<CourseVideo>(){
+                var cloud = await _cloudinaryService.AddVideoAsync(value.Video);
+                CourseVideo courseVideo = new CourseVideo()
+                {
+                    Part = value.Part,
+                    Title = value.Title,
+                    Hour = value.Hour,
+                    Minute = value.Minute,
+                    PublicId = cloud.PublicId,
+                    VideoUrl = cloud.Url.ToString(),
+                };
+                CourseLesson courseLesson = await _unitOfWork.CourseLesson.GetById(id);
+                var videoList = new List<CourseVideo>(){
                         courseVideo,
                      };
-                    courseLesson.Videos = videoList;
-                    _unitOfWork.CourseLesson.Update(courseLesson);
-
-                }
-                catch(Exception ex)
-                {
-                    ViewBag.ErrorMessage = ex.Message;
-                    return View("Error");
-                }
+                courseLesson.Videos = videoList;
+                _unitOfWork.CourseLesson.Update(courseLesson);
             }
             // Reload page
             return RedirectToAction("Lesson", new { id });
