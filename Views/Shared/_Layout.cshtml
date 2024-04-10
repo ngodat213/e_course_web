@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@using e_course_web.Service.Helpers;
+
+@{
+    var col1 = "col-lg-6";
+    var col2 = "col-lg-6";
+
+    if (User.IsInRole(SD.Role_Admin))
+    {
+        col1 = "col-lg-5";
+        col2 = "col-lg-7";
+    }
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,7 +19,9 @@
     <link rel="stylesheet" href="~/css/font-awesome.css" />
     <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/colors/color-1.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <link rel="stylesheet" class="js-color-style" href="~/css/colors/color-1.css">
+    <link rel="stylesheet" class="js-glass-style" href="~/css/glass.css" disabled>
 </head>
 <body>
     <div class="main-wrapper">
@@ -15,39 +29,50 @@
         <header class="header">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="@col1 col-sm-12">
                         <div class="header-main d-flex justify-content-between align-items-center">
                             <div class="header-logo">
-                                <a asp-area="" asp-controller="Home" asp-action="Index"><span>E </span>Course</a>
+                                <a href="index.html"><span>E
+                                    </span>Course</a>
                             </div>
-                            <button type="button" class="header-hamburger-btn js-header-menu-toggler"></button>
-                            <span></span>
+                            <button type="button"
+                                class="header-hamburger-btn js-header-menu-toggler"><span></span></button>
+                            <div class="header-backdrop js-header-backdrop"></div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="@col2 col-sm-12">
+                        <!-- <label for="menu_mobile" id="label_menu_mobile"> <i class="fas fa-bars"></i> </label>
+                        <input type="checkbox" id="menu_mobile"> -->
                         <nav class="header-menu js-header-menu">
+
                             <button type="button" class="header-close-btn js-header-menu-toggler">
                                 <i class="fas fa-times"></i>
                             </button>
                             <ul class="menu">
-                                <li class="menu-item"><a asp-area="" asp-controller="Home" asp-action="Index">home</a></li>
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="#" class="js-toggle-sub-menu">
-                                        courses<i class="fas fa-chevron-down"></i>
-                                    </a>
-                                    <ul class="sub-menu js-sub-menu">
-                                        <li class="sub-menu-item"><a asp-area="" asp-controller="Course" asp-action="Index">course</a></li>
-                                        <li class="sub-menu-item"><a asp-area="" asp-controller="Course" asp-action="CourseDetail">course details</a></li>
-                                    </ul>
-                                </li>
+                                <li class="menu-item"><a asp-area="Customer" asp-controller="Home" asp-action="index">home</a></li>
                                 <li class="menu-item menu-item-has-children">
                                     <a href="#" class="js-toggle-sub-menu">pages <i class="fas fa-chevron-down"></i></a>
                                     <ul class="sub-menu js-sub-menu">
-                                        <li class="sub-menu-item"><a asp-area="" asp-controller="Home" asp-action="Login">login</a></li>
-                                        <li class="sub-menu-item"><a asp-area="" asp-controller="Home" asp-action="SignUp">signup</a></li>
+                                        <li class="sub-menu-item"><a asp-area="Customer" asp-controller="Course" asp-action="Index">Courses</a></li>
+                                        <li class="sub-menu-item"><a asp-area="Customer" asp-controller="Exam" asp-action="Index">Exam</a></li>
                                     </ul>
                                 </li>
-                                <li class="menu-item"><a asp-area="" asp-controller="Home" asp-action="Contact">contact</a></li>
+                                @if (User.IsInRole(SD.Role_Admin))
+                                {
+                                    <li class="menu-item menu-item-has-children">
+                                        <a href="#" class="js-toggle-sub-menu">Admin <i class="fas fa-chevron-down"></i></a>
+                                        <ul class="sub-menu js-sub-menu">
+                                            <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
+                                            <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Course" asp-action="Index">Courses</a></li>
+                                            <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Exam" asp-action="Index">Exams</a></li>
+                                            <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Teacher" asp-action="Index">Teachers</a></li>
+                                            <li class="sub-menu-item"><a asp-area="Admin" asp-controller="User" asp-action="Index">Users</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                                
+                                <li class="menu-item "><a asp-area="Customer" asp-controller="Home" asp-action="Contact">contact</a></li>
+                                <partial name="_LoginPartial" />
                             </ul>
                         </nav>
                     </div>
@@ -124,10 +149,43 @@
         <!-- footer end -->
 
     </div>
+    <!-- style switcher start -->
+    <div class="style-switcher js-style-switcher">
+        <div class="style-switcher-toggler js-style-switcher-toggler">
+            <i class="fas fa-cog"></i>
+        </div>
+        <h3>Style Switcher</h3>
+        <div class="style-switcher-item">
+            <p class="mb-2">Theme Colors</p>
+            <!-- theme colors -->
+            <div class="theme-colors js-theme-colors">
+                <button type="button" data-js-theme-color="color-1" class="js-theme-color-item color-1"></button>
+                <button type="button" data-js-theme-color="color-2" class="js-theme-color-item color-2"></button>
+                <button type="button" data-js-theme-color="color-3" class="js-theme-color-item color-3"></button>
+                <button type="button" data-js-theme-color="color-4" class="js-theme-color-item color-4"></button>
+                <button type="button" data-js-theme-color="color-5" class="js-theme-color-item color-5"></button>
+            </div>
+        </div>
+        <div class="style-switcher-item">
+            <div class="form-check form-switch">
+                <input class="form-check-input js-dark-mode" type="checkbox" id="dark-mode">
+                <label class="form-check-label" for="dark-mode">Dark Mode</label>
+            </div>
+        </div>
+        <div class="style-switcher-item">
+            <div class="form-check form-switch">
+                <input class="form-check-input js-glass-effect" type="checkbox" id="glass-effect">
+                <label class="form-check-label" for="glass-effect">Glass Effect</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- style switcher end -->
     
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js" asp-append-version="true"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

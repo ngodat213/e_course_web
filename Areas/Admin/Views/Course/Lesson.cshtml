@@ -2,21 +2,17 @@
 
 @{
     ViewData["Title"] = "Video";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     CourseLesson courseLesson = ViewBag.CourseLesson;
 }
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/responsive/3.0.1/css/responsive.bootstrap5.css" rel="stylesheet" />
 
 <div class="single-pro-review-area mt-t-30 mg-b-15">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-payment-inner-st">
-                    <h2> Lesson Details </h2>
-                    <div class="review-content-section">
+                    <div class="review-content-section box">
+                        <h2> Lesson Details </h2>
                         <form asp-action="Detail" method="post">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -39,78 +35,78 @@
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     </div>
-                    <hr class="hr" />
-                    <h2> Video Details </h2>
-                    <div class="row">
+                    <div class="review-content-section box">
+                        <h2 class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> Video Details </h2>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="review-content-section">
                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <form asp-action="Lesson" method="post" enctype="multipart/form-data">
-                                                <div class="form-group">
-                                                    <label asp-for="Part">Part</label>
-                                                    <input asp-for="Part" type="number" class="form-control" placeholder="Part">
-                                                    <span asp-validation-for="Part" class="text-danger"></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label asp-for="Title">Title</label>
-                                                    <input asp-for="Title" type="text" class="form-control" placeholder="Title">
-                                                    <span asp-validation-for="Title" class="text-danger"></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label asp-for="Hour">Hour</label>
-                                                    <input asp-for="Hour" type="number" class="form-control" placeholder="Hour">
-                                                    <span asp-validation-for="Hour" class="text-danger"></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label asp-for="Minute">Minute</label>
-                                                    <input asp-for="Minute" type="number" class="form-control" placeholder="Minute">
-                                                    <span asp-validation-for="Minute" class="text-danger"></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label asp-for="Video">Video</label>
-                                                    <input type="file" asp-for="Video" class="form-control" />
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </form>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <div class="table-responsive text-nowrap">
-                                                <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Id</th>
-                                                            <th>Part</th>
-                                                            <th>Title</th>
-                                                            <th>Hour</th>
-                                                            <th>Minute</th>
-                                                            <th>VideoUrl</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @if (Model != null && Model.CourseVideo != null)
-                                                        {
-                                                            @foreach (var video in Model.CourseVideo)
-                                                            {
-                                                                <tr>
-                                                                    <td>@video.Id</td>
-                                                                    <td>@video.Part</td>
-                                                                    <td>@video.Title</td>
-                                                                    <td>@video.Hour</td>
-                                                                    <td>@video.Minute</td>
-                                                                    <td>@video.VideoUrl</td>
-                                                                    <td>
-                                                                        <a asp-action="Lesson" asp-route-id="@video.Id">Edit</a>
-                                                                        <a asp-action="Delete" asp-route-id="@video.Id">Delete</a>
-                                                                    </td>
-                                                                </tr>
-                                                            }
-                                                        }
-                                                    </tbody>
-                                                </table>
+                                    <form asp-action="Lesson" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                                <label asp-for="Part">Part</label>
+                                                <input asp-for="Part" type="number" class="form-control" placeholder="Part">
+                                                <span asp-validation-for="Part" class="text-danger"></span>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                                <label asp-for="Title">Title</label>
+                                                <input asp-for="Title" type="text" class="form-control" placeholder="Title">
+                                                <span asp-validation-for="Title" class="text-danger"></span>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                                <label asp-for="Hour">Hour</label>
+                                                <input asp-for="Hour" type="number" class="form-control" placeholder="Hour">
+                                                <span asp-validation-for="Hour" class="text-danger"></span>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                                <label asp-for="Minute">Minute</label>
+                                                <input asp-for="Minute" type="number" class="form-control" placeholder="Minute">
+                                                <span asp-validation-for="Minute" class="text-danger"></span>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                                <label asp-for="Video">Video</label>
+                                                <input type="file" asp-for="Video" class="form-control" />
                                             </div>
                                         </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+
+                                </div>
+                                <hr />
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="table-responsive text-nowrap">
+                                        <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Part</th>
+                                                    <th>Title</th>
+                                                    <th>Hour</th>
+                                                    <th>Minute</th>
+                                                    <th>VideoUrl</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model != null && Model.CourseVideo != null)
+                                                {
+                                                    @foreach (var video in Model.CourseVideo)
+                                                    {
+                                                        <tr>
+                                                            <td>@video.Id</td>
+                                                            <td>@video.Part</td>
+                                                            <td>@video.Title</td>
+                                                            <td>@video.Hour</td>
+                                                            <td>@video.Minute</td>
+                                                            <td>@video.VideoUrl</td>
+                                                            <td>
+                                                                <a asp-action="Lesson" asp-route-id="@video.Id">Edit</a>
+                                                                <a asp-action="Delete" asp-route-id="@video.Id">Delete</a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

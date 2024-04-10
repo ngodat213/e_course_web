@@ -65,6 +65,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -83,6 +84,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\.DS_Store" />
     <None Include="wwwroot\css\admin\metisMenu\metisMenu.min.css.map" />
     <None Include="wwwroot\icomoon\fonts\icomooncfce.eot" />
     <None Include="wwwroot\icomoon\fonts\icomooncfce.svg" />
@@ -239,9 +241,6 @@
     <None Include="wwwroot\js\admin\vendor\modernizr-custom.js" />
     <None Include="wwwroot\js\admin\wizard\jquery.steps.js" />
     <None Include="wwwroot\js\admin\wizard\steps-active.js" />
-    <None Include="wwwroot\js\jquery-1.11.0.min.js" />
-    <None Include="wwwroot\js\plugins.js" />
-    <None Include="wwwroot\js\script.js" />
     <None Include="wwwroot\plugin\ckeditor\adapters\jquery.js" />
     <None Include="wwwroot\plugin\ckeditor\build-config.js" />
     <None Include="wwwroot\plugin\ckeditor\ckeditor.js" />

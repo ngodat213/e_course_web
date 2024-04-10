@@ -5,6 +5,8 @@ using e_course_web.Service.Helpers;
 using e_course_web.Service.Interfaces;
 using e_course_web.Service.Services;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
+using e_course_web.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,13 +19,16 @@ builder.Services.AddControllersWithViews();
 // Register service for page
 builder.Services.AddRazorPages();
 
+// Add default Identity
+builder.Services.AddIdentity<User, IdentityRole>()
+.AddDefaultTokenProviders()
+.AddDefaultUI()
+.AddEntityFrameworkStores<ApplicationDbContext>();
+
 // Adds a AddScoped IUnitOfWork
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // Adds a AddScoped ICloudinaryService
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
-
-// Register configure CloudinarySettings
-builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 
 // Giới hạn kích thước tối đa của phần thân của yêu cầu HTTP mà máy chủ Kestrel có thể chấp nhận
 builder.WebHost.ConfigureKestrel(options =>
@@ -31,6 +36,8 @@ builder.WebHost.ConfigureKestrel(options =>
     options.Limits.MaxRequestBodySize = 512 * 1024 * 1024;
 });
 
+// Register configure CloudinarySettings
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 // Limit file is 512MB
 builder.Services.Configure<FormOptions>(options =>
 {
@@ -53,10 +60,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
-
-/*app.MapControllerRoute(
-    name: "default",
-    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");*/
 
 app.UseEndpoints(endpoints =>{
     endpoints.MapRazorPages(); 

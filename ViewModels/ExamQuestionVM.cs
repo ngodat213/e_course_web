@@ -4,8 +4,9 @@ namespace e_course_web.ViewModels
 {
     public class ExamQuestionVM
     {
-        public ExamLesson QuestionLesson { get; set; }
+        public ExamLessonVM QuestionLesson { get; set; }
         public IEnumerable<ExamQuestion> QuestionTest { get; set; }
+        public ExamLessonVM ExamLesson { get; set; }
 
         public string Question { get; set; }
         public int Answer { get; set; }

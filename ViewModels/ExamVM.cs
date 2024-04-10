@@ -2,7 +2,7 @@
 
 namespace e_course_web.ViewModels
 {
-    public class QuestionVM
+    public class ExamVM
     {
         [Required]
         [MaxLength(10000)]

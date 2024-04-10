@@ -2,7 +2,7 @@
 
 namespace e_course_web.ViewModels
 {
-    public class QuestionLessonVM
+    public class ExamLessonVM
     {
         public IEnumerable<ExamLesson> QuestionLessons { get; set; }
         public string Title { get; set; }
@@ -12,6 +12,6 @@ namespace e_course_web.ViewModels
         public int Lesson { get; set; }
         public double Point { get; set; }
 
-        public QuestionVM QuestionVM { get; set; }
+        public ExamVM QuestionVM { get; set; }
     }
 }

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<e_course_web.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="table-responsive text-nowrap container-fluid section-padding">
+    <div class="product-payment-inner-st">
+        <div class="review-content-section box">
+            <div class="row">
+                <div class="col-10">
+                    <h2>List Course</h2>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-plus"></i> &nbsp; Tạo Mới</a>
+                </div>
+            </div>
+            <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>UserName</th>
+                        <th>Email</th>
+                        <th>PhotoUrl</th>
+                        <th>Role</th>
+                        <th>PhoneNumber</th>
+                        <th>Courses</th>
+                        <th>FinishedExams</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.UserName</td>
+                            <td>@item.Email</td>
+                            <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                @item.PhotoUrl
+                            </td>
+                            <td>@item.Role</td>
+                            <td>
+                                @item.PhoneNumber
+                            </td>
+                            <td>@item.Courses.Count</td>
+                            <td>@item.Exams.Count</td>
+                            <td>
+                                <form asp-action="Lock" method="post">
+                                    <button type="submit" asp-action="Lock" asp-route-id="@item.Id" formnovalidate
+                                            class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
+                                        Lock
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
+
+<script>
+    new DataTable('#example', {
+    });
+</script>

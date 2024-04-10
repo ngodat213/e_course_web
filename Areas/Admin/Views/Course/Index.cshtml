@@ -2,66 +2,76 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/responsive/3.0.1/css/responsive.bootstrap5.css" rel="stylesheet" />
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<div class="table-responsive text-nowrap">
-    <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>CategoryId</th>
-                <th>Description</th>
-                <th>Rating</th>
-                <th>Register</th>
-                <th>TeacherId.</th>
-                <th>CourseImage</th>
-                <th>Time</th>
-                <th>Language</th>
-                <th>UpdateAt</th>
-                <th>CreatedAt</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Title</td>
-                    <td>@item.Price</td>
-                    <td>@item.CategoryId</td>
-                    <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                        @item.Description
-                    </td>
-                    <td>@item.Rating</td>
-                    <td>@item.Register</td>
-                    <td>@item.TeacherId</td>
-                    <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                        @item.CourseImage
-                    </td>
-                    <td>@item.Time</td>
-                    <td>@item.Language</td>
-                    <td>@item.UpdateAt</td>
-                    <td>@item.CreatedAt</td>
-                    <td>
-                        <a asp-action="Detail" asp-route-id="@item.Id">View</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+
+
+<div class="table-responsive text-nowrap container-fluid section-padding">
+    <div class="product-payment-inner-st">
+        <div class="review-content-section box">
+            <div class="row">
+                <div class="col-10">
+                    <h2>Index</h2>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-theme" asp-action="Create">Create New</a>
+                </div>
+            </div>
+            <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Rating</th>
+                        <th>Register</th>
+                        <th>TeacherId.</th>
+                        <th>CourseImage</th>
+                        <th>Time</th>
+                        <th>Language</th>
+                        <th>UpdateAt</th>
+                        <th>CreatedAt</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td>@item.Price</td>
+                            <td>@item.CategoryId</td>
+                            <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                @item.Description
+                            </td>
+                            <td>@item.Rating</td>
+                            <td>@item.Register</td>
+                            <td>@item.TeacherId</td>
+                            <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                @item.ImageUrl
+                            </td>
+                            <td>@item.Time</td>
+                            <td>@item.Language</td>
+                            <td>@item.UpdateAt</td>
+                            <td>@item.CreatedAt</td>
+                            <td>
+                                <a class="btn btn-theme" asp-action="Detail" asp-route-id="@item.Id">View</a> |
+                                <button class="btn btn-theme" name="X-HTTP-Method-Override" value="DELETE">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+@* <div class=" section-padding">
+    
+</div> *@
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

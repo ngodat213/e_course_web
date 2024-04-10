@@ -1,9 +1,8 @@
-﻿@model e_course_web.ViewModels.CourseVideoVM
+﻿@model e_course_web.ViewModels.ExamQuestionVM
 
 @{
-    ViewData["Title"] = "Video";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    CourseLesson courseLesson = ViewBag.CourseLesson;
+    ViewData["Title"] = "Question";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
@@ -21,18 +20,42 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <input asp-for="CourseLessonVM.Title" type="text" value="@courseLesson.Title"
+                                        <input asp-for="ExamLesson.Title" type="text" value="ExamLesson.Title"
                                                class="form-control"
                                                placeholder="Lesson Title">
-                                        <span asp-validation-for="CourseLessonVM.Title" class="text-danger"></span>
+                                        <span asp-validation-for="ExamLesson.Title" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="ExamLesson.Lesson" type="number" value="ExamLesson.Lesson"
+                                               class="form-control"
+                                               placeholder="Lesson">
+                                        <span asp-validation-for="ExamLesson.Lesson" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="ExamLesson.Point" type="number" value="ExamLesson.Point"
+                                               class="form-control"
+                                               placeholder="Point">
+                                        <span asp-validation-for="ExamLesson.Point" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <input asp-for="CourseLessonVM.Lesson" type="number" value="@courseLesson.Lesson"
+                                        <input asp-for="ExamLesson.Hour" type="number" value="ExamLesson.Hour"
                                                class="form-control"
-                                               placeholder="Part Lesson">
-                                        <span asp-validation-for="CourseLessonVM.Lesson" class="text-danger"></span>
+                                               placeholder="Hour">
+                                        <span asp-validation-for="ExamLesson.Lesson" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="ExamLesson.Minute" type="number" value="ExamLesson.Minute"
+                                               class="form-control"
+                                               placeholder="Minute">
+                                        <span asp-validation-for="ExamLesson.Minute" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="ExamLesson.Second" type="number" value="ExamLesson.Second"
+                                               class="form-control"
+                                               placeholder="Second">
+                                        <span asp-validation-for="ExamLesson.Second" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -45,72 +68,88 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="review-content-section">
                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <form asp-action="Lesson" method="post" enctype="multipart/form-data">
+                                    <form asp-action="Lesson" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <label asp-for="Part">Part</label>
-                                                    <input asp-for="Part" type="number" class="form-control" placeholder="Part">
-                                                    <span asp-validation-for="Part" class="text-danger"></span>
+                                                    <label asp-for="Question">Question</label>
+                                                    <input asp-for="Question" type="text" class="form-control" placeholder="Question">
+                                                    <span asp-validation-for="Question" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label asp-for="Title">Title</label>
-                                                    <input asp-for="Title" type="text" class="form-control" placeholder="Title">
-                                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                                    <label asp-for="Answer">Answer</label>
+                                                    <input asp-for="Answer" type="number" class="form-control" placeholder="Answer">
+                                                    <span asp-validation-for="Answer" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label asp-for="Hour">Hour</label>
-                                                    <input asp-for="Hour" type="number" class="form-control" placeholder="Hour">
-                                                    <span asp-validation-for="Hour" class="text-danger"></span>
+                                                    <label asp-for="Image">Image</label>
+                                                    <input type="file" asp-for="Image" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label asp-for="Option1">Option1</label>
+                                                    <input asp-for="Option1" type="text" class="form-control" placeholder="A">
+                                                    <span asp-validation-for="Option1" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label asp-for="Minute">Minute</label>
-                                                    <input asp-for="Minute" type="number" class="form-control" placeholder="Minute">
-                                                    <span asp-validation-for="Minute" class="text-danger"></span>
+                                                    <label asp-for="Option2">Option2</label>
+                                                    <input asp-for="Option2" type="text" class="form-control" placeholder="B">
+                                                    <span asp-validation-for="Option2" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label asp-for="Video">Video</label>
-                                                    <input type="file" asp-for="Video" class="form-control" />
+                                                    <label asp-for="Option3">Option3</label>
+                                                    <input asp-for="Option3" type="text" class="form-control" placeholder="C">
+                                                    <span asp-validation-for="Option3" class="text-danger"></span>
                                                 </div>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </form>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <div class="table-responsive text-nowrap">
-                                                <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Id</th>
-                                                            <th>Part</th>
-                                                            <th>Title</th>
-                                                            <th>Hour</th>
-                                                            <th>Minute</th>
-                                                            <th>VideoUrl</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @if (Model != null && Model.CourseVideo != null)
-                                                        {
-                                                            @foreach (var video in Model.CourseVideo)
-                                                            {
-                                                                <tr>
-                                                                    <td>@video.Id</td>
-                                                                    <td>@video.Part</td>
-                                                                    <td>@video.Title</td>
-                                                                    <td>@video.Hour</td>
-                                                                    <td>@video.Minute</td>
-                                                                    <td>@video.VideoUrl</td>
-                                                                    <td>
-                                                                        <a asp-action="Lesson" asp-route-id="@video.Id">Edit</a>
-                                                                        <a asp-action="Delete" asp-route-id="@video.Id">Delete</a>
-                                                                    </td>
-                                                                </tr>
-                                                            }
-                                                        }
-                                                    </tbody>
-                                                </table>
+                                                <div class="form-group">
+                                                    <label asp-for="Option4">Option4</label>
+                                                    <input asp-for="Option4" type="text" class="form-control" placeholder="D">
+                                                    <span asp-validation-for="Option4" class="text-danger"></span>
+                                                </div>
                                             </div>
                                         </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+
+                                    <div class="table-responsive text-nowrap">
+                                        <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Question</th>
+                                                    <th>Answer</th>
+                                                    <th>Option</th>
+                                                    <th>ImageUrl</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model != null && Model.QuestionTest != null)
+                                                {
+                                                    @foreach (var question in Model.QuestionTest)
+                                                    {
+                                                        <tr>
+                                                            <td>@question.Id</td>
+                                                            <td>@question.Question</td>
+                                                            <td>@question.Answer</td>
+                                                            <td>@question.Option</td>
+                                                            <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@question.ImageUrl</td>
+                                                            <td>
+                                                                <a asp-action="Question" asp-route-id="@question.Id">Edit</a>
+                                                                <form asp-action="QuestionDelete" method="post">
+                                                                    <button type="submit" asp-action="QuestionDelete" asp-route-id="@question.Id" formnovalidate
+                                                                            class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
+                                                                        Delete
+                                                                    </button>
+                                                                </form>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

@@ -4,25 +4,33 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-<ul class="navbar-nav">
+
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-    </li>
-    <li class="nav-item">
-        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
-        </form>
+    
+    <li class="menu-item menu-item-has-children">
+        <a href="#" class="js-toggle-sub-menu">account <i class="fas fa-chevron-down"></i></a>
+        <ul class="sub-menu js-sub-menu">
+            <li class="sub-menu-item"><a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Setting</a></li>
+            <form class="p-0" style="min-width:auto !important;" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button class="border-0">
+                    <div class="icon-area">
+                        <i class="fa fa-sign-out"></i>
+                    </div>
+                    <small class="text">Thoát</small>
+                </button>
+            </form>
+            
+        </ul>
     </li>
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    <li class="menu-item menu-item-has-children">
+        <a href="#" class="js-toggle-sub-menu">pages <i class="fas fa-chevron-down"></i></a>
+        <ul class="sub-menu js-sub-menu">
+            <li class="sub-menu-item"><a asp-area="Identity" asp-page="/Account/Login">login</a></li>
+            <li class="sub-menu-item"><a asp-area="Identity" asp-page="/Account/Register">signup</a></li>
+        </ul>
     </li>
 }
-</ul>

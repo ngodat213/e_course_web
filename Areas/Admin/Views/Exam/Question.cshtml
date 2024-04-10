@@ -1,0 +1,84 @@
+﻿@model e_course_web.ViewModels.ExamQuestionDetailVM
+
+@{
+    ViewData["Title"] = "Question";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="single-pro-review-area mt-t-30 mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-payment-inner-st">
+                    <h2>Question Details </h2>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="review-content-section">
+                                <div id="dropzone1" class="pro-ad addcoursepro">
+                                    <form asp-action="Lesson" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label asp-for="Question">Question</label>
+                                                    <input asp-for="Question" type="text" class="form-control" placeholder="Question" value="Question">
+                                                    <span asp-validation-for="Question" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="Answer">Answer</label>
+                                                    <input asp-for="Answer" type="number" class="form-control" placeholder="Answer" value="Answer">
+                                                    <span asp-validation-for="Answer" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="Image">Image</label>
+                                                    @if(Model.ImageUrl != null){
+                                                        <img src="ImageUrl" alt="ImageQuestion" />
+                                                    }
+                                                    <input type="file" asp-for="Image" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label asp-for="Option[0]">Option1</label>
+                                                    <input asp-for="Option[0]" type="text" class="form-control" placeholder="A" value="Option[0]">
+                                                    <span asp-validation-for="Option[0]" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="Option[1]">Option2</label>
+                                                    <input asp-for="Option[1]" type="text" class="form-control" placeholder="B" value="Option[1]">
+                                                    <span asp-validation-for="Option[1]" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="Option[2]">Option3</label>
+                                                    <input asp-for="Option[2]" type="text" class="form-control" placeholder="C" value="Option[2]">
+                                                    <span asp-validation-for="Option[2]" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="Option[3]">Option4</label>
+                                                    <input asp-for="Option[3]" type="text" class="form-control" placeholder="D" value="Option[3]">
+                                                    <span asp-validation-for="Option[3]" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
+
+<script>
+    new DataTable('#example', {
+    });
+</script>

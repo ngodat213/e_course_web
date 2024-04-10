@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9nr80IBzhJvasYQVyWN1hNhXcpOlaCg/McF6FCCXJDtH06iGFjEQZv+MlL8pNvniYfkEXnch5BAMFP1UDMnLdQ==",
+  "dgSpecHash": "P+M5LmzbA2kEbb7BxiQC+o/acf5NyvyNYS+lw2XS56B4LTaRoWsdRqr6VTPoNJOPLrhwvhgHkVuQwezfuH1t/A==",
   "success": true,
   "projectFilePath": "D:\\workspace\\dot_net\\e_course_web\\e_course_web.csproj",
   "expectedPackageFiles": [
@@ -73,6 +73,7 @@
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.aspnetcore.identity\\2.2.0\\microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\8.0.3\\microsoft.aspnetcore.identity.entityframeworkcore.8.0.3.nupkg.sha512",
+    "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.3\\microsoft.aspnetcore.identity.ui.8.0.3.nupkg.sha512",
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.24\\microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.aspnetcore.session\\2.2.0\\microsoft.aspnetcore.session.2.2.0.nupkg.sha512",
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
@@ -108,7 +109,8 @@
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.0\\microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512",
-    "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\2.2.0\\microsoft.extensions.fileproviders.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\8.0.0\\microsoft.extensions.fileproviders.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.extensions.fileproviders.embedded\\8.0.3\\microsoft.extensions.fileproviders.embedded.8.0.3.nupkg.sha512",
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\2.2.0\\microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.extensions.identity.core\\8.0.3\\microsoft.extensions.identity.core.8.0.3.nupkg.sha512",
     "C:\\Users\\Sinon\\.nuget\\packages\\microsoft.extensions.identity.stores\\8.0.3\\microsoft.extensions.identity.stores.8.0.3.nupkg.sha512",

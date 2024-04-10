@@ -4,10 +4,13 @@ using e_course_web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using e_course_web.Service.Interfaces;
+using e_course_web.Service.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace e_course_web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CourseController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -58,7 +61,7 @@ namespace e_course_web.Areas.Admin.Controllers
                     Rating = 0,
                     Register = 0,
                     TeacherId = value.TeacherId,
-                    CourseImage = cloud.Url.ToString(),
+                    ImageUrl = cloud.Url.ToString(),
                     Time = value.Time,
                     Language = value.Language,
                     UpdateAt = DateTime.Now,
@@ -140,14 +143,14 @@ namespace e_course_web.Areas.Admin.Controllers
             if (value.Title != "" && value.Hour != null && value.Part != null && value.Minute != null && value.Video != null)
             {
                 try {
-                    /*var cloud = await _cloudinaryService.AddVideoAsync(value.Video);*/
+                    var cloud = await _cloudinaryService.AddVideoAsync(value.Video);
                     CourseVideo courseVideo = new CourseVideo()
                     {
                         Part = value.Part,
                         Title = value.Title,
                         Hour = value.Hour,
                         Minute = value.Minute,
-                        VideoUrl = "",
+                        VideoUrl = cloud.Url.ToString(),
                     };
                     CourseLesson courseLesson = await _unitOfWork.CourseLesson.GetById(id);
                     var videoList = new List<CourseVideo>(){
@@ -188,11 +191,6 @@ namespace e_course_web.Areas.Admin.Controllers
                 _unitOfWork.CourseVideo.Update(video);
 
             }
-            return View();
-        }
-
-        public IActionResult Feedback()
-        {
             return View();
         }
     }

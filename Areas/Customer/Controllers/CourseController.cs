@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace e_course_web.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Route("Course")]
     public class CourseController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
