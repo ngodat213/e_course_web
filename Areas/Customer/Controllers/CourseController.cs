@@ -14,17 +14,17 @@ namespace e_course_web.Areas.Customer.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-
+        [Route("")]
         public IActionResult Index()
         {
             IEnumerable<Course> courses = _unitOfWork.Course.GetAll(includeProperties: "Lessons,Feedbacks,Category");
             if (courses != null)
             {
-                return View(courses.Take(4));
+                return View(courses.Take(10));
             }
             return View();
         }
-
+        [Route("detail")]
         public async Task<IActionResult> CourseDetail(int id)
         {
             Course course = _unitOfWork.Course.GetFirstOrDefault(i => i.Id == id, includeProperties: "Lessons,Feedbacks,Category");
