@@ -128,8 +128,6 @@ namespace e_course_web.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     PhoneNumber = Input.PhoneNumber,
                     FullName = Input.FullName,
-                    Exams = [],
-                    Courses = [],
                     Role = Input.Role,
                 };
 

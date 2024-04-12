@@ -44,8 +44,6 @@
                             <td>
                                 @item.PhoneNumber
                             </td>
-                            <td>@item.Courses.Count</td>
-                            <td>@item.Exams.Count</td>
                             <td>
                                 <form asp-action="Lock" method="post">
                                     <button type="submit" asp-action="Lock" asp-route-id="@item.Id" formnovalidate

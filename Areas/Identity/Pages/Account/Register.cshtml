@@ -46,14 +46,14 @@
                             <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirm password">
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
-                        @if (User.IsInRole(SD.Role_Admin))
-                        {
+                        @* @if (User.IsInRole(SD.Role_Admin))
+                        { *@
                             <div class="form-group">
                                 <label asp-for="Input.Role"></label>
                                 @Html.DropDownListFor(m => m.Input.Role, Model.Input.RoleList,
                                          "-Chọn quyền cho tài khoản-", new { @class = "form-control" })
                             </div>
-                        }
+                        @* } *@
                         <button id="registerSubmit" type="submit" class="btn btn-theme btn-block btn-form">Sign Up</button>
                         <p class="text-center mt-4 mb-0">
                             Already have an account ? <a asp-page="./Login">Log In

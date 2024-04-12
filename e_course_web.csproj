@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\img\chocolat\**" />
+    <Compile Remove="wwwroot\img\colorbox\**" />
+    <Content Remove="wwwroot\img\chocolat\**" />
+    <Content Remove="wwwroot\img\colorbox\**" />
+    <EmbeddedResource Remove="wwwroot\img\chocolat\**" />
+    <EmbeddedResource Remove="wwwroot\img\colorbox\**" />
+    <None Remove="wwwroot\img\chocolat\**" />
+    <None Remove="wwwroot\img\colorbox\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\icomoon\fonts\icomooncfce.eot" />
     <Content Remove="wwwroot\icomoon\fonts\icomooncfce.svg" />
     <Content Remove="wwwroot\icomoon\fonts\icomooncfce.ttf" />
@@ -18,13 +29,6 @@
     <Content Remove="wwwroot\img\blog1.jpg" />
     <Content Remove="wwwroot\img\blog2.jpg" />
     <Content Remove="wwwroot\img\blog3.jpg" />
-    <Content Remove="wwwroot\img\chocolat\close.png" />
-    <Content Remove="wwwroot\img\chocolat\fullscreen.png" />
-    <Content Remove="wwwroot\img\chocolat\left.png" />
-    <Content Remove="wwwroot\img\chocolat\loader.gif" />
-    <Content Remove="wwwroot\img\chocolat\right.png" />
-    <Content Remove="wwwroot\img\colorbox\controls.html" />
-    <Content Remove="wwwroot\img\colorbox\loading.html" />
     <Content Remove="wwwroot\img\instruction.png" />
     <Content Remove="wwwroot\img\item-lg1.jpg" />
     <Content Remove="wwwroot\img\item-lg2.jpg" />
@@ -80,7 +84,6 @@
     <Folder Include="Areas\Customer\Data\" />
     <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\Customer\Views\Blog\" />
-    <Folder Include="Areas\Customer\Views\Course\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -91,53 +94,6 @@
     <None Include="wwwroot\icomoon\fonts\icomooncfce.ttf" />
     <None Include="wwwroot\icomoon\fonts\icomooncfce.woff" />
     <None Include="wwwroot\icomoon\icomoon.css" />
-    <None Include="wwwroot\img\award.png" />
-    <None Include="wwwroot\img\background-img.jpg" />
-    <None Include="wwwroot\img\billboad-img.png" />
-    <None Include="wwwroot\img\blog1.jpg" />
-    <None Include="wwwroot\img\blog2.jpg" />
-    <None Include="wwwroot\img\blog3.jpg" />
-    <None Include="wwwroot\img\chocolat\close.png" />
-    <None Include="wwwroot\img\chocolat\fullscreen.png" />
-    <None Include="wwwroot\img\chocolat\left.png" />
-    <None Include="wwwroot\img\chocolat\loader.gif" />
-    <None Include="wwwroot\img\chocolat\right.png" />
-    <None Include="wwwroot\img\colorbox\controls.html" />
-    <None Include="wwwroot\img\colorbox\loading.html" />
-    <None Include="wwwroot\img\instruction.png" />
-    <None Include="wwwroot\img\item-lg1.jpg" />
-    <None Include="wwwroot\img\item-lg2.jpg" />
-    <None Include="wwwroot\img\item-lg3.jpg" />
-    <None Include="wwwroot\img\item1.jpg" />
-    <None Include="wwwroot\img\item2.jpg" />
-    <None Include="wwwroot\img\item3.jpg" />
-    <None Include="wwwroot\img\item4.jpg" />
-    <None Include="wwwroot\img\item5.jpg" />
-    <None Include="wwwroot\img\item6.jpg" />
-    <None Include="wwwroot\img\item7.jpg" />
-    <None Include="wwwroot\img\item8.jpg" />
-    <None Include="wwwroot\img\logo.jpg" />
-    <None Include="wwwroot\img\product-item1.jpg" />
-    <None Include="wwwroot\img\product-item2.jpg" />
-    <None Include="wwwroot\img\product-item3.jpg" />
-    <None Include="wwwroot\img\product-item4.jpg" />
-    <None Include="wwwroot\img\product-item5.jpg" />
-    <None Include="wwwroot\img\product-item6.jpg" />
-    <None Include="wwwroot\img\product-item7.jpg" />
-    <None Include="wwwroot\img\product-item8.jpg" />
-    <None Include="wwwroot\img\product-item9.jpg" />
-    <None Include="wwwroot\img\register-img.png" />
-    <None Include="wwwroot\img\reviewer-1.jpg" />
-    <None Include="wwwroot\img\reviewer-2.jpg" />
-    <None Include="wwwroot\img\reviewer-3.jpg" />
-    <None Include="wwwroot\img\student.png" />
-    <None Include="wwwroot\img\team1.jpg" />
-    <None Include="wwwroot\img\team2.jpg" />
-    <None Include="wwwroot\img\team3.jpg" />
-    <None Include="wwwroot\img\team4.jpg" />
-    <None Include="wwwroot\img\team5.jpg" />
-    <None Include="wwwroot\img\team6.jpg" />
-    <None Include="wwwroot\img\topic.png" />
     <None Include="wwwroot\js\admin\c3-charts\c3-active.js" />
     <None Include="wwwroot\js\admin\c3-charts\c3.min.js" />
     <None Include="wwwroot\js\admin\c3-charts\d3.min.js" />

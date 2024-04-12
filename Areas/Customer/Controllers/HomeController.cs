@@ -27,7 +27,7 @@ namespace e_course_web.Areas.Customer.Controllers
 
         public  IActionResult Index()
         {
-            IEnumerable<Course> courses =  _unitOfWork.Course.GetAll(includeProperties: "Lessons,Feedbacks,Category");
+            IEnumerable<Course> courses =  _unitOfWork.Course.GetAll(includeProperties: "Lessons,Category");
             if (courses != null)
             {
                 return View(courses.Take(4));

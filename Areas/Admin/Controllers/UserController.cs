@@ -22,7 +22,7 @@ namespace e_course_web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<User> userList = _unitOfWork.User.GetAll(includeProperties: "Courses,Exams");
+            IEnumerable<User> userList = _unitOfWork.User.GetAll();
             var userRole = _db.UserRoles.ToList();
             var roles = _db.Roles.ToList();
             foreach(var user in userList)

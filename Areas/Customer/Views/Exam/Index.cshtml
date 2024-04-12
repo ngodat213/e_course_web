@@ -1,17 +1,17 @@
-﻿@model IEnumerable<e_course_web.Models.Course>
+﻿@model IEnumerable<e_course_web.Models.Exam>
 @*
 *@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Course";
+    ViewData["Title"] = "Exams";
 }
 <!-- breadcrumb start -->
 <div class="breadcrumb-nav">
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">courses</li>
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" asp-route-area="Customer">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Exams</li>
             </ol>
         </nav>
     </div>
@@ -52,17 +52,17 @@
                     <div class="tab-pane fade show active" id="web-development" role="tabpanel"
                          aria-labelledby="web-development-tab">
                         <div class="row justify-content-center">
-                            @foreach(var course in Model)
+                            @foreach (var exam in Model)
                             {
                                 <!-- courses item start -->
                                 <div class="col-md-6 col-lg-3">
                                     <div class="courses-item">
-                                        <a asp-controller="Course" asp-action="CourseDetail" asp-route-area="Customer" asp-route-id="@course.Id" class="link">
+                                        <a asp-controller="Exam" asp-action="ExamDetail" asp-route-area="Customer" asp-route-id="@exam.Id" class="link">
                                             <div class="courses-item-inner">
                                                 <div class="img-box">
-                                                    <img src=@course.ImageUrl alt="course img">
+                                                    <img src=@exam.ImageUrl alt="course img">
                                                 </div>
-                                                <h3 class="title">@course.Title</h3>
+                                                <h3 class="title">@exam.Title</h3>
                                                 <div class="instructor">
                                                     <img src="~/img/instructor/1.png" alt="instructor img">
                                                     <span class="instructor-name">john doe</span>
