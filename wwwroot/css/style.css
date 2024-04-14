@@ -1527,3 +1527,26 @@ textarea {
 .exam-choice.active {
     background-color: var(--main-color);
 }
+
+tr th td {
+    color: var(--black-90);
+}
+
+.table {
+    color: var(--black-70);
+}
+
+    .table:hover tr td {
+        color: var(--black-70);
+    }
+
+
+.form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+    .form-check-input:checked + .form-check-label::before {
+        background-color: #007bff; /* Change to your desired color */
+        border-color: #007bff; /* Change to your desired color */
+    }

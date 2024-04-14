@@ -1,5 +1,4 @@
 ﻿using e_course_web.Models;
-using System.ComponentModel.DataAnnotations;
 
 namespace e_course_web.ViewModels
 {

@@ -1,13 +1,6 @@
-﻿using e_course_web.Manager;
-using e_course_web.Models;
-using e_course_web.Utils;
+﻿using e_course_web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.WebUtilities;
-using System.Text.Encodings.Web;
-using System.Text;
-using e_course_web.ModelViews;
 using e_course_web.DataAccess.Repositorys;
 
 namespace e_course_web.Areas.Customer.Controllers

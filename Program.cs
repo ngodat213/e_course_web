@@ -19,6 +19,9 @@ builder.Services.AddControllersWithViews();
 // Register service for page
 builder.Services.AddRazorPages();
 
+// Use session
+builder.Services.AddSession();
+
 // Add default Identity
 builder.Services.AddIdentity<User, IdentityRole>()
 .AddDefaultTokenProviders()
@@ -58,6 +61,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 app.UseRouting();
 app.UseAuthorization();
 

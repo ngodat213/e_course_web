@@ -1,9 +1,17 @@
-﻿@model e_course_web.Models.Course;
+﻿@model e_course_web.ViewModels.CourseDetailVM;
 @*
 *@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Course Detail";
+    var col = "col-lg-8";
+    var colvideo = "col-lg-12";
+
+    if (Model.IsRegister)
+    {
+        col = "col-lg-12";
+        colvideo = "col-lg-6";
+    }
 }
 <!-- breadcrumb start -->
 <div class="breadcrumb-nav">
@@ -22,30 +30,43 @@
 <!-- breadcrumb end -->
 <!--  course details section start -->
 <section class="course-details section-padding">
-    <input hidden asp-for="Id" />
+    <input hidden asp-for="@Model.Course.Id" />
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="@col">
                 <!-- course header start -->
                 <div class="course-header box">
-                    <h2 class="text-capitalize">@Model.Title</h2>
-                    <div class="rating">
-                        <span class="average-rating">(4.5)</span>
-                        <span class="average-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </span>
-                        @* <span class="reviews">(@Model.Feedbacks.Count)Reviews</span> *@
+                    <div class="row">
+                        <div class=@colvideo>
+                            <h2 class="text-capitalize">@Model.Course.Title</h2>
+                            <div class="rating">
+                                <span class="average-rating">(4.5)</span>
+                                <span class="average-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                                @* <span class="reviews">(@Model.Feedbacks.Count)Reviews</span> *@
+                            </div>
+                            <ul>
+                                <li> enrolled students - <span>@Model.Course.Register</span></li>
+                                <li> created by - <span><a href="#">@Model.Course.TeacherId</a></span></li>
+                                <li> last updated - <span>@Model.Course.UpdateAt</span></li>
+                                <li> language - <span>@Model.Course.Language</span></li>
+                            </ul>
+                        </div>
+                        @if (Model.IsRegister)
+                        {
+                            <div class="col-lg-6">
+                                <div class="img-box" data-bs-toggle="modal" data-bs-target="#video-modal">
+                                    <img src=@Model.Course.ImageUrl alt="course img" class="w-100">
+                                </div>
+                            </div>
+                        }
                     </div>
-                    <ul>
-                        <li> enrolled students - <span>@Model.Register</span></li>
-                        <li> created by - <span><a href="#">@Model.TeacherId</a></span></li>
-                        <li> last updated - <span>20/03/2024</span></li>
-                        <li> language - <span>@Model.Language</span></li>
-                    </ul>
+                    
                 </div>
                 <!-- course header end -->
                 <!-- course tabs start -->
@@ -84,7 +105,7 @@
                             <!-- accordion start -->
                             <div class="accordion" id="accordion">
                                 <!-- accordion item start -->
-                                @foreach (var lesson in Model.Lessons)
+                                @foreach (var lesson in Model.Course.Lessons)
                                 {
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="heading-@(lesson.Id)">
@@ -124,7 +145,7 @@
                          aria-labelledby="course-description-tab">
                         <div class="course-description box">
                             <h3 class="text-capitalize mb-4">Description</h3>
-                            @Model.Description
+                            @Model.Course.Description
                         </div>
                     </div>
                     <!-- course description end -->
@@ -317,40 +338,37 @@
                     <!-- course reviews end -->
                 </div>
                 <!-- tab panes end -->
-
             </div>
-            <div class="col-lg-4">
-                <!-- course sidebar start -->
-                <div class="course-sidebar box">
-                    <div class="img-box position-relative" data-bs-toggle="modal" data-bs-target="#video-modal">
-                        <img src=@Model.ImageUrl alt="course img" class="w-100">
-                        <div class="play-icon">
-                            <i class="fas fa-play"></i>
+            @if (Model.IsRegister == false)
+            {
+                <div class="col-lg-4">
+                    <!-- course sidebar start -->
+                    <div class="course-sidebar box">
+                        <div class="img-box position-relative" data-bs-toggle="modal" data-bs-target="#video-modal">
+                            <img src=@Model.Course.ImageUrl alt="course img" class="w-100">
+                            <div class="play-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <p class="text-center">Course Preview</p>
                         </div>
-                        <p class="text-center">Course Preview</p>
+                        <div class="price d-flex align-items-center mb-3">
+                            <span class="price-new">$@Model.Course.Price</span>
+                        </div>
+                        <h3 class="mb-3">Course Features</h3>
+                        <ul class="features-list">
+                            <li>Total @(Model.Course.Lessons.Count) lessons</li>
+                        </ul>
+                        <div class="btn-wrap">
+                            <form method="post" asp-action="Detail" asp-controller="Course" asp-area="Customer" asp-route-id="@Model.Course.Id">
+                                <button type="submit" class="btn btn-theme btn-block">
+                                    Register
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="price d-flex align-items-center mb-3">
-                        <span class="price-old">$111</span>
-                        <span class="price-new">$1</span>
-                        <span class="price-discount">99% Off</span>
-                    </div>
-                    <h3 class="mb-3">Course Features</h3>
-                    <ul class="features-list">
-                        <li>Total @(@Model.Lessons.Count) lessons</li>
-                        <li>Other features</li>
-                        <li>Other features</li>
-                        <li>Other features</li>
-                        <li>Other features</li>
-                    </ul>
-                    <div class="btn-wrap">
-                        <button type="button" class="btn btn-theme btn-block">
-                            enroll
-                            now
-                        </button>
-                    </div>
+                    <!-- course sidebar end -->
                 </div>
-                <!-- course sidebar end -->
-            </div>
+            }
         </div>
     </div>
 </section>
@@ -374,7 +392,7 @@
     </div>
 </div>
 <!-- course preview modal end -->
-@foreach (var lesson in Model.Lessons)
+@foreach (var lesson in Model.Course.Lessons)
 {
 
     @foreach (var video in lesson.Videos)

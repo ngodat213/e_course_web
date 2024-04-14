@@ -7,6 +7,7 @@ using e_course_web.Service.Interfaces;
 using e_course_web.Service.Helpers;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json;
 
 namespace e_course_web.Areas.Admin.Controllers
 {
@@ -184,29 +185,31 @@ namespace e_course_web.Areas.Admin.Controllers
                     {
                         cloud = await _cloudinaryService.AddPhotoAsync(value.Image);
                     }
-                    if(cloud.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        // Convert List<string> option to json
-                        var jsonConvert = ConvertJsonHelper.ToJson(new List<string>(){ value.Option1,
+                    // Convert List<string> option to json
+                    var jsonConvert = ConvertJsonHelper.ToJson(new List<string>(){ value.Option1,
                             value.Option2,
                             value.Option3,
                             value.Option4,
-                        });
-                        ExamQuestion examQuestion = new ExamQuestion()
-                        {
-                            Question = value.Question,
-                            Answer = value.Answer,
-                            Option = jsonConvert,
-                            ImageUrl = value.Image != null ? cloud.Url.ToString() : null,
-                            PublicId = value.Image != null ? cloud.PublicId : null,
-                        };
-                        ExamLesson examLesson = await _unitOfWork.ExamLesson.GetById(id);
-                        var videoList = new List<ExamQuestion>(){
-                            examQuestion,
-                         };
-                        examLesson.ExamQuestion = videoList;
-                        _unitOfWork.ExamLesson.Update(examLesson);
+                    });
+                    ExamQuestion examQuestion = new ExamQuestion()
+                    {
+                        Question = value.Question,
+                        Answer = value.Answer,
+                        Option = jsonConvert,
+                        PublicId = value.Image != null ? cloud.PublicId : null,
+                    };
+                    if (cloud.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        
+                        examQuestion.ImageUrl = value.Image != null ? cloud.Url.ToString() : null;
+                        examQuestion.PublicId = value.Image != null ? cloud.PublicId : null;
                     }
+                    ExamLesson examLesson = await _unitOfWork.ExamLesson.GetById(id);
+                    var videoList = new List<ExamQuestion>(){
+                            examQuestion,
+                    };
+                    examLesson.ExamQuestion = videoList;
+                    _unitOfWork.ExamLesson.Update(examLesson);
                 }
                 catch (Exception ex)
                 {

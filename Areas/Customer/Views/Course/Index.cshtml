@@ -57,7 +57,7 @@
                                 <!-- courses item start -->
                                 <div class="col-md-6 col-lg-3">
                                     <div class="courses-item">
-                                        <a asp-controller="Course" asp-action="CourseDetail" asp-route-area="Customer" asp-route-id="@course.Id" class="link">
+                                        <a asp-controller="Course" asp-action="Detail" asp-route-area="Customer" asp-route-id="@course.Id" class="link">
                                             <div class="courses-item-inner">
                                                 <div class="img-box">
                                                     <img src=@course.ImageUrl alt="course img">
@@ -78,7 +78,7 @@
                                                     </span>
                                                     @* <span class="reviews">(@course.Feedbacks.Count)</span> *@
                                                 </div>
-                                                <div class="price">$ 49</div>
+                                                <div class="price">$ @course.Price</div>
                                             </div>
                                         </a>
                                     </div>

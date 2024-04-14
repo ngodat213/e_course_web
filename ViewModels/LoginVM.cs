@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace e_course_web.ModelViews
+namespace e_course_web.ViewModels
 {
     public class LoginVM
     {

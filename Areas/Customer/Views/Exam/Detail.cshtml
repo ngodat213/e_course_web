@@ -1,8 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model e_course_web.Models.Exam;
+
 <!-- breadcrumb start -->
 <div class="breadcrumb-nav">
     <div class="container">
@@ -25,7 +22,7 @@
             <div class="col-lg-8">
                 <!-- course header start -->
                 <div class="course-header box">
-                    <h2 class="text-capitalize">Java for beginners</h2>
+                    <h2 class="text-capitalize">@Model.Title</h2>
                     <div class="rating">
                         <span class="average-rating">(4.5)</span>
                         <span class="average-stars">
@@ -76,147 +73,19 @@
                             <!-- accordion start -->
                             <div class="accordion" id="accordion">
                                 <!-- accordion item start -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading-1">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapse-1" aria-expanded="true"
-                                                aria-controls="collapse-1">
-                                            Language basics <span> 2 lessons | 20min </span>
-                                        </button>
-                                    </h2>
-                                    <div id="collapse-1" class="accordion-collapse collapse show"
-                                         aria-labelledby="heading-1" data-bs-parent="#accordion">
-                                        <div class="accordion-body">
-                                            <ul>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Lexical structure
-                                                    <span>06:00</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Values
-                                                    <span>06:00</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Types
-                                                    <span>06:00</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Variables
-                                                    <span>06:00</span>
-                                                </li>
-                                            </ul>
+                                @foreach (var lesson in Model.Lessons)
+                                {
+                                    <a asp-action="test" asp-controller="exam" asp-area="customer" asp-route-id="@lesson.Id">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="heading-@(lesson.Id)">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@(lesson.Id)" aria-expanded="true" aria-controls="collapse-@(lesson.Id)">
+                                                    @lesson.Title<span> @(lesson.ExamQuestion.Count) lessons | @(lesson.Hour)h @(lesson.Minute)m</span>
+                                                </button>
+                                            </h2>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- accordion item end -->
-                                <!-- accordion item start -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading-2">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapse-2"
-                                                aria-expanded="false" aria-controls="collapse-2">
-                                            Types <span> 2 lessons | 20min</span>
-                                        </button>
-                                    </h2>
-                                    <div id="collapse-2" class="accordion-collapse collapse"
-                                         aria-labelledby="heading-2" data-bs-parent="#accordion">
-                                        <div class="accordion-body">
-                                            <ul>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Strings
-                                                    <span>06:00</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Boolean
-                                                    <span>06:00</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Null and underfined
-                                                    <span>06:00</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- accordion item end -->
-                                <!-- accordion item start -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading-3">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapse-3"
-                                                aria-expanded="false" aria-controls="collapse-3">
-                                            Control structure <span> 2 lessons | 20min</span>
-                                        </button>
-                                    </h2>
-                                    <div id="collapse-3" class="accordion-collapse collapse"
-                                         aria-labelledby="heading-3" data-bs-parent="#accordion">
-                                        <div class="accordion-body">
-                                            <ul>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    If / else
-                                                    <span>06:00</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Switch
-                                                    <span>06:00</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Loops
-                                                    <span>06:00</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- accordion item end -->
-                                <!-- accordion item start -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading-4">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapse-4"
-                                                aria-expanded="false" aria-controls="collapse-4">
-                                            Function <span> 2 lessons | 20min</span>
-                                        </button>
-                                    </h2>
-                                    <div id="collapse-4" class="accordion-collapse collapse"
-                                         aria-labelledby="heading-4" data-bs-parent="#accordion">
-                                        <div class="accordion-body">
-                                            <ul>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Arrow function
-                                                    <span>06:00</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Parameters
-                                                    <span>06:00</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Return value
-                                                    <span>06:00</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-play-circle"></i>
-                                                    Recursion
-                                                    <span>06:00</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- accordion item end -->
+                                    </a>
+                                }
+                                
                             </div>
                             <!-- accordion end -->
                         </div>
@@ -227,24 +96,7 @@
                          aria-labelledby="course-description-tab">
                         <div class="course-description box">
                             <h3 class="text-capitalize mb-4">Description</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi minus nesciunt
-                                accusantium fuga quod autem, nobis nulla impedit. Enim vel doloribus minima
-                                animi ut quaerat alias nisi corrupti fuga fugiat?
-                            </p>
-                            <h4>For who is this course desiged?</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora id numquam quos
-                                facilis! Illum, libero, voluptates ipsa quo quisquam in totam harum id rem
-                                veniam, hic laborum fugit! Voluptates, ratione!
-                            </p>
-                            <h4>Why should you take this course ?</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. A tempore ducimus
-                                maiores non earum eum cumque beatae, optio rem. Provident, architecto
-                                voluptatem? Provident tempore assumenda totam sit. Officiis, accusantium
-                                necessitatibus?
-                            </p>
+                            <p>@Model.Description</p>
                         </div>
                     </div>
                     <!-- course description end -->
