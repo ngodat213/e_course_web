@@ -60,7 +60,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group res-mg-t-15">
                                 <label asp-for="Course.TeacherId">TeacherId</label>
-                                <input asp-for="Course.TeacherId" name="Instructor" type="text" value="@Model.Course.TeacherId"
+                                <input asp-for="Course.TeacherId" type="text" value="@Model.Course.TeacherId"
                                        class="form-control"
                                        placeholder="Instructor">
                                 <span asp-validation-for="Course.TeacherId" class="text-danger"></span>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Course.Description">Description</label>
-                                <textarea id="myeditor" asp-for="Course.Description" name="description" value="@Model.Course.Description"
+                                <textarea id="myeditor" asp-for="Course.Description" name="description"
                                           placeholder="Description"></textarea>
                                 <span asp-validation-for="Course.Description" class="text-danger"></span>
                             </div>

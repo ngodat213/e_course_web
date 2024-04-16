@@ -447,6 +447,16 @@ textarea.form-control {
         color: var(--WHITE);
     }
 
+.nav-icon {
+    color: black;
+    padding-right: 20px;
+}
+
+:is(.nav-icon):hover {
+    color: var(--main-color);
+}
+
+
 /* 17: =bubble animation */
 .bubble-animation-item {
     position: absolute;
@@ -818,7 +828,8 @@ textarea.form-control {
 }
 
     .courses-item .img-box img {
-        width: 100%;
+        width: 255px;
+        height: 127px;
         border-radius: 5px;
     }
 
@@ -1554,3 +1565,181 @@ tr th td {
     background-color: #007bff; /* Change to your desired color */
     border-color: #007bff; /* Change to your desired color */
 }
+
+/* search */
+.search {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--main-color);
+    background-color: hsla(230, 75%, 32%, 0.1);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    padding: 8rem 1.5rem 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+}
+
+.search-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    background-color: var(--white);
+    box-shadow: 0 8px 32px hsla(230, 75%, 15%, 0.2);
+    padding-inline: 1rem;
+    border-radius: 0.5rem;
+    transform: translateY(-1rem);
+    transition: tranform 0.4s;
+}
+
+.search-icon {
+    font-size: 1.25rem;
+}
+
+.search-input {
+    width: 100%;
+    padding-block: 1rem;
+    background-color: var(--white);
+    color: var(--main-color);
+    border: none;
+    padding-left: 10px;
+}
+
+    .search-input::placeholder {
+        color: var(--main-color);
+        padding-left: 10px;
+    }
+
+/* Show search */
+.show-search {
+    opacity: 1;
+    pointer-events: initial;
+    z-index: 2;
+}
+
+    .show-search .search__form {
+        transform: translateY(0);
+    }
+
+
+/* 29: =rating */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.wrapper {
+    background-color: var(--white);
+    padding: 2rem;
+    /* max-width: 576px; */
+    width: 100%;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow);
+    /* justify-content: center;
+  align-items: center; */
+    text-align: center;
+}
+
+    .wrapper h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+.rating {
+    /* display: flex; */
+    justify-self: center;
+    align-items: center;
+    grid-gap: 0.5rem;
+    font-size: 2rem;
+    color: var(--orange);
+    margin-bottom: 2rem;
+}
+
+    .rating .star {
+        cursor: pointer;
+    }
+
+        .rating .star.active {
+            opacity: 0;
+            animation: animate 0.5s calc(var(--i) * 0.1s) ease-in-out forwards;
+        }
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.rating .star:hover {
+    transform: scale(1.1);
+}
+
+textarea {
+    /* width: 100%; */
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    resize: none;
+    margin-bottom: 0.5rem;
+}
+
+.btn-group {
+    /* display: flex; */
+    grid-gap: 0.5rem;
+    align-items: center;
+}
+
+    .btn-group .btn {
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+        .btn-group .btn.submit {
+            background-color: #4383ff;
+            color: var(--white);
+        }
+
+            .btn-group .btn.submit:hover {
+                background-color: #3278ff;
+            }
+
+        .btn-group .btn.cancel {
+            background-color: var(--white);
+            color: #4383ff;
+        }
+
+            .btn-group .btn.cancel:hover {
+                background-color: #f5f5f5;
+            }

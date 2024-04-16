@@ -49,8 +49,8 @@ namespace e_course_web.Areas.Customer.Controllers
 
             Course course = _unitOfWork.Course.GetFirstOrDefault(i => i.Id == id, includeProperties: "Lessons,Category");
 
-            // Get name user
-            var teacherGetName = _unitOfWork.User.GetFirstOrDefault(p => p.Id == course.TeacherId).FullName;
+            // Get name teacher user
+            var teacherGet = _unitOfWork.User.GetFirstOrDefault(p => p.Id == course.TeacherId);
 
             for(int i = 0; i < course.Lessons.Count; i++)
             {
@@ -62,12 +62,23 @@ namespace e_course_web.Areas.Customer.Controllers
                 {
                     IsRegister = isRegister,
                     Course = course,
-                    TeacherName = teacherGetName,
+                    CourseFeedbacks = _unitOfWork.CourseFeedback.GetAll(f => f.CourseId == course.Id, includeProperties: "User"),
+                    Instructor = new InstructorVM()
+                    {
+                        PhotoUrl = teacherGet.PhotoUrl,
+                        Introduce = teacherGet.Introduce,
+                        FullName = teacherGet.FullName,
+                        Expert = teacherGet.Expert,
+                        CourseCount = _unitOfWork.Course.GetAll(c => c.TeacherId == teacherGet.Id).Count(),
+                        ReviewCount = _unitOfWork.CourseFeedback.GetAll(f => f.CourseId == course.Id).Count(),
+                        Rating = _unitOfWork.CourseFeedback.GetAll(f => f.CourseId == course.Id).Count() != 0 ? _unitOfWork.CourseFeedback.GetAll(f => f.CourseId == course.Id).Average(p => p.Rating) : 5,
+                    },
                 };
                 return View(detailVM);
             }
             return NotFound();
         }
+
         [Route("detail")]
         [Authorize]
         [HttpPost]

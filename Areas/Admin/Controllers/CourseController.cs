@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging.Abstractions;
 using e_course_web.Service.Manager;
+using CloudinaryDotNet.Actions;
 
 namespace e_course_web.Areas.Admin.Controllers
 {
@@ -79,38 +80,82 @@ namespace e_course_web.Areas.Admin.Controllers
         // Description: Add course
         // Data input: CourseVM
         [HttpPost]
-        public async Task<IActionResult> Create(CourseInputVM value)
+        public async Task<IActionResult> Create(int? id, CourseInputVM value)
         {
             string TeacherID = null;
             if (User.IsInRole(SD.Role_Teacher))
             {
                 TeacherID = _userManager.GetUserId(User);
             }
-            if (ModelState.IsValid)
+            // Add
+            if (id == null)
             {
-                var cloudImage = await _cloudinaryService.AddPhotoAsync(value.CourseImage, ManagerAddress.PublicId_CourseImages);
-                var cloudVideo = await _cloudinaryService.AddVideoAsync(value.IntroductVideo, ManagerAddress.PublicId_CourseIntroduces);
-                Course course = new Course()
+                if (ModelState.IsValid)
                 {
-                    Title = value.Title,
-                    Price = value.Price,
-                    CategoryId = value.CategoryId,
-                    Description = value.Description,
-                    Rating = 0,
-                    Register = 0,
-                    TeacherId = TeacherID != null ? TeacherID : value.TeacherId,
-                    ImageUrl = cloudImage.Url.ToString(),
-                    PublicId = cloudImage.PublicId,
-                    VideoUrl = cloudVideo.Url.ToString(),
-                    PublicVideo = cloudVideo.PublicId,
-                    Time = value.Time,
-                    Language = value.Language,
-                    UpdateAt = DateTime.Now,
-                    CreatedAt = DateTime.Now,
-                };
-                _unitOfWork.Course.Add(course);
+                    var cloudImage = await _cloudinaryService.AddPhotoAsync(value.CourseImage, ManagerAddress.PublicId_CourseImages);
+                    var cloudVideo = await _cloudinaryService.AddVideoAsync(value.IntroductVideo, ManagerAddress.PublicId_CourseIntroduces);
+                    Course course = new Course()
+                    {
+                        Title = value.Title,
+                        Price = value.Price,
+                        CategoryId = value.CategoryId,
+                        Description = value.Description,
+                        Rating = 0,
+                        Register = 0,
+                        TeacherId = TeacherID != null ? TeacherID : value.TeacherId,
+                        ImageUrl = cloudImage.Url.ToString(),
+                        PublicId = cloudImage.PublicId,
+                        VideoUrl = cloudVideo.Url.ToString(),
+                        PublicVideo = cloudVideo.PublicId,
+                        Time = value.Time,
+                        Language = value.Language,
+                        UpdateAt = DateTime.Now,
+                        CreatedAt = DateTime.Now,
+                    };
+                    _unitOfWork.Course.Add(course);
+                }
             }
-            return RedirectToAction("Create");
+            // Edit
+            else
+            {
+                Course courseGet = await _unitOfWork.Course.GetById(id);
+                if (value.Title != null && value.Price != null && value.CategoryId != null && value.Description != null &&
+                    TeacherID != null && value.Time != null && value.Language != null)
+                {
+                    ImageUploadResult cloudImage = null;
+                    VideoUploadResult cloudVideo = null;
+                    if (value.CourseImage != null)
+                    {
+                        cloudImage = await _cloudinaryService.AddPhotoAsync(value.CourseImage, ManagerAddress.PublicId_CourseImages);
+                    }
+                    if (value.IntroductVideo != null)
+                    {
+                        cloudVideo = await _cloudinaryService.AddVideoAsync(value.IntroductVideo, ManagerAddress.PublicId_CourseIntroduces);
+                    }
+                    Course course = new Course()
+                    {
+                        Title = value.Title,
+                        Price = value.Price,
+                        CategoryId = value.CategoryId,
+                        Description = value.Description,
+                        Rating = 0,
+                        Register = 0,
+                        TeacherId = TeacherID != null ? TeacherID : value.TeacherId,
+                        ImageUrl = cloudImage != null ? cloudImage.Url.ToString() : courseGet.ImageUrl,
+                        PublicId = cloudImage != null ? cloudImage.PublicId : courseGet.PublicId,
+                        VideoUrl = cloudVideo != null ? cloudVideo.Url.ToString() : courseGet.VideoUrl,
+                        PublicVideo = cloudVideo != null ? cloudVideo.PublicId : courseGet.PublicVideo,
+                        Time = value.Time,
+                        Language = value.Language,
+                        UpdateAt = DateTime.Now,
+                        CreatedAt = courseGet.CreatedAt,
+                    };
+                    _unitOfWork.Course.Add(course);
+                }
+                return RedirectToAction("Detail", new { id });
+            }
+            
+            return RedirectToAction("Index");
         }
         // Address https://localhost:7189/admin/course/detail/{id?}
         // Description: detail course

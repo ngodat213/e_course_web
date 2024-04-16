@@ -1,8 +1,8 @@
 ﻿@using e_course_web.Service.Helpers;
 
 @{
-    var col1 = "col-lg-6";
-    var col2 = "col-lg-6";
+    var col1 = "col-lg-5";
+    var col2 = "col-lg-7";
 
     if (User.IsInRole(SD.Role_Admin))
     {
@@ -37,7 +37,9 @@
                     <div class="@col1 col-sm-12">
                         <div class="header-main d-flex justify-content-between align-items-center">
                             <div class="header-logo">
-                                <a href="index.html"><span>E
+                                <a asp-area="Customer" asp-controller="Home" asp-action="Index">
+                                    <span>
+                                        E
                                     </span>Course</a>
                             </div>
                             <button type="button"
@@ -88,6 +90,9 @@
                                 }
                                 <li class="menu-item "><a asp-area="Customer" asp-controller="Home" asp-action="Contact">contact</a></li>
                                 <partial name="_LoginPartial" />
+                                <li class="menu-item nav-actions">
+                                    <i class="fa-solid fa-magnifying-glass nav-icon" id="btn-search"></i>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -95,6 +100,17 @@
                 </div>
             </div>
         </header>
+        <!-- search start-->
+        <div class="search" id="search">
+            <form action="" class="search-form">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="search" placeholder="What are you looking for?" class="search-input">
+            </form>
+
+            <i class="fa-solid fa-x search-close" id="btn-close"></i>
+        </div>
+        <!-- search end-->
+
         <div class="container">
             <main role="main" class="pb-3">
                 @RenderBody()
@@ -201,6 +217,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/main.js" asp-append-version="true"></script>
+    <script src="~/js/search.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 
     <script>

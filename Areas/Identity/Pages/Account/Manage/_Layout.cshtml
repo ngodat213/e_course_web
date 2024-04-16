@@ -8,21 +8,29 @@
         Layout = "/Areas/Identity/Pages/_Layout.cshtml";
     }
 }
-
-<h1>Manage your account</h1>
-
-<div>
-    <h2>Change your account settings</h2>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
-        </div>
+<div class="breadcrumb-nav">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" asp-route-area="Customer">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Exams</li>
+            </ol>
+        </nav>
     </div>
 </div>
+
+<section class="course-section section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-3">
+                <partial name="_ManageNav" />
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</section>
 
 @section Scripts {
     @RenderSection("Scripts", required: false)

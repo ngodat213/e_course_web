@@ -143,7 +143,7 @@
                                                 <td>@lesson.Minute</td>
                                                 <td>@lesson.Second</td>
                                                 <td>
-                                                    <a asp-action="Lesson" asp-route-id="@lesson.Id">Edit</a>
+                                                    <a class="btn btn-theme" asp-action="Lesson" asp-route-id="@lesson.Id">Edit</a>
                                                     <form asp-action="DetailDelete" method="post">
                                                         <button type="submit" asp-action="DetailDelete" asp-route-id="@lesson.Id" formnovalidate
                                                                 class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">

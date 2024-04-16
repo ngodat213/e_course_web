@@ -315,3 +315,8 @@ function setTime(hour, minute, second) {
 }
 
 var interval = setInterval(updateCountdown, 1000);
+
+function Search() {
+    console.log('hehe');
+}
+Search();
