@@ -1,0 +1,54 @@
+﻿@model IEnumerable<e_course_web.Models.Categories>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="table-responsive text-nowrap container-fluid section-padding">
+    <div class="product-payment-inner-st">
+        <div class="review-content-section box">
+            <div class="row">
+                <div class="col-10">
+                    <h2>Index</h2>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-theme" asp-action="Create">Create New</a>
+                </div>
+            </div>
+            <table id="example" class="table table-hover table-fixed nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Category</td>
+                            <td>
+                                <row class="row">
+                                    <div class="col-lg-2">
+                                        <a class="btn btn-theme" asp-action="Create" asp-route-id="@item.Id">View</a>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <form asp-action="IndexDelete" method="post">
+                                            <button type="submit" asp-action="IndexDelete" asp-route-id="@item.Id" formnovalidate
+                                                    class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </row>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -6,27 +6,38 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using e_course_web.Service.Interfaces;
 using e_course_web.Service.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging.Abstractions;
+using e_course_web.Service.Manager;
 
 namespace e_course_web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+    [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Teacher)]
     public class CourseController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICloudinaryService _cloudinaryService;
+        private readonly UserManager<User> _userManager;
         // Controller: IUnitOfWork
-        public CourseController(IUnitOfWork unitOfWork, ICloudinaryService cloudinaryService)
+        public CourseController(IUnitOfWork unitOfWork, ICloudinaryService cloudinaryService, UserManager<User> userManager)
         {
             _unitOfWork = unitOfWork;
             _cloudinaryService = cloudinaryService;
+            _userManager = userManager;
         }
         // Address https://localhost:7189/admin/course
         // Description: Show all course
         // Data: IEnumerable<Course>
         public IActionResult Index()
         {
-            IEnumerable<Course> courses = _unitOfWork.Course.GetAll();
+            IEnumerable<Course> courses;
+            if (User.IsInRole(SD.Role_Teacher))
+            {
+                courses = _unitOfWork.Course.GetAll(p => p.TeacherId == _userManager.GetUserId(User));
+                return View(courses);
+            }
+            courses = _unitOfWork.Course.GetAll();
             return View(courses);
         }
         // Address https://localhost:7189/admin/course/deleteindex/{id}
@@ -57,7 +68,6 @@ namespace e_course_web.Areas.Admin.Controllers
         // Data: ViewBag.Categories
         public async Task<IActionResult> Create(int? id)
         {
-           
             ViewBag.Categories = _unitOfWork.Categories.GetAll().Select(i => new SelectListItem
             {
                 Text = i.Category,
@@ -69,11 +79,17 @@ namespace e_course_web.Areas.Admin.Controllers
         // Description: Add course
         // Data input: CourseVM
         [HttpPost]
-        public async Task<IActionResult> Create(CourseVM value)
+        public async Task<IActionResult> Create(CourseInputVM value)
         {
-            if(ModelState.IsValid)
+            string TeacherID = null;
+            if (User.IsInRole(SD.Role_Teacher))
             {
-                var cloud = await _cloudinaryService.AddPhotoAsync(value.CourseImage);
+                TeacherID = _userManager.GetUserId(User);
+            }
+            if (ModelState.IsValid)
+            {
+                var cloudImage = await _cloudinaryService.AddPhotoAsync(value.CourseImage, ManagerAddress.PublicId_CourseImages);
+                var cloudVideo = await _cloudinaryService.AddVideoAsync(value.IntroductVideo, ManagerAddress.PublicId_CourseIntroduces);
                 Course course = new Course()
                 {
                     Title = value.Title,
@@ -82,9 +98,11 @@ namespace e_course_web.Areas.Admin.Controllers
                     Description = value.Description,
                     Rating = 0,
                     Register = 0,
-                    TeacherId = value.TeacherId,
-                    ImageUrl = cloud.Url.ToString(),
-                    PublicId = cloud.PublicId,
+                    TeacherId = TeacherID != null ? TeacherID : value.TeacherId,
+                    ImageUrl = cloudImage.Url.ToString(),
+                    PublicId = cloudImage.PublicId,
+                    VideoUrl = cloudVideo.Url.ToString(),
+                    PublicVideo = cloudVideo.PublicId,
                     Time = value.Time,
                     Language = value.Language,
                     UpdateAt = DateTime.Now,
@@ -99,15 +117,13 @@ namespace e_course_web.Areas.Admin.Controllers
         // Data: ViewBag.Course, IEnumerable<CourseLesson>
         public async Task<IActionResult> Detail(int? id)
         {
-            Course course = await _unitOfWork.Course.GetById(id);
+            Course course = _unitOfWork.Course.GetFirstOrDefault(c => c.Id == id, includeProperties: "Lessons");
             if (course != null)
             {
-                ViewBag.Course = course;
                 // Danh sach lesson
-                IEnumerable<CourseLesson> courseLessons = _unitOfWork.CourseLesson.GetAll().OrderBy(i => i.Id == course.Id);
                 CourseLessonVM courseLessonVM = new CourseLessonVM()
                 {
-                    CourseLesson = courseLessons,
+                    Course = course,
                 };
                 ViewBag.Categories = _unitOfWork.Categories.GetAll().Select(i => new SelectListItem
                 {
@@ -164,14 +180,13 @@ namespace e_course_web.Areas.Admin.Controllers
         // Data: ViewBag.CourseLesson
         public async Task<IActionResult> Lesson(int? id)
         {
-            CourseLesson courseLesson = await _unitOfWork.CourseLesson.GetById(id);
+            CourseLesson courseLesson = _unitOfWork.CourseLesson.GetFirstOrDefault(i => i.Id == id, includeProperties: "Videos");
             if(courseLesson != null)
             {
                 ViewBag.CourseLesson = courseLesson;
-                IEnumerable<CourseVideo> courseVideos = _unitOfWork.CourseVideo.GetAll().OrderBy(i => i.Id == courseLesson.Id);
                 CourseVideoVM courseVideoVM = new CourseVideoVM()
                 {
-                    CourseVideo = courseVideos,
+                    CourseLesson = courseLesson,
                 };
                 return View(courseVideoVM);
             }
@@ -183,7 +198,7 @@ namespace e_course_web.Areas.Admin.Controllers
         {
             if (value.Title != "" && value.Hour != null && value.Part != null && value.Minute != null && value.Video != null)
             {
-                var cloud = await _cloudinaryService.AddVideoAsync(value.Video);
+                var cloud = await _cloudinaryService.AddVideoAsync(value.Video, ManagerAddress.PublicId_CourseVideos);
                 CourseVideo courseVideo = new CourseVideo()
                 {
                     Part = value.Part,

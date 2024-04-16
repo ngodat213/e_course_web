@@ -5,6 +5,7 @@ namespace e_course_web.ViewModels
 {
     public class TestLessonVM
     {
+        public string FullName {  get; set; }
         public int Id { get; set; }
         public int ExamId {  get; set; }
         public string Title { get; set; }

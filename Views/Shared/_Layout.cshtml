@@ -9,6 +9,11 @@
         col1 = "col-lg-5";
         col2 = "col-lg-7";
     }
+    if (User.IsInRole(SD.Role_Teacher))
+    {
+        col1 = "col-lg-5";
+        col2 = "col-lg-7";
+    }
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -67,10 +72,20 @@
                                             <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Exam" asp-action="Index">Exams</a></li>
                                             <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Teacher" asp-action="Index">Teachers</a></li>
                                             <li class="sub-menu-item"><a asp-area="Admin" asp-controller="User" asp-action="Index">Users</a></li>
+                                            <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a></li>
                                         </ul>
                                     </li>
                                 }
-                                
+                                else if (User.IsInRole(SD.Role_Teacher))
+                                {
+                                    <li class="menu-item menu-item-has-children">
+                                        <a href="#" class="js-toggle-sub-menu">Admin<i class="fas fa-chevron-down"></i></a>
+                                        <ul class="sub-menu js-sub-menu">
+                                            <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Course" asp-action="Index">Courses</a></li>
+                                            <li class="sub-menu-item"><a asp-area="Admin" asp-controller="Exam" asp-action="Index">Exams</a></li>
+                                        </ul>
+                                    </li>
+                                }
                                 <li class="menu-item "><a asp-area="Customer" asp-controller="Home" asp-action="Contact">contact</a></li>
                                 <partial name="_LoginPartial" />
                             </ul>
@@ -186,6 +201,16 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/main.js" asp-append-version="true"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#myeditor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

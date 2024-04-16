@@ -49,11 +49,13 @@ namespace e_course_web.Areas.Customer.Controllers
 
         [Route("Test")]
         [Authorize]
-        public IActionResult Test(int id)
+        public async Task<IActionResult> Test(int id)
         {
+            var user = await _userManager.GetUserAsync(User);
             ExamLesson examLesson = _unitOfWork.ExamLesson.GetFirstOrDefault(p => p.Id == id, includeProperties: "ExamQuestion");
             TestLessonVM lessonVM = new TestLessonVM
             {
+                FullName = user.FullName,
                 ExamId = id,
                 Id = examLesson.Id,
                 Hour = examLesson.Hour,
@@ -96,7 +98,7 @@ namespace e_course_web.Areas.Customer.Controllers
         public async Task<IActionResult> SubmitAnswers([FromBody] List<ExamAnswer> userChooses)
         {
             TestLessonVM testLessonVM = SessionHelper.GetObjectFromJson<TestLessonVM>(HttpContext.Session, ManagerKeyStorage.TEST_ID);
-
+            var user = await _userManager.GetUserAsync(User);
             // Set data checks
             List<bool> checks = new List<bool>(); 
             for(int i = 0; i < testLessonVM.ExamQuestions.Count; i++) {
@@ -115,9 +117,10 @@ namespace e_course_web.Areas.Customer.Controllers
 
             ExamResultVM examResultVM = new ExamResultVM()
             {
-                Score = Score,
-                testLessonVM = testLessonVM,
+                Score = Math.Round(Score, 2),
+                TestLessonVM = testLessonVM,
                 UserChoice = userChooses,
+                UserName = user.FullName
             };
             SessionHelper.SetObjectAsJson(HttpContext.Session, ManagerKeyStorage.RESULT_VM, examResultVM);
             return Json(new { success = true, message = "Answers submitted successfully" });

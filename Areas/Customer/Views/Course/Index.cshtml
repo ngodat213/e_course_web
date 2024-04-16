@@ -1,4 +1,5 @@
-﻿@model IEnumerable<e_course_web.Models.Course>
+﻿@model IEnumerable<e_course_web.ViewModels.CourseVM>
+@using e_course_web.Service.Helpers
 @*
 *@
 @{
@@ -64,8 +65,8 @@
                                                 </div>
                                                 <h3 class="title">@course.Title</h3>
                                                 <div class="instructor">
-                                                    <img src="~/img/instructor/1.png" alt="instructor img">
-                                                    <span class="instructor-name">john doe</span>
+                                                    <img src=@(course.PhotoUrl != null ? course.PhotoUrl : Const.DEFAULT_AVATAR) alt="Avatar" />
+                                                    <span class="instructor-name">@course.TeacherName</span>
                                                 </div>
                                                 <div class="rating">
                                                     <span class="average-rating">(4.5)</span>

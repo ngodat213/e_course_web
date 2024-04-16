@@ -1,0 +1,51 @@
+﻿@model e_course_web.Models.Categories
+
+@{
+    ViewData["Title"] = "AddCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid section-padding">
+    <div class="product-payment-inner-st">
+        <div class="review-content-section box">
+            <h2>Create Course</h2>
+            <form asp-action="Create" method="post"
+                  class="dropzone dropzone-custom needsclick addcourse"
+                  id="demo1-upload">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Category">Category</label>
+                            <input asp-for="Category" type="text"
+                                   class="form-control"
+                                   placeholder="Course Name">
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="payment-adress">
+                            <button type="submit"
+                                    class="btn btn-primary waves-effect waves-light">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <a asp-action="Index" class="btn btn-success waves-effect waves-light">
+                            Back to list
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

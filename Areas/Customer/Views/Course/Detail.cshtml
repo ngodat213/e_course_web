@@ -52,7 +52,7 @@
                             </div>
                             <ul>
                                 <li> enrolled students - <span>@Model.Course.Register</span></li>
-                                <li> created by - <span><a href="#">@Model.Course.TeacherId</a></span></li>
+                                <li> created by - <span><a asp-action="Index" asp-controller="Teacher" asp-area="Customer" asp-route-id="@Model.Course.TeacherId">@Model.TeacherName</a></span></li>
                                 <li> last updated - <span>@Model.Course.UpdateAt</span></li>
                                 <li> language - <span>@Model.Course.Language</span></li>
                             </ul>
@@ -145,7 +145,7 @@
                          aria-labelledby="course-description-tab">
                         <div class="course-description box">
                             <h3 class="text-capitalize mb-4">Description</h3>
-                            @Model.Course.Description
+                            @Html.Raw(Model.Course.Description)
                         </div>
                     </div>
                     <!-- course description end -->

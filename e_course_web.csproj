@@ -79,10 +79,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Customer\Views\Blog\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\css\.DS_Store" />
     <None Include="wwwroot\css\admin\metisMenu\metisMenu.min.css.map" />
     <None Include="wwwroot\icomoon\fonts\icomooncfce.eot" />

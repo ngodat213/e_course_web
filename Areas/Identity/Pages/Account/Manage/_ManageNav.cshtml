@@ -2,6 +2,34 @@
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
+
+<div class="box p-0">
+    <nav class="course-tabs m-0">
+        <div class="nav nav-tabs flex-column border-0" id="nav-tab" role="tablist">
+            <button class="nav-link @ManageNavPages.IndexNavClass(ViewContext) border-0 p-2 m-2"
+                    id="profile"
+                    onclick="window.location.href='@Url.Page("./Index")'">
+                Profile
+            </button>
+            <button class="nav-link @ManageNavPages.EmailNavClass(ViewContext) border-0 p-2 m-2"
+                    id="email"
+                    onclick="window.location.href='@Url.Page("./Email")'">
+                Email
+            </button>
+            <button class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext) border-0 p-2 m-2"
+                    id="change-password"
+                    onclick="window.location.href='@Url.Page("./ChangePassword")'">
+                Password
+            </button>
+            <button class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) border-0 p-2 m-2"
+                    id="two-factor"
+                    onclick="window.location.href='@Url.Page("./TwoFactorAuthentication")'">
+                Two-factor authentication
+            </button>
+
+        </div>
+    </nav>
+</div>@* 
 <ul class="nav nav-pills flex-column">
     <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
@@ -12,4 +40,4 @@
     }
     <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
-</ul>
+</ul> *@

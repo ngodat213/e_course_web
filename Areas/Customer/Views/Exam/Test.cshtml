@@ -3,19 +3,23 @@
 <div class="container status mt-5 pd-2">
     <div class="row">
         <div class="col-md-2 btn-wrap">
-            <button type="button" class="btn btn-danger ">Thoát</button>
+            <button type="button" class="btn btn-theme ">Thoát</button>
         </div>
-        <div class="col-md-7 text-center pt-2">
-            <p>User: Ngô Văn Tiến Đạt</p>
+        <div class="col-md-6 text-center pt-2">
+            <p class="fw-bold">User: @Model.FullName</p>
         </div>
-        <div class="col-md-3 btn-wrap">
+        <div class="col-md-4 btn-wrap">
             <div class="row">
-                <div class="col-md-6 pt-2">
-                    <p>00:41:43</p>
+                <div class="col-md-1 pt-2">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="col-md-5 pt-2">
+                    <p class="fw-bold" id="countdown"></p>
                 </div>
                 <div class="col-md-6">
-                    <button formaction="/Customer/Exam/Result" id="finish" class="btn btn-theme" onclick="submitAnswers('/Exam/SubmitAnswers')">Nộp bài</button>
+                    <button id="finish" class="btn btn-theme" onclick="submitAnswers('/Exam/SubmitAnswers')">Nộp bài</button>
                 </div>
+
             </div>
         </div>
     </div>
@@ -96,3 +100,11 @@
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script>
+        setTime(@Model.Hour, @Model.Minute, @Model.Second);
+        updateCountdown();
+    </script>
+}
+

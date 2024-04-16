@@ -8,11 +8,12 @@ using e_course_web.Service.Helpers;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
+using e_course_web.Service.Manager;
 
 namespace e_course_web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+    [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Teacher)]
     public class ExamController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -69,7 +70,7 @@ namespace e_course_web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var cloud = await _cloudinaryService.AddPhotoAsync(value.Image, isCourse: false);
+                var cloud = await _cloudinaryService.AddPhotoAsync(value.Image, ManagerAddress.PublicId_ExamQuestions);
                 if(cloud.StatusCode  == System.Net.HttpStatusCode.OK)
                 {
                     Exam quiz = new Exam()
@@ -183,7 +184,7 @@ namespace e_course_web.Areas.Admin.Controllers
                     ImageUploadResult cloud = new ImageUploadResult();
                     if(value.Image != null)
                     {
-                        cloud = await _cloudinaryService.AddPhotoAsync(value.Image);
+                        cloud = await _cloudinaryService.AddPhotoAsync(value.Image, ManagerAddress.PublicId_ExamQuestions);
                     }
                     // Convert List<string> option to json
                     var jsonConvert = ConvertJsonHelper.ToJson(new List<string>(){ value.Option1,
@@ -196,6 +197,7 @@ namespace e_course_web.Areas.Admin.Controllers
                         Question = value.Question,
                         Answer = value.Answer,
                         Option = jsonConvert,
+                        ImageUrl = value.Image != null ? cloud.Url.ToString() : null,
                         PublicId = value.Image != null ? cloud.PublicId : null,
                     };
                     if (cloud.StatusCode == System.Net.HttpStatusCode.OK)

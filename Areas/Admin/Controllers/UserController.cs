@@ -1,12 +1,15 @@
 ﻿using e_course_web.DataAccess.DbContext;
 using e_course_web.DataAccess.Repositorys;
 using e_course_web.Models;
+using e_course_web.Service.Helpers;
 using e_course_web.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace e_course_web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -32,34 +35,24 @@ namespace e_course_web.Areas.Admin.Controllers
             }
             return View(userList);
         }
-
-        public IActionResult Create()
-        {
-            return View();
-        }
-
+        // Lock user
         [HttpPost]
-        public IActionResult Create(User user)
+        public IActionResult Index(string id)
         {
-            return View();
-        }
-
-        public IActionResult Lock(string id)
-        {
-            var objFromDb = _unitOfWork.User.GetFirstOrDefault(u => u.Id == id);
-            if (objFromDb == null)
+            var user = _unitOfWork.User.GetFirstOrDefault(u => u.Id == id);
+            if (user == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-            if (objFromDb.LockoutEnd != null && objFromDb.LockoutEnd > DateTime.Now)
+            if (user.LockoutEnd != null && user.LockoutEnd > DateTime.Now)
             {
-                // user is currently locked, will unlock them
-                objFromDb.LockoutEnd = DateTime.Now;
+                user.LockoutEnd = DateTime.Now;
             }
             else
             {
-                objFromDb.LockoutEnd = DateTime.Now.AddYears(1000);
+                user.LockoutEnd = DateTime.Now.AddYears(1000);
             }
+            _unitOfWork.User.Update(user);
             return RedirectToAction(nameof(Index)); ;
         }
     }

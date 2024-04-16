@@ -7,20 +7,13 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    
     <li class="menu-item menu-item-has-children">
         <a href="#" class="js-toggle-sub-menu">account <i class="fas fa-chevron-down"></i></a>
         <ul class="sub-menu js-sub-menu">
-            <li class="sub-menu-item"><a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Setting</a></li>
-            <form class="p-0" style="min-width:auto !important;" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button class="border-0">
-                    <div class="icon-area">
-                        <i class="fa fa-sign-out"></i>
-                    </div>
-                    <small class="text">Thoát</small>
-                </button>
-            </form>
-            
+            <li class="sub-menu-item"><a asp-area="Identity" asp-page="/Account/Manage/Index">Setting</a></li>
+            <li class="sub-menu-item">
+                <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a>
+            </li>
         </ul>
     </li>
 }

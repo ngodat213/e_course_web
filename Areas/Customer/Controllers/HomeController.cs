@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using e_course_web.DataAccess.Repositorys;
+using e_course_web.ViewModels;
 
 namespace e_course_web.Areas.Customer.Controllers
 {
@@ -20,10 +21,17 @@ namespace e_course_web.Areas.Customer.Controllers
 
         public  IActionResult Index()
         {
-            IEnumerable<Course> courses =  _unitOfWork.Course.GetAll(includeProperties: "Lessons,Category");
+            IEnumerable<Course> courses = _unitOfWork.Course.GetAll();
+            List<CourseVM> courseVM = new List<CourseVM>();
+
             if (courses != null)
             {
-                return View(courses.Take(4));
+                foreach (var course in courses)
+                {
+                    var user = _unitOfWork.User.GetFirstOrDefault(p => p.Id == course.TeacherId);
+                    courseVM.Add(new CourseVM() { Id = course.Id, ImageUrl = course.ImageUrl, PhotoUrl = user.PhotoUrl, Price = course.Price, TeacherName = user.FullName, Title = course.Title });
+                }
+                return View(courseVM.Take(10));
             }
             return View();
         }

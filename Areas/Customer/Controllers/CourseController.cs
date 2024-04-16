@@ -22,10 +22,17 @@ namespace e_course_web.Areas.Customer.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            IEnumerable<Course> courses = _unitOfWork.Course.GetAll(includeProperties: "Lessons,Category");
+            IEnumerable<Course> courses = _unitOfWork.Course.GetAll();
+            List<CourseVM> courseVM = new List<CourseVM>();
+            
             if (courses != null)
             {
-                return View(courses.Take(10));
+                foreach (var course in courses)
+                {
+                    var user = _unitOfWork.User.GetFirstOrDefault(p => p.Id == course.TeacherId);
+                    courseVM.Add(new CourseVM() { Id = course.Id, ImageUrl = course.ImageUrl, PhotoUrl = user.PhotoUrl, Price = course.Price, TeacherName = user.FullName, Title = course.Title });
+                }
+                return View(courseVM.Take(10));
             }
             return View();
         }
@@ -41,6 +48,10 @@ namespace e_course_web.Areas.Customer.Controllers
             }
 
             Course course = _unitOfWork.Course.GetFirstOrDefault(i => i.Id == id, includeProperties: "Lessons,Category");
+
+            // Get name user
+            var teacherGetName = _unitOfWork.User.GetFirstOrDefault(p => p.Id == course.TeacherId).FullName;
+
             for(int i = 0; i < course.Lessons.Count; i++)
             {
                 course.Lessons[i] = _unitOfWork.CourseLesson.GetFirstOrDefault(item => item.Id == course.Lessons[i].Id, includeProperties: "Videos");
@@ -51,6 +62,7 @@ namespace e_course_web.Areas.Customer.Controllers
                 {
                     IsRegister = isRegister,
                     Course = course,
+                    TeacherName = teacherGetName,
                 };
                 return View(detailVM);
             }

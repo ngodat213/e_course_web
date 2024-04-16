@@ -1,4 +1,4 @@
-﻿@model e_course_web.ViewModels.CourseVM
+﻿@model e_course_web.ViewModels.CourseInputVM
 
 @{
     ViewData["Title"] = "AddCourse";
@@ -37,11 +37,15 @@
                             <label asp-for="CourseImage">Product Image</label>
                             <input type="file" asp-for="CourseImage" class="form-control" />
                         </div>
+                        <div class="form-group">
+                            <label asp-for="IntroductVideo">Introduce Video</label>
+                            <input type="file" asp-for="IntroductVideo" class="form-control" />
+                        </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group res-mg-t-15">
                             <label asp-for="TeacherId">Instructor</label>
-                            <input asp-for="TeacherId" name="Instructor" type="text"
+                            <input asp-for="TeacherId" name="TeacherId" type="text"
                                    class="form-control"
                                    placeholder="Instructor">
                             <span asp-validation-for="TeacherId" class="text-danger"></span>
@@ -62,7 +66,7 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="Description">Description</label>
-                            <textarea asp-for="Description" name="description"
+                            <textarea id="myeditor" asp-for="Description" name="description"
                                       placeholder="Description"></textarea>
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>

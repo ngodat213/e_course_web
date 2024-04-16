@@ -4,9 +4,13 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using CloudinaryDotNet;
 using e_course_web.Models;
+using e_course_web.Service.Interfaces;
+using e_course_web.Service.Manager;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -17,13 +21,16 @@ namespace e_course_web.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly ICloudinaryService _cloudinaryService;
 
         public IndexModel(
             UserManager<User> userManager,
-            SignInManager<User> signInManager)
+            SignInManager<User> signInManager,
+            ICloudinaryService cloudinaryService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _cloudinaryService = cloudinaryService;
         }
 
         /// <summary>
@@ -31,6 +38,11 @@ namespace e_course_web.Areas.Identity.Pages.Account.Manage
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public string Username { get; set; }
+
+        public string PhotoUrl { get; set; }
+        public IFormFile ImageFile { get; set; }
+        public string FullName { get; set; }
+
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -59,6 +71,9 @@ namespace e_course_web.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            public string PhotoUrl { get; set; }
+            public IFormFile ImageFile { get; set; }
+            public string FullName { get; set; }
         }
 
         private async Task LoadAsync(User user)
@@ -67,10 +82,14 @@ namespace e_course_web.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
+            FullName = user.FullName;
+            PhotoUrl = user.PhotoUrl;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                FullName = user.FullName,
+                PhotoUrl = user.PhotoUrl
             };
         }
 
@@ -94,19 +113,42 @@ namespace e_course_web.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            if (!ModelState.IsValid)
-            {
-                await LoadAsync(user);
-                return Page();
-            }
-
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
+            if (Input.PhoneNumber != null && Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
                     StatusMessage = "Unexpected error when trying to set phone number.";
+                    return RedirectToPage();
+                }
+            }
+
+            if (Input.FullName != null && Input.FullName != user.FullName)
+            {
+                user.FullName = Input.FullName;
+                var setFullNameResult = await _userManager.UpdateAsync(user);
+                if (!setFullNameResult.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set fullname.";
+                    return RedirectToPage();
+                }
+            }
+
+            if (Input.ImageFile != null)
+            {
+                var cloudResult = await _cloudinaryService.AddPhotoAsync(Input.ImageFile, ManagerAddress.PublicId_UserPhoto, fileName: user.Id);
+                if (cloudResult.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    StatusMessage = "Unexpected error when trying to set avatar.";
+                    return RedirectToPage();
+                }
+                user.PhotoUrl = cloudResult.Url.ToString();
+                
+                var setPhotoResult = await _userManager.UpdateAsync(user);
+                if (!setPhotoResult.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set fullname.";
                     return RedirectToPage();
                 }
             }

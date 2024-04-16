@@ -3,20 +3,14 @@
 <div class="container status mt-5 pd-2">
     <div class="row">
         <div class="col-md-2 btn-wrap">
-            <button type="button" class="btn btn-danger ">Thoát</button>
+            <a type="button" class="btn btn-theme" asp-action="Index" asp-controller="Exam" asp-area="Customer">Thoát</a>
         </div>
-        <div class="col-md-7 text-center pt-2">
-            <p>User: Ngô Văn Tiến Đạt</p>
+        <div class="col-md-5 text-center pt-2">
+            <p class="fw-bold">User: @Model.UserName</p>
+            
         </div>
-        <div class="col-md-3 btn-wrap">
-            <div class="row">
-                <div class="col-md-6 pt-2">
-                    <p>00:41:43</p>
-                </div>
-                <div class="col-md-6">
-                    <button id="finish" class="btn btn-theme" onclick="submitAnswers('/Exam/SubmitAnswers')">Nộp bài</button>
-                </div>
-            </div>
+        <div class="col-md-2 text-center pt-2">
+            <p class ="fw-bold ">Score: @Model.Score</p>
         </div>
     </div>
 </div>
@@ -29,68 +23,70 @@
                 @{
                     int iQuestion = 0;
                 }
-                @foreach (var item in Model.testLessonVM.ExamQuestions)
+                @foreach (var item in Model.TestLessonVM.ExamQuestions)
                 {
                     <div class="course-header box @(iQuestion != 0 ? "mt-3" : "")">
                         <h5 class="text-capitalize">@(iQuestion + 1). @item.Question</h5>
                         <div class="text-center">
                             <img class="m-4" src="@item.ImageUrl" alt="" width="450">
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="col-auto">
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="radio1-@(iQuestion)" name="result"
-                                               value="0" @(Model.UserChoice[iQuestion].Answer == 0 ? "checked" : "") disabled><p>A. @item.Option[0]</p>
-                                        <label class="form-check-label" for="radio1-@(iQuestion)"></label>
+                        <form class="result" id=@iQuestion>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input radio-button" id="radio1-@(iQuestion)" name="result"
+                                                   value="0" @(Model.UserChoice[iQuestion].Answer == 0 ? "checked" : "") disabled><p>A. @item.Option[0]</p>
+                                            <label class="form-check-label" for="radio1-@(iQuestion)"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input radio-button" id="radio2-@(iQuestion)" name="result"
+                                                   value="2" @(Model.UserChoice[iQuestion].Answer == 2 ? "checked" : "") disabled><p>C. @item.Option[2]</p>
+                                            <label class="form-check-label" for="radio2-@(iQuestion)"></label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-auto">
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="radio2-@(iQuestion)" name="result"
-                                               value="2" @(Model.UserChoice[iQuestion].Answer == 1 ? "checked" : "") disabled><p>C. @item.Option[2]</p>
-                                        <label class="form-check-label" for="radio2-@(iQuestion)"></label>
+                                <div class="col-md-6">
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input radio-button" id="radio3-@(iQuestion)" name="result"
+                                                   value="1" @(Model.UserChoice[iQuestion].Answer == 1 ? "checked" : "") disabled><p>B. @item.Option[1]</p>
+                                            <label class="form-check-label" for="radio3-@(iQuestion)"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input radio-button" id="radio4-@(iQuestion)" name="result"
+                                                   value="3" @(Model.UserChoice[iQuestion].Answer == 3 ? "checked" : "") disabled><p>D. @item.Option[3]</p>
+                                            <label class="form-check-label" for="radio4-@(iQuestion)"></label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="col-auto">
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="radio3-@(iQuestion)" name="result"
-                                               value="1" @(Model.UserChoice[iQuestion].Answer == 2 ? "checked" : "") disabled><p>B. @item.Option[1]</p>
-                                        <label class="form-check-label" for="radio3-@(iQuestion)"></label>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="radio4-@(iQuestion)" name="result"
-                                               value="3" @(Model.UserChoice[iQuestion].Answer == 3 ? "checked" : "") disabled><p>D. @item.Option[3]</p>
-                                        <label class="form-check-label" for="radio4-@(iQuestion)"></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <p class="col-auto">
-                                    Đáp án đúng: @{
-                                        switch (Model.testLessonVM.ExamQuestions[iQuestion].Answer)
-                                        {
-                                            case 0:
-                                                <text>A</text>
-                                                break;
-                                            case 1:
-                                                <text>B</text>
-                                                break;
-                                            case 2:
-                                                <text>C</text>
-                                                break;
-                                            case 3:
-                                                <text>D</text>
-                                                break;
+                                <div class="col-md-12">
+                                    <p class="col-auto">
+                                        Đáp án đúng: @{
+                                            switch (Model.TestLessonVM.ExamQuestions[iQuestion].Answer)
+                                            {
+                                                case 0:
+                                                    <text>A</text>
+                                                    break;
+                                                case 1:
+                                                    <text>B</text>
+                                                    break;
+                                                case 2:
+                                                    <text>C</text>
+                                                    break;
+                                                case 3:
+                                                    <text>D</text>
+                                                    break;
+                                            }
                                         }
-                                    }
-                                </p>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     iQuestion++;
                 }
@@ -103,10 +99,19 @@
                         @{
                             int iStatus = 0;
                         }
-                        @foreach (var item in Model.testLessonVM.ExamQuestions)
+                        @for(int i = 0; i < Model.TestLessonVM.ExamQuestions.Count; i ++)
                         {
                             iStatus++;
-                            <li class="col-md-2 col-lg-2 exam-choice " id="choice_@iStatus">@iStatus</li>
+                            if(Model.UserChoice[i].Answer == Model.TestLessonVM.ExamQuestions[i].Answer)
+                            {
+                                <li class="col-md-2 col-lg-2 exam-choice bg-primary" id="choice_@iStatus">
+                                    @iStatus
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="col-md-2 col-lg-2 exam-choice bg-danger" id="choice_@iStatus">@iStatus</li>
+                            }
                         }
                     </ul>
                 </div>

@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Leson";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    Course course = ViewBag.Course;
     IEnumerable<SelectListItem> categories = ViewBag.Categories;
 }
 <div class="container-fluid section-padding">
@@ -18,27 +17,27 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="CourseVM.Title">Title</label>
-                                <input asp-for="CourseVM.Title" type="text" value="@course.Title"
+                                <label asp-for="Course.Title">Title</label>
+                                <input asp-for="Course.Title" type="text" value="@Model.Course.Title"
                                        class="form-control"
                                        placeholder="Course Name">
-                                <span asp-validation-for="CourseVM.Title" class="text-danger"></span>
+                                <span asp-validation-for="Course.Title" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CourseVM.Price">Price</label>
-                                <input asp-for="CourseVM.Price" type="number" value="@course.Price"
+                                <label asp-for="Course.Price">Price</label>
+                                <input asp-for="Course.Price" type="number" value="@Model.Course.Price"
                                        class="form-control"
                                        placeholder="Course Price">
-                                <span asp-validation-for="CourseVM.Price" class="text-danger"></span>
+                                <span asp-validation-for="Course.Price" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CourseVM.CategoryId">Category</label>
-                                <select asp-for="CourseVM.CategoryId" asp-items="@categories" class="form-control">
-                                    @if (Model != null && Model.CourseVM != null && categories != null)
+                                <label asp-for="Course.CategoryId">Category</label>
+                                <select asp-for="Course.CategoryId" asp-items="@categories" class="form-control">
+                                    @if (Model != null && Model.Course != null && categories != null)
                                     {
                                         foreach (var category in categories)
                                         {
-                                            if (category.Value == Model.CourseVM.CategoryId.ToString())
+                                            if (category.Value == Model.Course.CategoryId.ToString())
                                             {
                                                 <option value="@category.Value" selected>@category.Text</option>
                                             }
@@ -53,38 +52,38 @@
 
                             <div class="form-group alert-up-pd">
                                 <div class="form-group">
-                                    <label asp-for="CourseVM.CourseImage">Product Image</label>
-                                    <input type="file" asp-for="CourseVM.CourseImage" class="form-control" />
+                                    <label asp-for="Course.ImageUrl">Product Image</label>
+                                    <input type="file" asp-for="Course.ImageUrl" class="form-control" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group res-mg-t-15">
-                                <label asp-for="CourseVM.TeacherId">TeacherId</label>
-                                <input asp-for="CourseVM.TeacherId" name="Instructor" type="text" value="@course.TeacherId"
+                                <label asp-for="Course.TeacherId">TeacherId</label>
+                                <input asp-for="Course.TeacherId" name="Instructor" type="text" value="@Model.Course.TeacherId"
                                        class="form-control"
                                        placeholder="Instructor">
-                                <span asp-validation-for="CourseVM.TeacherId" class="text-danger"></span>
+                                <span asp-validation-for="Course.TeacherId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CourseVM.Language">Language</label>
-                                <input asp-for="CourseVM.Language" name="Language" type="text" value="@course.Language"
+                                <label asp-for="Course.Language">Language</label>
+                                <input asp-for="Course.Language" name="Language" type="text" value="@Model.Course.Language"
                                        class="form-control"
                                        placeholder="Language">
-                                <span asp-validation-for="CourseVM.Language" class="text-danger"></span>
+                                <span asp-validation-for="Course.Language" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CourseVM.Time">Time</label>
-                                <input asp-for="CourseVM.Time" name="Time" type="text" value="@course.Time"
+                                <label asp-for="Course.Time">Time</label>
+                                <input asp-for="Course.Time" name="Time" type="text" value="@Model.Course.Time"
                                        class="form-control"
                                        placeholder="Time">
-                                <span asp-validation-for="CourseVM.Time" class="text-danger"></span>
+                                <span asp-validation-for="Course.Time" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CourseVM.Description">Description</label>
-                                <textarea asp-for="CourseVM.Description" name="description" value="@course.Description"
+                                <label asp-for="Course.Description">Description</label>
+                                <textarea id="myeditor" asp-for="Course.Description" name="description" value="@Model.Course.Description"
                                           placeholder="Description"></textarea>
-                                <span asp-validation-for="CourseVM.Description" class="text-danger"></span>
+                                <span asp-validation-for="Course.Description" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -139,25 +138,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (Model.CourseLesson != null)
+                        @foreach (var lesson in Model.Course.Lessons)
                         {
-                            @foreach (var lesson in Model.CourseLesson)
-                            {
-                                <tr>
-                                    <td>@lesson.Id</td>
-                                    <td>@lesson.Title</td>
-                                    <td>@lesson.Lesson</td>
-                                    <td>
-                                        <a class="btn btn-theme" asp-action="Lesson" asp-route-id="@lesson.Id">Edit</a>
-                                        <form asp-action="DetailDelete" method="post">
-                                            <button type="submit" asp-action="DetailDelete" asp-route-id="@lesson.Id" formnovalidate
-                                                    class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
-                                                Delete
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            }
+                            <tr>
+                                <td>@lesson.Id</td>
+                                <td>@lesson.Title</td>
+                                <td>@lesson.Lesson</td>
+                                <td>
+                                    <a class="btn btn-theme" asp-action="Lesson" asp-route-id="@lesson.Id">Edit</a>
+                                    <form asp-action="DetailDelete" method="post">
+                                        <button type="submit" asp-action="DetailDelete" asp-route-id="@lesson.Id" formnovalidate
+                                                class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>

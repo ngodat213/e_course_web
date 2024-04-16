@@ -26,8 +26,6 @@
                         <th>PhotoUrl</th>
                         <th>Role</th>
                         <th>PhoneNumber</th>
-                        <th>Courses</th>
-                        <th>FinishedExams</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -49,6 +47,12 @@
                                     <button type="submit" formnovalidate
                                             class="cancel btn btn-danger">
                                         Lock
+                                    </button>
+                                </form>
+                                <form asp-action="Index" asp-controller="Teacher" asp-area="Customer" method="post" asp-route-id="@item.UserName">
+                                    <button type="submit" formnovalidate
+                                            class="cancel btn btn-theme">
+                                        View
                                     </button>
                                 </form>
                             </td>

@@ -6,5 +6,6 @@ namespace e_course_web.ViewModels
     {
         public bool IsRegister {  get; set; }
         public Course Course { get; set; }
+        public string TeacherName {  get; set; }
     }
 }

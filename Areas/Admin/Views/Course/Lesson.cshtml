@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Video";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    CourseLesson courseLesson = ViewBag.CourseLesson;
 }
 
 <div class="single-pro-review-area mt-t-30 mg-b-15">
@@ -17,18 +16,18 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <input asp-for="CourseLessonVM.Title" type="text" value="@courseLesson.Title"
+                                        <input asp-for="@Model.CourseLesson.Title" type="text" value="@Model.CourseLesson.Title"
                                                class="form-control"
                                                placeholder="Lesson Title">
-                                        <span asp-validation-for="CourseLessonVM.Title" class="text-danger"></span>
+                                        <span asp-validation-for="@Model.CourseLesson.Title" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <input asp-for="CourseLessonVM.Lesson" type="number" value="@courseLesson.Lesson"
+                                        <input asp-for="@Model.CourseLesson.Lesson" type="number" value="@Model.CourseLesson.Lesson"
                                                class="form-control"
                                                placeholder="Part Lesson">
-                                        <span asp-validation-for="CourseLessonVM.Lesson" class="text-danger"></span>
+                                        <span asp-validation-for="@Model.CourseLesson.Lesson" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -87,9 +86,9 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if (Model != null && Model.CourseVideo != null)
+                                                @if (Model != null && Model.CourseLesson.Videos != null)
                                                 {
-                                                    @foreach (var video in Model.CourseVideo)
+                                                    @foreach (var video in Model.CourseLesson.Videos)
                                                     {
                                                         <tr>
                                                             <td>@video.Id</td>
@@ -97,7 +96,7 @@
                                                             <td>@video.Title</td>
                                                             <td>@video.Hour</td>
                                                             <td>@video.Minute</td>
-                                                            <td>@video.VideoUrl</td>
+                                                            <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@video.VideoUrl</td>
                                                             <td>
                                                                 <a asp-action="Lesson" asp-route-id="@video.Id">Edit</a>
                                                                 <form asp-action="VideoDelete" method="post">
