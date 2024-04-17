@@ -55,7 +55,7 @@ namespace e_course_web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Create(int? id)
+        public async Task<IActionResult> Create()
         {
             ViewBag.Categories = _unitOfWork.Categories.GetAll().Select(i => new SelectListItem
             {
@@ -91,14 +91,12 @@ namespace e_course_web.Areas.Admin.Controllers
 
         public async Task<IActionResult> Detail(int? id)
         {
-            Exam question = await _unitOfWork.Exam.GetById(id);
-            if (question != null)
+            Exam exam = _unitOfWork.Exam.GetFirstOrDefault(c => c.Id == id, includeProperties: "Lessons");
+            if (exam != null)
             {
-                ViewBag.Question = question;
-                IEnumerable<ExamLesson> questionLessons = _unitOfWork.ExamLesson.GetAll().OrderBy(i => i.Id == question.Id);
                 ExamLessonVM courseLessonVM = new ExamLessonVM()
                 {
-                    QuestionLessons = questionLessons,
+                    Exam = exam,
                 };
                 ViewBag.Categories = _unitOfWork.Categories.GetAll().Select(i => new SelectListItem
                 {
@@ -115,6 +113,24 @@ namespace e_course_web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Detail(int? id, ExamLessonVM value)
         {
+            // Edit exam detail
+            if(value.Exam != null && value.Exam.Title != null && value.Exam.CategoryId != null && value.Exam.Description != null)
+            {
+                Exam exam = await _unitOfWork.Exam.GetById(id);
+                ImageUploadResult cloudImage = null;
+                if(value.Image != null)
+                {
+                    cloudImage = await _cloudinaryService.AddPhotoAsync(value.Image, ManagerAddress.PublicId_ExamImage);
+                }
+                exam.Title = value.Exam.Title;
+                exam.CategoryId = value.Exam.CategoryId;
+                exam.Description = value.Exam.Description;
+                exam.ImageUrl = value.Image != null ? cloudImage.Url.ToString() : exam.ImageUrl;
+                exam.PublicId = value.Image != null ? cloudImage.PublicId: exam.PublicId;
+
+                _unitOfWork.Exam.Update(exam);
+            }
+            // Add exam lesson
             if (value.Title != null && value.Lesson != null && value.Point != null && value.Hour != null && value.Second != null && value.Minute != null)
             {
                 ExamLesson lesson = new ExamLesson()
@@ -132,6 +148,7 @@ namespace e_course_web.Areas.Admin.Controllers
                 };
                 question.Lessons = courseLessonList;
                 _unitOfWork.Exam.Update(question);
+
             }
             // Reload page
             return RedirectToAction("Detail", new { id });
@@ -160,64 +177,81 @@ namespace e_course_web.Areas.Admin.Controllers
         // Show detail video, and edit video
         public async Task<IActionResult> Lesson(int? id)
         {
-            ExamLesson examLesson = await _unitOfWork.ExamLesson.GetById(id);
+            List<Option> options = new List<Option>
+            {
+                new Option { Id = 0, Opt = "A" },
+                new Option { Id = 1, Opt = "B" },
+                new Option { Id = 2, Opt = "C" },
+                new Option { Id = 3, Opt = "D" }
+            };
+            ViewBag.Options = options.Select(o => new SelectListItem { Value = o.Id.ToString(), Text = o.Opt }).ToList();
+            ExamLesson examLesson = _unitOfWork.ExamLesson.GetFirstOrDefault(i => i.Id == id, includeProperties: "ExamQuestion");
             if (examLesson != null)
             {
-                ViewBag.CourseLesson = examLesson;
-                IEnumerable<ExamQuestion> questionTests = _unitOfWork.ExamQuestion.GetAll().OrderBy(i => i.Id == examLesson.Id);
                 ExamQuestionVM examQuestionVM = new ExamQuestionVM()
                 {
-                    QuestionTest = questionTests,
+                    ExamLesson = examLesson,
                 };
                 return View(examQuestionVM);
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Lesson", new { id });
         }
 
         [HttpPost]
         public async Task<IActionResult> Lesson(int? id, ExamQuestionVM value)
         {
+            // Edit lesson
+            if (value.ExamLesson != null && value.ExamLesson.Title != null && value.ExamLesson.Lesson != null && value.ExamLesson.Hour != null &&
+                value.ExamLesson.Minute != null && value.ExamLesson.Second != null && value.ExamLesson.Point != null)
+            {
+                ExamLesson examLesson = await _unitOfWork.ExamLesson.GetById(id);
+                if (examLesson != null)
+                {
+                    examLesson.Title = value.ExamLesson.Title;
+                    examLesson.Lesson = value.ExamLesson.Lesson;
+                    examLesson.Hour = value.ExamLesson.Hour;
+                    examLesson.Minute = value.ExamLesson.Minute;
+                    examLesson.Second = value.ExamLesson.Second;
+                    examLesson.Point = value.ExamLesson.Point;
+
+                    _unitOfWork.ExamLesson.Update(examLesson);
+                }
+            }
+
+            // Add question
             if (value.Question != null && value.Answer != null && value.Option1 != null && value.Option2 != null && value.Option3 != null && value.Option4 != null)
             {
-                try
+                ImageUploadResult cloud = new ImageUploadResult();
+                if (value.Image != null)
                 {
-                    ImageUploadResult cloud = new ImageUploadResult();
-                    if(value.Image != null)
-                    {
-                        cloud = await _cloudinaryService.AddPhotoAsync(value.Image, ManagerAddress.PublicId_ExamQuestions);
-                    }
-                    // Convert List<string> option to json
-                    var jsonConvert = ConvertJsonHelper.ToJson(new List<string>(){ value.Option1,
+                    cloud = await _cloudinaryService.AddPhotoAsync(value.Image, ManagerAddress.PublicId_ExamQuestions);
+                }
+                // Convert List<string> option to json
+                var jsonConvert = ConvertJsonHelper.ToJson(new List<string>(){ value.Option1,
                             value.Option2,
                             value.Option3,
                             value.Option4,
                     });
-                    ExamQuestion examQuestion = new ExamQuestion()
-                    {
-                        Question = value.Question,
-                        Answer = value.Answer,
-                        Option = jsonConvert,
-                        ImageUrl = value.Image != null ? cloud.Url.ToString() : null,
-                        PublicId = value.Image != null ? cloud.PublicId : null,
-                    };
-                    if (cloud.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        
-                        examQuestion.ImageUrl = value.Image != null ? cloud.Url.ToString() : null;
-                        examQuestion.PublicId = value.Image != null ? cloud.PublicId : null;
-                    }
-                    ExamLesson examLesson = await _unitOfWork.ExamLesson.GetById(id);
-                    var videoList = new List<ExamQuestion>(){
+                ExamQuestion examQuestion = new ExamQuestion()
+                {
+                    Question = value.Question,
+                    Answer = value.Answer,
+                    Option = jsonConvert,
+                    ImageUrl = value.Image != null ? cloud.Url.ToString() : null,
+                    PublicId = value.Image != null ? cloud.PublicId : null,
+                };
+                if (cloud.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+
+                    examQuestion.ImageUrl = value.Image != null ? cloud.Url.ToString() : null;
+                    examQuestion.PublicId = value.Image != null ? cloud.PublicId : null;
+                }
+                ExamLesson examLesson = await _unitOfWork.ExamLesson.GetById(id);
+                var videoList = new List<ExamQuestion>(){
                             examQuestion,
                     };
-                    examLesson.ExamQuestion = videoList;
-                    _unitOfWork.ExamLesson.Update(examLesson);
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.ErrorMessage = ex.Message;
-                    return View("Error");
-                }
+                examLesson.ExamQuestion = videoList;
+                _unitOfWork.ExamLesson.Update(examLesson);
             }
             // Reload page
             return RedirectToAction("Lesson", new { id });
@@ -231,22 +265,53 @@ namespace e_course_web.Areas.Admin.Controllers
             {
                 _unitOfWork.ExamQuestion.Delete(question);
             }
-            return RedirectToAction("Lesson", new { id });
+            return RedirectToAction("Detail");
         }
 
         public async Task<IActionResult> Question(int? id)
         {
             ExamQuestion examQuestion = await _unitOfWork.ExamQuestion.GetById(id);
-            if(examQuestion != null) {
-                ExamQuestionDetailVM detail = new ExamQuestionDetailVM() {
-                    Question = examQuestion.Question,
-                    Answer = examQuestion.Answer,
+            if(examQuestion != null) 
+            {
+                return View(new ExamQuestionDetailVM() { 
+                    Question = examQuestion.Question, 
+                    Answer = examQuestion.Answer, 
+                    Option = ConvertJsonHelper.FromJson<List<string>>(examQuestion.Option),
                     ImageUrl = examQuestion.ImageUrl,
-                    Option = ConvertJsonHelper.FromJson<List<string>>(examQuestion.Option)
-                };
-                return View(detail);
+                });
             }
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Question(int? id, ExamQuestionDetailVM value)
+        {
+            ExamQuestion examQuestion= await _unitOfWork.ExamQuestion.GetById(id);
+
+            if (value.Question != null && value.Answer != null && value.Option1 != null && value.Option2 != null &&
+                value.Option3 != null && value.Option4 != null)
+            {
+                examQuestion.Question = value.Question;
+                examQuestion.Answer = value.Answer;
+                examQuestion.Option = ConvertJsonHelper.ToJson(new List<string>(){ value.Option1,
+                            value.Option2,
+                            value.Option3,
+                            value.Option4,
+                    });
+
+                if (value.Image != null)
+                {
+                    var cloud = await _cloudinaryService.AddPhotoAsync(value.Image, ManagerAddress.PublicId_ExamQuestions);
+                    if (cloud.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        examQuestion.ImageUrl = cloud.Url.ToString();
+                        examQuestion.PublicId = cloud.PublicId;
+                    }
+                }
+                _unitOfWork.ExamQuestion.Update(examQuestion);
+            }
+            return RedirectToAction("Question", new { id });
+        }
+
     }
 }

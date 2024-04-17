@@ -24,9 +24,10 @@ namespace e_course_web.Areas.Customer.Controllers
         public IActionResult Index()
         {
             var exams = _unitOfWork.Exam.GetAll(includeProperties: "Lessons");
+            ViewBag.Categories = _unitOfWork.Categories.GetAll();
             if (exams != null)
             {
-                return View(exams.Take(10));
+                return View(exams);
             }
             return View(exams);
         }

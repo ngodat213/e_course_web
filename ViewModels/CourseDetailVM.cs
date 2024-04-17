@@ -15,6 +15,8 @@ namespace e_course_web.ViewModels
 
         public List<double> RatingPercent {  get; set; }
 
+        public ReviewVM ReviewVM { get; set; }
+
         public List<FeedbackVM> GetFeedbackView()
         {
             List<FeedbackVM> list = new List<FeedbackVM>();

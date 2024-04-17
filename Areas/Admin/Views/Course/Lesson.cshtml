@@ -11,8 +11,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-payment-inner-st">
                     <div class="review-content-section box">
-                        <h2> Lesson Details </h2>
-                        <form asp-action="Detail" method="post">
+                        <h2> Edit Lesson Detail</h2>
+                        <form asp-action="Lesson" method="post">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
@@ -35,7 +35,7 @@
                         </form>
                     </div>
                     <div class="review-content-section box">
-                        <h2 class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> Video Details </h2>
+                        <h2 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Add Video Detail</h2>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="review-content-section">
                                 <div id="dropzone1" class="pro-ad addcoursepro">
@@ -98,7 +98,7 @@
                                                             <td>@video.Minute</td>
                                                             <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@video.VideoUrl</td>
                                                             <td>
-                                                                <a asp-action="Lesson" asp-route-id="@video.Id">Edit</a>
+                                                                <a class="btn btn-theme" asp-action="Video" asp-route-id="@video.Id">Edit</a>
                                                                 <form asp-action="VideoDelete" method="post">
                                                                     <button type="submit" asp-action="VideoDelete" asp-route-id="@video.Id" formnovalidate
                                                                             class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">

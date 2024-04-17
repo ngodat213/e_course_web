@@ -5,6 +5,7 @@ using e_course_web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace e_course_web.Areas.Customer.Controllers
 {
@@ -19,21 +20,25 @@ namespace e_course_web.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
             _userManager = userManager;
         }
+        // Search index default id: -1 = all
         [Route("")]
         public IActionResult Index()
         {
-            IEnumerable<Course> courses = _unitOfWork.Course.GetAll();
+            IEnumerable<Course> courses;
             List<CourseVM> courseVM = new List<CourseVM>();
-            
+            ViewBag.Categories = _unitOfWork.Categories.GetAll();
+
+            courses = _unitOfWork.Course.GetAll();
             if (courses != null)
             {
                 foreach (var course in courses)
                 {
                     var user = _unitOfWork.User.GetFirstOrDefault(p => p.Id == course.TeacherId);
-                    courseVM.Add(new CourseVM() { Id = course.Id, ImageUrl = course.ImageUrl, PhotoUrl = user.PhotoUrl, Price = course.Price, TeacherName = user.FullName, Title = course.Title });
+                    courseVM.Add(new CourseVM() { Id = course.Id, ImageUrl = course.ImageUrl, PhotoUrl = user.PhotoUrl, Price = course.Price, TeacherName = user.FullName, Title = course.Title, CategoryId = course.CategoryId });
                 }
-                return View(courseVM.Take(10));
+                return View(courseVM);
             }
+
             return View();
         }
         [Route("detail")]
@@ -86,7 +91,7 @@ namespace e_course_web.Areas.Customer.Controllers
         {
             if(id!= null)
             {
-                var course = await _unitOfWork.Course.GetById(id);
+                Course course = await _unitOfWork.Course.GetById(id);
                 UserOrder userOrder = new UserOrder()
                 {
                     CourseId = id ?? 0,
@@ -96,8 +101,26 @@ namespace e_course_web.Areas.Customer.Controllers
                     Payment = SD.Payment_Momo,
                     PaymentStatus = "Success"
                 };
+                course.Register++;
+                _unitOfWork.Course.Update(course);
                 _unitOfWork.UserOrder.Add(userOrder);
                 return RedirectToAction("Detail", new { id });
+            }
+            return RedirectToAction("Detail", new { id });
+        }
+        [Route("AddReview")]
+        [HttpPost]
+        public async Task<IActionResult> AddReview(int? id, ReviewVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Feedback.Add(new CourseFeedback()
+                {
+                    UserId = _userManager.GetUserId(User),
+                    CourseId = (int)id,
+                    Title = model.ReviewText,
+                    Rating = model.Rating,
+                });
             }
             return RedirectToAction("Detail", new { id });
         }

@@ -448,7 +448,7 @@ textarea.form-control {
     }
 
 .nav-icon {
-    color: black;
+    color: var(--black-70);
     padding-right: 20px;
 }
 
@@ -1436,24 +1436,6 @@ textarea.form-control {
         margin-bottom: 1rem;
     }
 
-.rating {
-    /* display: flex; */
-    justify-self: center;
-    align-items: center;
-    grid-gap: 0.5rem;
-    font-size: 2rem;
-    color: var(--orange);
-    margin-bottom: 2rem;
-}
-
-    .rating .star {
-        cursor: pointer;
-    }
-
-        .rating .star.active {
-            opacity: 0;
-            animation: animate 0.5s calc(var(--i) * 0.1s) ease-in-out forwards;
-        }
 
 @keyframes animate {
     0% {
@@ -1617,7 +1599,7 @@ tr th td {
 }
 
     .search-input::placeholder {
-        color: var(--main-color);
+        color: var(--black-70);
         padding-left: 10px;
     }
 
@@ -1659,24 +1641,6 @@ tr th td {
         margin-bottom: 1rem;
     }
 
-.rating {
-    /* display: flex; */
-    justify-self: center;
-    align-items: center;
-    grid-gap: 0.5rem;
-    font-size: 2rem;
-    color: var(--orange);
-    margin-bottom: 2rem;
-}
-
-    .rating .star {
-        cursor: pointer;
-    }
-
-        .rating .star.active {
-            opacity: 0;
-            animation: animate 0.5s calc(var(--i) * 0.1s) ease-in-out forwards;
-        }
 
 @keyframes animate {
     0% {
@@ -1743,3 +1707,123 @@ textarea {
             .btn-group .btn.cancel:hover {
                 background-color: #f5f5f5;
             }
+
+
+/* Popup Modal */
+.data-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    pointer-events: none;
+}
+
+    .data-popup .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .data-popup .data-content {
+        position: relative;
+        background-color: white;
+        padding: 40px 20px;
+        width: var(--data-width, 400px);
+        max-width: calc(100vw - 50px);
+        max-height: calc(100vh - 60px);
+        border-radius: 5px;
+        overflow-y: auto;
+        pointer-events: auto;
+    }
+
+    .data-popup .close-trigger,
+    .data-popup .form-popup span {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    .data-popup .form-popup {
+        position: relative;
+    }
+
+    .data-popup label {
+        font-weight: 600;
+        font-size: 14;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .data-popup .form-popup input {
+        color: var(--black-90);
+        background-color: var(--black-90);
+        border: 0;
+        padding: 7px 34px 7px 10px;
+        border-radius: 3px;
+        font-size: 14;
+    }
+
+    .data-popup .form-popup span {
+        top: auto;
+        bottom: 0;
+        right: 10px;
+        cursor: pointer;
+        transition: var(--body-bg-color);
+    }
+
+        .data-popup .form-popup span:hover {
+            color: var(--boder-color-1);
+        }
+
+    .data-popup form > div {
+        margin-top: 20px;
+    }
+
+form .button button {
+    cursor: pointer;
+}
+
+.d-review .data-content {
+    --data-width: 500px
+}
+
+.d-review .stars input {
+    display: none;
+}
+
+.d-review .stars label {
+    font-size: 16px;
+    margin: 0;
+}
+
+.d-review .stars > input:checked ~ label {
+    color: var(--orange);
+}
+
+.d-review :where(.rating, .stars) {
+    display: flex;
+    gap: 7px;
+}
+
+.d-review .stars {
+    flex-direction: row-reverse;
+}
+
+.data-popup h3, form .button {
+    text-align: center;
+}
+
+.data-popup .close-trigger {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}

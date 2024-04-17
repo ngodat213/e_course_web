@@ -10,48 +10,54 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="review-content-section box">
-                    <h2> Lesson Details </h2>
+                    <h2>Edit Lesson Detail</h2>
                     <div class="review-content-section">
-                        <form asp-action="Detail" method="post">
+                        <form asp-action="Lesson" method="post">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <input asp-for="ExamLesson.Title" type="text" value="ExamLesson.Title"
+                                        <label asp-for="@Model.ExamLesson.Title">Title</label>
+                                        <input asp-for="@Model.ExamLesson.Title" type="text" value="@Model.ExamLesson.Title"
                                                class="form-control"
                                                placeholder="Lesson Title">
-                                        <span asp-validation-for="ExamLesson.Title" class="text-danger"></span>
+                                        <span asp-validation-for="@Model.ExamLesson.Title" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <input asp-for="ExamLesson.Lesson" type="number" value="ExamLesson.Lesson"
+                                        <label asp-for="@Model.ExamLesson.Lesson">Lesson</label>
+                                        <input asp-for="@Model.ExamLesson.Lesson" type="number" value="@Model.ExamLesson.Lesson"
                                                class="form-control"
                                                placeholder="Lesson">
-                                        <span asp-validation-for="ExamLesson.Lesson" class="text-danger"></span>
+                                        <span asp-validation-for="@Model.ExamLesson.Lesson" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <input asp-for="ExamLesson.Point" type="number" value="ExamLesson.Point"
+                                        <label asp-for="@Model.ExamLesson.Point">Point</label>
+                                        <input asp-for="@Model.ExamLesson.Point" type="number" value="@Model.ExamLesson.Point"
                                                class="form-control"
                                                placeholder="Point">
-                                        <span asp-validation-for="ExamLesson.Point" class="text-danger"></span>
+                                        <span asp-validation-for="@Model.ExamLesson.Point" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <input asp-for="ExamLesson.Hour" type="number" value="ExamLesson.Hour"
+                                        <label asp-for="@Model.ExamLesson.Hour">Hour</label>
+                                        <input asp-for="@Model.ExamLesson.Hour" type="number" value="@Model.ExamLesson.Hour"
                                                class="form-control"
                                                placeholder="Hour">
-                                        <span asp-validation-for="ExamLesson.Lesson" class="text-danger"></span>
+                                        <span asp-validation-for="@Model.ExamLesson.Lesson" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <input asp-for="ExamLesson.Minute" type="number" value="ExamLesson.Minute"
+                                        <label asp-for="@Model.ExamLesson.Minute">Minute</label>
+                                        <input asp-for="@Model.ExamLesson.Minute" type="number" value="@Model.ExamLesson.Minute"
                                                class="form-control"
                                                placeholder="Minute">
-                                        <span asp-validation-for="ExamLesson.Minute" class="text-danger"></span>
+                                        <span asp-validation-for="@Model.ExamLesson.Minute" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <input asp-for="ExamLesson.Second" type="number" value="ExamLesson.Second"
+                                        <label asp-for="@Model.ExamLesson.Second">Second</label>
+                                        <input asp-for="@Model.ExamLesson.Second" type="number" value="@Model.ExamLesson.Second"
                                                class="form-control"
                                                placeholder="Second">
-                                        <span asp-validation-for="ExamLesson.Second" class="text-danger"></span>
+                                        <span asp-validation-for="@Model.ExamLesson.Second" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -74,8 +80,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label asp-for="Answer">Answer</label>
-                                                    <input asp-for="Answer" type="number" class="form-control" placeholder="Answer">
-                                                    <span asp-validation-for="Answer" class="text-danger"></span>
+                                                    <select asp-for="Answer" asp-items="ViewBag.Options" class="form-control"></select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label asp-for="Image">Image</label>
@@ -121,28 +126,25 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if (Model != null && Model.QuestionTest != null)
+                                                @foreach (var question in Model.ExamLesson.ExamQuestion)
                                                 {
-                                                    @foreach (var question in Model.QuestionTest)
-                                                    {
-                                                        <tr>
-                                                            <td>@question.Id</td>
-                                                            <td>@question.Question</td>
-                                                            <td>@question.Answer</td>
-                                                            <td>@question.Option</td>
-                                                            <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@question.ImageUrl</td>
-                                                            <td>
-                                                                <a asp-action="Question" asp-route-id="@question.Id">Edit</a>
-                                                                <form asp-action="QuestionDelete" method="post">
-                                                                    <button type="submit" asp-action="QuestionDelete" asp-route-id="@question.Id" formnovalidate
-                                                                            class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
-                                                                        Delete
-                                                                    </button>
-                                                                </form>
-                                                                
-                                                            </td>
-                                                        </tr>
-                                                    }
+                                                    <tr>
+                                                        <td>@question.Id</td>
+                                                        <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@question.Question</td>
+                                                        <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@question.Answer</td>
+                                                        <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@question.Option</td>
+                                                        <td style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@question.ImageUrl</td>
+                                                        <td>
+                                                            <a class="btn btn-theme" asp-action="Question" asp-route-id="@question.Id">Edit</a>
+                                                            <form asp-action="QuestionDelete" method="post">
+                                                                <button type="submit" asp-action="QuestionDelete" asp-route-id="@question.Id" formnovalidate
+                                                                        class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
+                                                                    Delete
+                                                                </button>
+                                                            </form>
+
+                                                        </td>
+                                                    </tr>
                                                 }
                                             </tbody>
                                         </table>

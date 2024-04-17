@@ -15,18 +15,18 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="review-content-section">
                                 <div id="dropzone1" class="pro-ad addcoursepro">
-                                    <form asp-action="Lesson" method="post" enctype="multipart/form-data">
+                                    <form asp-action="Question" method="post" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <label asp-for="Question">Question</label>
-                                                    <input asp-for="Question" type="text" class="form-control" placeholder="Question" value="Question">
-                                                    <span asp-validation-for="Question" class="text-danger"></span>
+                                                    <label asp-for="@Model.Question">Question</label>
+                                                    <input asp-for="@Model.Question" type="text" class="form-control" placeholder="Question" value="@Model.Question">
+                                                    <span asp-validation-for="@Model.Question" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label asp-for="Answer">Answer</label>
-                                                    <input asp-for="Answer" type="number" class="form-control" placeholder="Answer" value="Answer">
-                                                    <span asp-validation-for="Answer" class="text-danger"></span>
+                                                    <label asp-for="@Model.Answer">Answer</label>
+                                                    <input asp-for="@Model.Answer" type="number" class="form-control" placeholder="Answer" value="@Model.Answer">
+                                                    <span asp-validation-for="@Model.Answer" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label asp-for="Image">Image</label>
@@ -38,24 +38,24 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <label asp-for="Option[0]">Option1</label>
-                                                    <input asp-for="Option[0]" type="text" class="form-control" placeholder="A" value="Option[0]">
-                                                    <span asp-validation-for="Option[0]" class="text-danger"></span>
+                                                    <label asp-for="@Model.Option[0]">Option1</label>
+                                                    <input asp-for="@Model.Option1" type="text" class="form-control" placeholder="A" value="@Model.Option[0]">
+                                                    <span asp-validation-for="@Model.Option[0]" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label asp-for="Option[1]">Option2</label>
-                                                    <input asp-for="Option[1]" type="text" class="form-control" placeholder="B" value="Option[1]">
-                                                    <span asp-validation-for="Option[1]" class="text-danger"></span>
+                                                    <label asp-for="@Model.Option[1]">Option2</label>
+                                                    <input asp-for="@Model.Option2" type="text" class="form-control" placeholder="B" value="@Model.Option[1]">
+                                                    <span asp-validation-for="@Model.Option[1]" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label asp-for="Option[2]">Option3</label>
-                                                    <input asp-for="Option[2]" type="text" class="form-control" placeholder="C" value="Option[2]">
-                                                    <span asp-validation-for="Option[2]" class="text-danger"></span>
+                                                    <label asp-for="@Model.Option[2]">Option3</label>
+                                                    <input asp-for="@Model.Option3" type="text" class="form-control" placeholder="C" value="@Model.Option[2]">
+                                                    <span asp-validation-for="@Model.Option[2]" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label asp-for="Option[3]">Option4</label>
-                                                    <input asp-for="Option[3]" type="text" class="form-control" placeholder="D" value="Option[3]">
-                                                    <span asp-validation-for="Option[3]" class="text-danger"></span>
+                                                    <label asp-for="@Model.Option[3]">Option4</label>
+                                                    <input asp-for="@Model.Option4" type="text" class="form-control" placeholder="D" value="@Model.Option[3]">
+                                                    <span asp-validation-for="@Model.Option[3]" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>

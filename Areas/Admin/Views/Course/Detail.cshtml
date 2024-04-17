@@ -10,7 +10,7 @@
         <div class="review-content-section box">
             <h2> Course Details </h2>
             <div id="dropzone1" class="pro-ad addcoursepro">
-                <form asp-action="Create" method="post" enctype="multipart/form-data"
+                <form asp-action="Detail" method="post" enctype="multipart/form-data"
                       class="dropzone dropzone-custom needsclick addcourse"
                       id="demo1-upload">
                     <div class="row">
@@ -48,6 +48,7 @@
                                         }
                                     }
                                 </select>
+                                <span asp-validation-for="Course.CategoryId" class="text-danger"></span>
                             </div>
 
                             <div class="form-group alert-up-pd">
@@ -67,22 +68,22 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Course.Language">Language</label>
-                                <input asp-for="Course.Language" name="Language" type="text" value="@Model.Course.Language"
+                                <input asp-for="Course.Language" type="text" value="@Model.Course.Language"
                                        class="form-control"
                                        placeholder="Language">
                                 <span asp-validation-for="Course.Language" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Course.Time">Time</label>
-                                <input asp-for="Course.Time" name="Time" type="text" value="@Model.Course.Time"
+                                <input asp-for="Course.Time" type="text" value="@Model.Course.Time"
                                        class="form-control"
                                        placeholder="Time">
                                 <span asp-validation-for="Course.Time" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Course.Description">Description</label>
-                                <textarea id="myeditor" asp-for="Course.Description" name="description"
-                                          placeholder="Description"></textarea>
+                                <textarea id="myeditor" asp-for="Course.Description"
+                                          placeholder="Description" value="@Model.Course.Description"></textarea>
                                 <span asp-validation-for="Course.Description" class="text-danger"></span>
                             </div>
                         </div>
@@ -90,10 +91,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="payment-adress">
-                                <button type="submit"
-                                        class="btn btn-theme">
-                                    Save
-                                </button>
+                                <button type="submit" class="btn btn-theme">Save</button>
                             </div>
                         </div>
                     </div>

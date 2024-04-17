@@ -19,7 +19,7 @@
 <section class="course-details section-padding">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <!-- course header start -->
                 <div class="course-header box">
                     <h2 class="text-capitalize">@Model.Title</h2>
@@ -55,11 +55,7 @@
                                 aria-controls="course-description" aria-selected="false">
                             description
                         </button>
-                        <button class="nav-link" id="course-reviews-tab" data-bs-toggle="tab"
-                                data-bs-target="#course-reviews" type="button" role="tab"
-                                aria-controls="course-reviews" aria-selected="false">
-                            reviews
-                        </button>
+                        
                     </div>
                 </nav>
                 <!-- course tabs end -->
@@ -96,198 +92,15 @@
                          aria-labelledby="course-description-tab">
                         <div class="course-description box">
                             <h3 class="text-capitalize mb-4">Description</h3>
-                            <p>@Model.Description</p>
+                            <p>@Html.Raw(Model.Description)</p>
                         </div>
                     </div>
                     <!-- course description end -->
                     <!-- course reviews end -->
-                    <div class="tab-pane fade" id="course-reviews" role="tabpanel"
-                         aria-labelledby="course-reviews-tab">
-                        <div class="course-reviews box">
-                            <!-- rating summary start -->
-                            <div class="rating-summary">
-                                <h3 class="text-capitalize mb-4">students feedback</h3>
-                                <div class="row">
-                                    <div class="col-md-4 d-flex align-items-center justify-content-center text-center">
-                                        <div class="rating-box">
-                                            <div class="average-rating">4.5</div>
-                                            <div class="average-stars">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star-half-alt"></i>
-                                            </div>
-                                            <div class="reviews">230 Reviews</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="rating-bars">
-                                            <!-- rating bars item start -->
-                                            <div class="ratting-bars-item">
-                                                <div class="star-text">5 Star</div>
-                                                <div class="progress">
-                                                    <div class="progress-bar" style="width: 50%;"></div>
-                                                </div>
-                                                <div class="percent">50%</div>
-                                            </div>
-                                            <!-- rating bars item end -->
-                                            <!-- rating bars item start -->
-                                            <div class="ratting-bars-item">
-                                                <div class="star-text">4 Star</div>
-                                                <div class="progress">
-                                                    <div class="progress-bar" style="width: 30%;"></div>
-                                                </div>
-                                                <div class="percent">30%</div>
-                                            </div>
-                                            <!-- rating bars item end -->
-                                            <!-- rating bars item start -->
-                                            <div class="ratting-bars-item">
-                                                <div class="star-text">3 Star</div>
-                                                <div class="progress">
-                                                    <div class="progress-bar" style="width: 10%;"></div>
-                                                </div>
-                                                <div class="percent">10%</div>
-                                            </div>
-                                            <!-- rating bars item end -->
-                                            <!-- rating bars item start -->
-                                            <div class="ratting-bars-item">
-                                                <div class="star-text">2 Star</div>
-                                                <div class="progress">
-                                                    <div class="progress-bar" style="width: 7%;"></div>
-                                                </div>
-                                                <div class="percent">7%</div>
-                                            </div>
-                                            <!-- rating bars item end -->
-                                            <!-- rating bars item start -->
-                                            <div class="ratting-bars-item">
-                                                <div class="star-text">1 Star</div>
-                                                <div class="progress">
-                                                    <div class="progress-bar" style="width: 3%;"></div>
-                                                </div>
-                                                <div class="percent">3%</div>
-                                            </div>
-                                            <!-- rating bars item end -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- ratting sumary end -->
-                            <!-- reviews filter start -->
-                            <div class="reviews-filter">
-                                <h3 class="mb-4 text-capitalize">reviews</h3>
-                                <form action="">
-                                    <div class="form-group">
-                                        <i class="fas fa-chevron-down select-icon"></i>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">All Reviews</option>
-                                            <option value="5">5 Star</option>
-                                            <option value="4">4 Star</option>
-                                            <option value="3">3 Star</option>
-                                            <option value="2">2 Star</option>
-                                            <option value="1">1 Star</option>
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- reviews filter end -->
-                            <!-- review list start -->
-                            <div class="reviews-list">
-                                <!-- review item start -->
-                                <div class="reviews-item">
-                                    <div class="img-box">
-                                        <img src="img/review/1.jpeg" alt="review img">
-                                    </div>
-                                    <h4>Hydra</h4>
-                                    <div class="stars-rating">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                        <span class="date">1 week ago</span>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-                                        repellendus quo eaque vero neque iure quibusdam provident suscipit
-                                        soluta porro totam deleniti iusto, asperiores, nostrum quidem. Numquam
-                                        similique consequuntur esse!
-                                    </p>
-                                </div>
-                                <!-- review item end -->
-                                <!-- review item start -->
-                                <div class="reviews-item">
-                                    <div class="img-box">
-                                        <img src="img/review/1.jpeg" alt="review img">
-                                    </div>
-                                    <h4>Hydra</h4>
-                                    <div class="stars-rating">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                        <span class="date">1 week ago</span>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-                                        repellendus quo eaque vero neque iure quibusdam provident suscipit
-                                        soluta porro totam deleniti iusto, asperiores, nostrum quidem. Numquam
-                                        similique consequuntur esse!
-                                    </p>
-                                </div>
-                                <!-- review item end -->
-                                <!-- review item start -->
-                                <div class="reviews-item">
-                                    <div class="img-box">
-                                        <img src="img/review/1.jpeg" alt="review img">
-                                    </div>
-                                    <h4>Hydra</h4>
-                                    <div class="stars-rating">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                        <span class="date">1 week ago</span>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-                                        repellendus quo eaque vero neque iure quibusdam provident suscipit
-                                        soluta porro totam deleniti iusto, asperiores, nostrum quidem. Numquam
-                                        similique consequuntur esse!
-                                    </p>
-                                </div>
-                                <!-- review item end -->
-                            </div>
-                            <!-- review list end -->
-                            <button type="button" class="btn btn-theme">more reviews</button>
-                        </div>
-                    </div>
                     <!-- course reviews end -->
                 </div>
                 <!-- tab panes end -->
 
-            </div>
-            <div class="col-lg-4">
-                <!-- course sidebar start -->
-                <div class="course-sidebar box">
-                    <div class="img-box position-relative" data-bs-toggle="modal" data-bs-target="#video-modal">
-                        <img src="img/courses/item.jpg" alt="course img" class="w-100">
-                        <div class="play-icon">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <!-- <p class="text-center">Course Preview</p> -->
-                    </div>
-                    <div class="price d-flex align-items-center mb-3">
-                        <span class="price-old text-decoration-line-through">$111</span>
-                        <span class="price-new">$1</span>
-                        <span class="price-discount">99% Off</span>
-                    </div>
-                    <h3 class="mb-3">Course Features</h3>
-                    <ul class="features-list">
-                        <li>Total 15 lessons</li>
-                        <li>Other features</li>
-                        <li>Other features</li>
-                        <li>Other features</li>
-                        <li>Other features</li>
-                    </ul>
-                    <div class="btn-wrap">
-                        <button type="button" class="btn btn-theme btn-block">
-                            enroll
-                            now
-                        </button>
-                    </div>
-                </div>
-                <!-- course sidebar end -->
             </div>
         </div>
     </div>

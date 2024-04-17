@@ -49,7 +49,7 @@
                                 <td>@item.UpdateAt</td>
                                 <td>@item.CreatedAt</td>
                                 <td>
-                                    <a asp-action="Detail" asp-route-id="@item.Id">View</a> |
+                                    <a class="btn btn-theme" asp-action="Detail" asp-route-id="@item.Id">View</a> |
                                     <form asp-action="IndexDelete" method="post">
                                         <button type="submit" asp-action="IndexDelete" asp-route-id="@item.Id" formnovalidate
                                                 class="cancel btn btn-danger" onclick="return confirm('Are you sure?')">
